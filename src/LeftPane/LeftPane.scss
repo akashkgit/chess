@@ -1,0 +1,33 @@
+.chessdotcom{
+   
+
+    border:5px solid red;
+    
+    
+}
+.child1{
+    height:6%;
+    background-size: 119% ;
+    background-repeat: no-repeat;
+    background-position-x:104%;
+    
+    
+    width:80%;
+    
+    display:block;
+    border:2px solid white;
+    background-image:url("https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png");
+
+}
+.LeftPane{
+    background-color:#302e2b;
+    
+}
+.flex1{
+    display:flex;
+    align-items: center;
+    height:80%;
+    padding-top:5%;
+    flex-direction: column;
+}
+

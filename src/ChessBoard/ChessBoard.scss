@@ -3,7 +3,7 @@
     background-image:url('https://images.chesscomfiles.com/chess-themes/boards/green/200.png');
     background-size:100% 100%;
     background-repeat:no-repeat;
-    border:2px solid blue;
+    //border:2px solid blue;
     position:relative;
 height:90%;
 width:100%;
@@ -11,6 +11,7 @@ width:100%;
 
 .chessBox{
  padding:10%;   
+ box-sizing: content-box;
 }
 .box_{
     cursor:auto;
@@ -138,7 +139,7 @@ width:100%;
     cursor:grab;
     filter:brightness(100%);
     height:calc(100%/8);
-    border:2px solid red;
+    // border:2px solid red;
     display:inline-block;
     
  

@@ -1,0 +1,10 @@
+
+$bgcolor:#302e2b;
+body,.RightPane{
+    background-color: $bgcolor;
+}
+.RightPane{
+    display:grid;
+
+    grid-template: 1fr/var(--optionsPane) calc(0.60*(var(--totalWidth))) 25% auto;
+}

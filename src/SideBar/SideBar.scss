@@ -1,0 +1,74 @@
+$sidebar:rgba(38,37,34,1);
+.SideBar{
+    display:flex;
+    background-color:$sidebar;
+    flex-direction: column;
+    margin-top:var(--topMargin);
+    margin-left:7%;
+    
+}
+.flexy{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color:white;
+
+}
+
+.label1::before{
+    content:"play"
+}
+.label2::before{
+    content:"New Game"
+}
+.label3::before{
+    content:"Game"
+}
+.label4::before{
+    content:"Players"
+}
+
+.topSideBar{
+    display:flex;
+    width:100%;
+    height:6%;
+
+}
+.topSideBar > div{
+    width:33.33%;
+}
+.options1{
+    height:7%;
+
+}
+.play::before{
+    content:"\2010";
+    font-family: Chess V3;
+    
+}
+.newGame::before{
+    content:"\1F01";
+    font-family: Chess V3;
+    
+}
+.games::before{
+    content:"\2019" ;
+    font-family: Chess V3;
+}
+.players::before{
+    content:"\006E";
+    font-family:Chess V3;
+}
+@font-face {
+    font-display: block;
+    font-family: Chess V3;
+    font-weight: 400;
+    src: url("https://www.chess.com/bundles/web/fonts/chessglyph-v3/chessglyph-v3.cece6a99.woff2") format("woff")
+}
+.options2{
+    height:93%;
+}
+.options4{
+    flex:1 1 0;
+}

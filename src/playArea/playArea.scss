@@ -1,0 +1,11 @@
+$topMargin:2%;
+body{--topMargin:1.5dvh}
+.playArea{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display:flex;
+    margin-top:var(--topMargin);
+    gap:1%;
+    flex-direction:column;
+    
+}

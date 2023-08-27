@@ -15,5 +15,3 @@ export function App(){
     </>
 }
 
-let rRoot=createRoot(document.querySelector("#reactRoot"))
-rRoot.render(<App />);

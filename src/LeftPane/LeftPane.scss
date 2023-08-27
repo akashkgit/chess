@@ -20,14 +20,14 @@
 
 }
 .LeftPane{
-    background-color:#302e2b;
+    background-color:rgba(0,0,0,0.2);
     
 }
 .flex1{
     display:flex;
     align-items: center;
     height:540px;
-    padding-top:5%;
+    padding-top:var(--topMargin);
     flex-direction: column;
 }
 

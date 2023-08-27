@@ -1,0 +1,21 @@
+.OppComp{
+    height:5%;
+    display:flex;
+}
+.playerIcon{
+background-image:url("https://www.chess.com/bundles/web/images/black_400.png");
+width:3em;
+height:3em;
+background-size:cover;
+}
+.oppDetails{
+    flex:1 1 0;
+    color:white;
+    margin-left:1%;
+
+}
+.clock{
+    background-color: lightblue;
+    height:100%;
+    width:10%;
+}

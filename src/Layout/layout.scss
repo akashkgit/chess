@@ -1,9 +1,30 @@
 
+
+@media (min-width:1250px) and ( min-resolution:190dpi){
+:root{
+    --layoutHeight:100dvh;
+    --layoutMinHeight:100dvh;
+    --totalWidth:1300px;
+    --optionsPane:150px;
+
+}
+}
+@media (min-width:1250px) and ( min-resolution:90dpi){
+    :root{
+        --layoutHeight:100dvh;
+        --layoutMinHeight:100dvh;
+        --totalWidth:1300px;
+        --optionsPane:150px;
+    
+    }
+    }
 .layout{
     display:grid;
     
     grid-template: 1fr/150px auto;
-    height:100%;
+    height:var(--layoutHeight);
+    overflow-y: scroll; 
+    min-height: var(--layoutMinHeight);
     margin:0;
     
     

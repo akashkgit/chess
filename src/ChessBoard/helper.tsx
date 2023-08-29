@@ -1,6 +1,6 @@
 import {mapping} from "../specs/data"
 import { initCoinPos } from "./types";
-
+import {handlerMapping} from "./handlers";
 export function mouseOver(event:any){
 }
 
@@ -35,9 +35,31 @@ export  let moveCoin=(event:any,state:{[k:string]:any},position:initCoinPos)=>{
         
 }
 
+function checkIfPossible(futurePos:String, coin:HTMLDivElement){
+
+    let coinName=coin.dataset.coin;
+    let coinBox=coin.getBoundingClientRect();
+   
+
+
+
+
+}
+
+
 export function putPiece(event:any,state:{[k:string]:any},position:initCoinPos){
 
+if(state.click===true){
 
+    let origin:HTMLDivElement=state.el;
+    let {top,left,right,bottom,width,height}=origin.getBoundingClientRect();
+    let details=origin.dataset.coin.split("");
+   
+    handlerMapping[details[1]](state,position,event);
+    console.log(" to ",top)
+   
+    state.click=false;
+}
 function approximate(){
 
 
@@ -65,7 +87,11 @@ function approximate(){
     
     //console.log("target.style",target.style.border,target.style.transform,"top ",top," screenY",event.clientY,yy,xx);
     //target.style.border="2px solid yellow";
-   state.el.style.transform= cur.transform+`translateY(${yy}px) translateX(${xx}px)`
+    
+   let futurePos=cur.transform+`translateY(${yy}px) translateX(${xx}px)`
+   state.el.style.transform= futurePos;
+
+   checkIfPossible(futurePos,state.el);
    
    
 
@@ -73,7 +99,9 @@ function approximate(){
 
 }
 
-if(state.click===true){
+
+//state.click===true
+if(false){
 
 
     if(!state.dest){
@@ -82,14 +110,14 @@ if(state.click===true){
     approximate();
 
 
-   Object.keys((keys:string)=>{
-        let coin=document.querySelector(`#${keys}`);
+   Object.keys(mapping).forEach((keys:string)=>{
+        let coin=document.querySelector(`[data-pos="${keys}"]`);
         let {top,left,bottom,right,width,height}=coin.getBoundingClientRect();
         let elPos=(state.el as HTMLDivElement).getBoundingClientRect();
 
-
-        if(elPos.top>=top && elPos.bottom<=bottom && elPos.right<=right && elPos.left>=left)
-        alert("over an element");
+        
+        if(elPos.top>=top && elPos.bottom<=bottom && elPos.right<=right && elPos.left>=left && coin.id!==state.el.id )
+        console.log("overlapping or not ",elPos.left,elPos.right,left,right,keys,state.el.id);
          
         
 
@@ -108,6 +136,19 @@ else{
     element.classList.remove(element.classList.toString().split(" ")[2])
     
     console.log("bimage",element.style.backgroundImage);
+    
+   Object.keys((keys:string)=>{
+    let coin=document.querySelector(`#${keys}`);
+    let {top,left,bottom,right,width,height}=coin.getBoundingClientRect();
+    let elPos=(state.el as HTMLDivElement).getBoundingClientRect();
+
+    console.log(elPos,top,left,bottom,right);
+    if(elPos.top>=top && elPos.bottom<=bottom && elPos.right<=right && elPos.left>=left)
+    alert("over an element");
+     
+    
+
+})
     state.click=false;
 }
 

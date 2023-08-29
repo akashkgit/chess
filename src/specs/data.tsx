@@ -44,7 +44,6 @@ export let urls={
 
 export const coins=["1","2","7","8"];    
 
-
 export let mapping:{[key:string]:string}={
     '8a':"br",
     '8b':"bh",

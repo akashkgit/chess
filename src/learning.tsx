@@ -4,4 +4,5 @@ let data=
 2. getCoputed is changeing when styles are applied using js\
 3. absolute vs translate approach\
 4.currying\
-"
+5.order of clicks and mousedown vs click vs dbleclick. using dragstart (2 press 1 release)\
+"  

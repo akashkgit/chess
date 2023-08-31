@@ -20,6 +20,7 @@ export  let moveCoin=(event:any,state:{[k:string]:any},position:initCoinPos)=>{
             event.stopPropagation();
             }
             else{
+
                 
                 state["dest"]=event.target;
                 console.log("Dest",state["dest"]);
@@ -54,7 +55,7 @@ if(state.click===true){
     let origin:HTMLDivElement=state.el;
     let {top,left,right,bottom,width,height}=origin.getBoundingClientRect();
     let details=origin.dataset.coin.split("");
-   
+   console.log("calling",details[1]);
     handlerMapping[details[1]](state,position,event);
     console.log(" to ",top)
    

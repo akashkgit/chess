@@ -16,7 +16,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, "dist"),
   },
-  cache:false,
+  
   devServer: {
     open: true,
     static: path.join(__dirname, 'dist'), 

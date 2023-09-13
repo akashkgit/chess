@@ -76,15 +76,13 @@ return <>
 
 }
 
-<div className="signinDets" style={{display:cont?"block":"none"}}>
-<div style={{position:"relative"}}><input type="email" className="uname email"  placeholder="Email" />
-<span className="mailIcon" ></span>
-</div>
-<div style={{position:"relative"}}>
 
-<Lock />
-</div>
-</div>
+
+
+
+<UserDetails cont={cont}/>
+
+
 
 
 
@@ -92,18 +90,25 @@ return <>
 <button  onClick={(event)=>continueFunc(event,cont,setContinue,submit,nav)}>Continue</button>
 
 </div>
-
 </div>
 </>    
 }
 
 
-function Lock(){
+export function UserDetails(props:any){
+    let cont=props.cont;
     const [lock,setLock]=useState(true);
     return <>
+    <div className="signinDets" style={{display:cont?"block":"none"}}>
+    <div style={{position:"relative"}}><input type="email" className="uname email"  placeholder="Email" />
+<span className="mailIcon" ></span>
+</div>
+    <div style={{position:"relative"}}>
     <input type={lock===true?"password":"text"} className="pwd" placeholder="Password"/>
 <span className="lockIcon"></span>
 <span className={lock===true?"visibilityIcon":"visibilityOpenIcon"} onClick={()=>setLock((lock)=>!lock)}></span>
+</div>
+</div>
 </>
 }
 
@@ -120,7 +125,7 @@ function continueFunc(event:any,cont:number,setContinue:(k:any)=>void,submit:any
             method:"POST",
             mode:"cors",
             body:data
-        }).then((val)=>nav("/signup")).catch((err)=>console.log("Error ",err));
+        }).then((val)=>nav("/login")).catch((err)=>console.log("Error ",err));
     }
     else{
         setContinue((val:number)=>val+1);

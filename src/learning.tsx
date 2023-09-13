@@ -8,5 +8,6 @@ let data=
 6. preflight request in fetch \
 7. cors in request vs cors in response\
 8. cache in fetch\
-9.\
+9.To put logo and continue with google, i posistioned the google logo with position:absolute and text using flex controls\
+\
 "  

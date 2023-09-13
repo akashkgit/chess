@@ -15,14 +15,16 @@ const config = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
+    publicPath: '/'
   },
+  
   
   devServer: {
     open: true,
     static: path.join(__dirname, 'dist'), 
     port:8080,
     host: "localhost",
-    
+    historyApiFallback: true,
     
     
   },

@@ -2,7 +2,7 @@ import { mapping } from "../specs/data";
 import { initCoinPos } from "./types";
 
 function king(state: { [k: string]: any }, position: initCoinPos, event: any) {
-    console.log(" king ")
+    //console.log(" king ")
     let origin = state.el as HTMLDivElement;
     let success=true;
     let { top, left, bottom, width, height,right } = origin.getBoundingClientRect();
@@ -21,7 +21,7 @@ function king(state: { [k: string]: any }, position: initCoinPos, event: any) {
 
 function queen(state: { [k: string]: any }, position: initCoinPos, event: any) {
 
-    console.log(" queen ")
+    //console.log(" queen ")
     if(!rook(state,position,event))
     bishop(state,position,event);
 
@@ -30,20 +30,20 @@ function queen(state: { [k: string]: any }, position: initCoinPos, event: any) {
 
 
 function bishop(state: { [k: string]: any }, position: initCoinPos, event: any) {
-    console.log(" bishop ")
+    //console.log(" bishop ")
     let origin = state.el as HTMLDivElement;
     let success=true;
     let { top, left, bottom, width, height,right } = origin.getBoundingClientRect();
     let tempX:number,tempY:number;
     let cBox=document.querySelector("#chessBoard").getBoundingClientRect();
-    console.log(event.clientX>=right , event.clientY<=top);
+    //console.log(event.clientX>=right , event.clientY<=top);
     if(event.clientX>=right && event.clientY<=top){
         let i=1;
         tempX=left+width;
         tempY=top-height;
-        console.log("diagnol ",tempX,cBox.right , tempY,cBox.top)
+        //console.log("diagnol ",tempX,cBox.right , tempY,cBox.top)
             while(tempX<=cBox.right && tempY>=cBox.top){
-                console.log("traversing")
+                //console.log("traversing")
                if(! check(tempY, tempX, state, position, event, width, height, top, left, i, -i ,false)){success=false;break;}
 
                 tempX=tempX+width;
@@ -56,9 +56,9 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any) 
         let i=1;
         tempX=left-width;
         tempY=top-height;
-        console.log("diagnol ",tempX,cBox.right , tempY,cBox.top)
+        //console.log("diagnol ",tempX,cBox.right , tempY,cBox.top)
             while(tempX>=cBox.left && tempY>=cBox.top){
-                console.log("traversing")
+                //console.log("traversing")
                if(! check(tempY, tempX, state, position, event, width, height, top, left, -i, -i ,false)){success=false;break;}
 
                 tempX=tempX-width;
@@ -71,9 +71,9 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any) 
         let i=1;
         tempX=left+width;
         tempY=top+height;
-        console.log("diagnol ",tempX,cBox.right , tempY,cBox.top)
+        //console.log("diagnol ",tempX,cBox.right , tempY,cBox.top)
             while(tempX<=cBox.right && tempY>=cBox.top){
-                console.log("traversing")
+                //console.log("traversing")
                if(! check(tempY, tempX, state, position, event, width, height, top, left, i, i ,false)){success=false;break;}
 
                 tempX=tempX+width;
@@ -86,9 +86,9 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any) 
         let i=1;
         tempX=left-width;
         tempY=top+height;
-        console.log("diagnol ",tempX,cBox.right , tempY,cBox.top)
+        //console.log("diagnol ",tempX,cBox.right , tempY,cBox.top)
             while(tempX>=cBox.left && tempY>=cBox.top){
-                console.log("traversing")
+                //console.log("traversing")
                if(! check(tempY, tempX, state, position, event, width, height, top, left, -i, i ,false)){success=false;break;}
 
                 tempX=tempX-width;
@@ -201,15 +201,15 @@ function check(y: number, x: number, state: { [k: string]: any }, position: init
 
     let cbBox = document.querySelector("#chessBoard").getBoundingClientRect();
     let [centerX, centerY] = [width / 2 + x, height / 2 + y];
-    console.log(cbBox.top <= centerY, cbBox.bottom >= centerY, cbBox.left <= centerX, cbBox.right >= centerX)
+    //console.log(cbBox.top <= centerY, cbBox.bottom >= centerY, cbBox.left <= centerX, cbBox.right >= centerX)
     if (!(cbBox.top <= centerY && cbBox.bottom >= centerY && cbBox.left <= centerX && cbBox.right >= centerX)) {
-        console.log("** OOB ERROR **");
+        //console.log("** OOB ERROR **");
         return;
     }
-    console.log(" point ? ", (event.clientX >= x && event.clientX <= x + width && event.clientY >= y && event.clientY <= y + width))
+    //console.log(" point ? ", (event.clientX >= x && event.clientX <= x + width && event.clientY >= y && event.clientY <= y + width))
     let fromPoint = document.elementFromPoint(centerX, centerY);
     let fromPointPos = fromPoint.getBoundingClientRect();
-    console.log(fromPoint, state.dest);
+    //console.log(fromPoint, state.dest);
     if (fromPoint && state.dest && fromPoint.id === state.dest.id) {
 
 
@@ -217,11 +217,11 @@ function check(y: number, x: number, state: { [k: string]: any }, position: init
         let futurePos = getComputedStyle(state.el).transform + `translateY(${yTrans * 100}%) translateX(${xTrans * 100}%)`
         state.el.style.transform = futurePos;
 
-        console.log("Yes vetting " + state.dest.id)
+        //console.log("Yes vetting " + state.dest.id)
     }
     else if (event.clientX >= x && event.clientX <= x + width && event.clientY >= y && event.clientY <= y + width && !killOnly) {
-        console.log("moving to clicked destinationless box")
-        console.log("ytrans ",yTrans)
+        //console.log("moving to clicked destinationless box")
+        //console.log("ytrans ",yTrans)
         let futurePos = getComputedStyle(state.el).transform + `translateY(${yTrans * 100}%) translateX(${xTrans * 100}%)`
         state.el.style.transform = futurePos;
         
@@ -229,7 +229,7 @@ function check(y: number, x: number, state: { [k: string]: any }, position: init
 
     }
     else if(fromPoint && mapping[fromPoint.id]&& fromPoint.id!==state.el.id){
-        console.log(" interrupted ")
+        //console.log(" interrupted ")
         return false;
     }
 

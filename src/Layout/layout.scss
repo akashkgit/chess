@@ -21,7 +21,7 @@
 .layout{
     display:grid;
     
-    grid-template: 1fr/150px auto;
+    grid-template: 1fr/140px auto;
     height:var(--layoutHeight);
     overflow-y: scroll; 
     min-height: var(--layoutMinHeight);

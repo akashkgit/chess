@@ -1,10 +1,15 @@
 $sidebar:rgba(38,37,34,1);
 .SideBar{
-    display:flex;
+    
     background-color:$sidebar;
-    flex-direction: column;
+    width:100%;
     margin-top:var(--topMargin);
     margin-left:7%;
+    border-radius:1rem;
+    padding-top:1rem;
+    height:90%;
+    margin-top:2rem;
+    font-family: var(--PrimFont);
     
 }
 .flexy{
@@ -15,7 +20,131 @@ $sidebar:rgba(38,37,34,1);
     color:white;
 
 }
+.AtRestHeader > h2{
+    
+    color:white;
+    margin:0rem auto;
+    width:40%;
+    display:block;
+}
+.AtRestHeader{
+    //border:2px solid Red;
+    margin-bottom:0rem;
+    width:100%;
+    
+    
+    
 
+}
+
+.subtitle{
+    font-size: 0.75rem;
+
+    
+}
+a:link{
+    text-decoration: none;
+}
+.title{
+    font-size: 1.23rem;
+    
+}
+#playOnline > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/blitz.41349956.svg") no-repeat;
+    background-size:contain;
+    box-sizing: border-box;
+    background-position: center;
+   width:17.5%;
+    
+    
+}
+.computer > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/computer.f36f0d84.svg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 12px;
+}
+.playAFriend > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/handshake.8c90be47.svg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.tournaments > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/tournaments.d5eac419.svg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position-y: 10px;
+}
+.chessVariants > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/variants.5d7a34d9.svg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+
+.icon{
+    box-sizing: border-box;
+    height:70%;
+    width:20%;
+    
+    
+    margin-right:0rem;
+    
+    
+}
+.AtRestOptions{
+    margin-top:2rem;
+    margin:1rem auto;
+    width:80%;
+
+    display:flex;
+    flex-direction: column;
+    gap:2rem;
+    height:80%;
+
+}
+.AtRestOptions > a {
+    height:15%;
+}
+.AtRestOptions > a:active{
+    text-decoration:dashed;
+    color:red;
+    
+}
+.AtRestOptions >a:visited{
+    text-decoration:dashed;
+    
+    color:yellow;
+}
+.AtRestOptions > a > div{
+    display:flex;
+    text-decoration: none;
+align-items: center;
+    padding-top:0.5rem;
+    padding-bottom:0.5rem;
+    padding-left:1rem;
+    padding-right:1rem;
+
+    display:bock;
+    background-color: rgba(0,0,0,0.4);
+    color:white;
+    height:100%;
+    gap:1rem;
+    border-radius:0.25rem;
+
+}
+
+.AtRestHeader > div{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/playwhite.cea685ba.svg");
+    width:4rem;
+    background-size:contain;
+    height:4rem;
+    margin:0rem auto;
+}
 .label1::before{
     content:"play"
 }

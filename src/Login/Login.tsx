@@ -3,14 +3,16 @@ import "./login.scss";
 import React from "react";
 import { useState } from "react";
 import { url } from "../specs/data";
+import {login as log} from "../reduxFiles/configs"
+import { useSelector, useDispatch } from 'react-redux';
 
-function logIn(event:any,setErr:(fn: (l:boolean)=>boolean| boolean)=>void,nav:any){
+async function logIn(event:any,setErr:(fn: (l:boolean)=>boolean| boolean)=>void,nav:any,disp:any,login:boolean){
     
     let emailId=document.querySelector(".email") as HTMLInputElement
     let password=document.querySelector(".pwd") as HTMLInputElement
     let data=JSON.stringify({emailId:emailId.value,password:password.value});
-    alert(data);
-    fetch(url.logsign+"/login",{
+    //alert(data);
+    let found=await fetch(url.logsign+"/login",{
      mode:"cors",
      method:"POST",
      body:data
@@ -19,20 +21,29 @@ function logIn(event:any,setErr:(fn: (l:boolean)=>boolean| boolean)=>void,nav:an
     }).then(async (val)=>{
 
         let {found}=await val.json();
-        alert("found "+found)
-        if(found)nav("/")
+        //alert("found "+found)
+        if(found){
+            localStorage.setItem("login","true");
+            localStorage.setItem("username",emailId.value);
+            
+            nav("/")
+        }
+        
         setErr(found)
-
-
+return found;
 
 
     })
+    disp(log({login:found,uname:found===true?emailId.value:""}))
 }
 
 
 export function LogIn(){
 
     let [err,setErr]=useState(true)
+    let login=useSelector((state:any)=>{console.log("State",state);return state.loginRed.login})
+    let disp=useDispatch();
+
     let nav=useNavigate();
     return <>
 
@@ -53,7 +64,7 @@ export function LogIn(){
                 <div><input type="checkbox" id="remember"></input><label htmlFor="remember"> Remember me</label></div>
                 <a>Forgot Password?</a>
             </div>
-            <button className="loginButton"  onClick={(event:any)=>{logIn(event,setErr,nav)}}>Log In </button>
+            <button className="loginButton"  onClick={(event:any)=>{logIn(event,setErr,nav,disp,login)}}>Log In </button>
         </div>
 
         <div className="or">

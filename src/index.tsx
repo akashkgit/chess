@@ -6,6 +6,13 @@ import {App} from "./App/app";
 import { SignUp } from './signup/SignUp';
 import {DirectSignUp} from "./signup/DirectSignUp"
 import { LogIn } from './login/login';
+import {configureStore} from "@reduxjs/toolkit"
+import { Provider } from "react-redux";
+import { authCheck, globalState } from "./reduxFiles/configs";
+import { RightPane } from "./RightPane/RightPane";
+import { AtPlay, AtRest } from "./SideBar/SideBar";
+
+
 
 const router=createBrowserRouter([
     {
@@ -27,10 +34,23 @@ const router=createBrowserRouter([
     },
     {
         path:"/",
+        element:<App />,
        children:[{
         index:true,
-        element:<App />
-        
+        element:<RightPane />
+       },{
+        path:"play",
+        element:<RightPane />,
+        children:[{
+            index:true,
+            element:<AtRest />
+
+        },
+        {
+            path:"online",
+            element:<AtPlay />
+        }
+    ]
        }]
 
     },
@@ -55,7 +75,7 @@ const router=createBrowserRouter([
 
 ])
 let rRoot=createRoot(document.querySelector("#reactRoot") as Element)
-rRoot.render(<RouterProvider router={router} />);
+rRoot.render(<Provider store={globalState} ><RouterProvider router={router} /></Provider>);
 
 function App2(){
     return <><h2>app5</h2></>

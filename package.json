@@ -37,11 +37,15 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.410.0",
+    "@reduxjs/toolkit": "^1.9.5",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "@types/redux": "^3.6.0",
     "aws-cli": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0"
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.15.0",
+    "redux": "^4.2.1"
   }
 }

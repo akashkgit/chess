@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@600&family=Roboto+Slab:wght@200;500;800&display=swap');
 .chessdotcom{
    
 
@@ -5,9 +6,134 @@
     
     
 }
+
+ .leftPaneItem.leftPaneItem {
+    display:flex;
+    width:60%;
+    font-size: 5rem;
+    color:hsla(0,0%,100%,0.85);
+    width:100%;
+    gap: 0.5rem;
+    
+    
+    
+    font-family:"Montserrat",sans-serif;
+    text-decoration:none;
+    align-items: center;
+
+
+
+
+}
+.leftPaneItem.leftPaneItem span{
+    font-size:1rem;
+}
+
+#playIcon::before{
+    
+   background-image: url(https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png);
+   width: 1.7rem;
+   content: "";
+   height: 1.1rem;
+   background-position: 0px 174.5rem;
+   background-size: 9.7rem auto;
+    
+    
+}
+#Puzzle::before{
+    
+    background-image: url(https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png);
+    width: 1.7rem;
+    content: "";
+    height: 1.1rem;
+    background-position: 0px 288.5rem;
+    background-size: 11.7rem auto;
+     
+     
+ }
+
+ #learn::before{
+    
+    background-image: url(https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png);
+    width: 1.7rem;
+    content: "";
+    height: 1.1rem;
+    background-position: 1.5px 200.8rem;
+    background-size: 9.7rem auto;
+}
+     
+     
+ 
+
+ #watch::before{
+    
+    background-image: url(https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png);
+    width: 1.7rem;
+    content: "";
+    height: 1.1rem;
+    background-position: 0px 270rem;
+    background-size: 9.7rem auto;
+     
+     
+ }
+
+ #news::before{
+    
+    background-image: url(https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png);
+    width: 1.7rem;
+    content: "";
+    height: 1.1rem;
+    background-position: 0px 196.5rem;
+    background-size: 9.7rem auto;
+     
+ }
+ 
+ #social::before{
+    
+    background-image: url(https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png);
+    width: 1.7rem;
+    content: "";
+    height: 1.1rem;
+    background-position:  0px 185.5rem;
+    background-size: 9.7rem auto;
+     
+     
+ }
+
+ #more::before{
+    
+    background-image: url(https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png);
+    width: 1.7rem;
+    content: "";
+    height: 1.1rem;
+    background-position: -24px 298.9rem;
+    background-size: 9.7rem auto;
+     
+     
+ }
+ #freetrial::before{
+    
+    background-image: url(https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png);
+    width: 1.7rem;
+    content: "";
+    height: 1.1rem;
+    
+    background-position: 0px 210.5rem;
+    background-size: 9.7rem auto;
+     
+     
+ }
+ #freetrial
+ {
+    color:#009fd9 ;
+    width:100%;
+ }
+
+
+
 .child1{
-    height:6%;
-    background-size: 119% ;
+    height:2rem;
+    background-size: 122% ;
     background-repeat: no-repeat;
     background-position-x:104%;
     
@@ -15,18 +141,28 @@
     width:80%;
     
     display:block;
-    border:2px solid white;
+    
     background-image:url("https://www.chess.com/bundles/web/images/sprites/nav.664eccb5@2x.png");
 
 }
 .LeftPane{
     background-color:rgba(0,0,0,0.2);
     
+    height:100%;
+    
+
 }
+
+
 .flex1{
     display:flex;
-    align-items: center;
-    height:540px;
+    align-items: flex-start;
+    padding-left:0.5rem;
+    gap:1.5rem;
+    width:100%;
+    height:100%;
+    box-sizing: border-box;;
+    
     padding-top:var(--topMargin);
     flex-direction: column;
 }

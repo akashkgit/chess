@@ -3,8 +3,9 @@ import "./login.scss";
 import React from "react";
 import { useState } from "react";
 import { url } from "../specs/data";
-import {login as log} from "../reduxFiles/configs"
+import {login as log, wsChanger} from "../reduxFiles/configs"
 import { useSelector, useDispatch } from 'react-redux';
+import { authUrl } from "../specs/config";
 
 async function logIn(event:any,setErr:(fn: (l:boolean)=>boolean| boolean)=>void,nav:any,disp:any,login:boolean){
     
@@ -20,13 +21,16 @@ async function logIn(event:any,setErr:(fn: (l:boolean)=>boolean| boolean)=>void,
 
     }).then(async (val)=>{
 
-        let {found}=await val.json();
+        let {found,jwt}=await val.json();
         //alert("found "+found)
         if(found){
             localStorage.setItem("login","true");
             localStorage.setItem("username",emailId.value);
+            localStorage.setItem("jwt",jwt)
+
+
             
-            nav("/")
+            nav("/play")
         }
         
         setErr(found)
@@ -34,7 +38,28 @@ return found;
 
 
     })
+    let ws:any=null;
+
+    if(found){
+        alert("creating new socket in login");
+        ws=new WebSocket(authUrl);
+        ws.onopen=()=>{
+            console.log({"action":"auth","jwt":localStorage.getItem("jwt")});
+           ws.send(JSON.stringify({"action":"auth","jwt":localStorage.getItem("jwt")}))
+           }
+           ws.onmessage=((val:any)=>{
+               console.log("ONMESSAGE ",val)
+               let data=JSON.parse(val.data)
+               if(!data.authorised)
+               setErr((val)=>false);
+               
+
+           })
+           
+    }
+    console.log(" updating the state ",{login:found,uname:found===true?emailId.value:"",ws:JSON.stringify(ws)},"ws ",String(ws))
     disp(log({login:found,uname:found===true?emailId.value:""}))
+    disp(wsChanger({ws:ws}));
 }
 
 
@@ -42,6 +67,7 @@ export function LogIn(){
 
     let [err,setErr]=useState(true)
     let login=useSelector((state:any)=>{console.log("State",state);return state.loginRed.login})
+    let ws=useSelector((state:any)=>{console.log("State",state);return state.loginRed.ws})
     let disp=useDispatch();
 
     let nav=useNavigate();

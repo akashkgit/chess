@@ -1,7 +1,9 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate, useOutletContext } from "react-router-dom";
 import "./SideBar.scss"
-import React from "react";
+import React, { useContext, useState } from "react";
+import { PlayCntxt } from "../RightPane/RightPane";
 export function SideBar(){
+    let {playstate,setPlaystate}=useContext(PlayCntxt);
     return <div id="SideBar" className="SideBar">
         {/* <AtPlay /> */}
         <Outlet />
@@ -11,20 +13,77 @@ export function SideBar(){
     </div>
 }
 
-export function AtPlay(){
+
+function start(event:any,setOption:any,setStarted:any,setPlayState:any){
+    setPlayState((state:any)=>{return {...state,started:true}})
+    
+    setOption("inGame");
+    setStarted(true);
+    let myCoin="white"//api call
+    
+
+}
+export function StartPlay(){
+    const [started,setStarted]=useState(false);
+    const [option,setOption]=useState("newGame");
+    let {playState,setPlayState}=useContext(PlayCntxt);
+    let nav=useNavigate();
     return <>
     <div className="topSideBar ">
-    <div className="play flexy"><span className="label1"></span></div>
-    <div className="newGame flexy"><span className="label2"></span></div>
+    <div className="play flexy" style={{display:started?"flex":"none",backgroundColor:option==='inGame'?"rgba(65,64,62,1)":""}}><span className="label1"></span></div>
+    <div className="newGame flexy" style={{backgroundColor:option==='newGame'?"rgba(65,64,62,1)":""}}><span className="label2"></span></div>
     <div className="games flexy"><span className="label3"></span></div>
     <div className="players flexy"><span className="label4"></span></div>
     </div>
-    <div className="gamesDets"><span className="label5"></span></div>
-    <div className="playerDets"><span className="label5"></span></div>
+    <div className="optionExpander">
+    <Outlet context={[setOption,setStarted,setPlayState,option]}/>
+    
+
+        
+       
+      
+
+
+
+    </div>
+    
     </>
+
+}
+export function RandomGame(){
+    let [setOption,setStarted,setPlayState,option]:any[]= useOutletContext()
+    return <>
+    <div className="newGameEx" style={{display:option==="newGame"?"flex":"none"}}>
+     <button className="timeOption">
+            <span></span>
+            <h5>10 min</h5>
+        </button>
+        <button className="playButton" id="randomPlay" onClick={(event:any)=>start(event,setOption,setStarted,setPlayState)}>Play</button>
+       <div className="custom">Custom</div>
+       <Link to="friend">
+                <div className="TOPlayAFriend">
+                <div  className="TOIcon"></div>
+                    <div>
+                    <div className="TOTitle">Play a Friend</div>
+                      
+                    </div>
+                </div>
+                </Link>
+                <Link to="" >
+                <div className="TOTournaments">
+                <div  className="TOIcon"></div>
+                    <div>
+                    <div className="TOTitle">Tournaments</div>
+                       
+                    </div>
+                </div>
+                </Link>
+        </div></>
 }
 
 export function AtRest(){
+    
+        
     return <>
     
     <div className="atRest">
@@ -83,4 +142,78 @@ export function AtRest(){
     </div>
 
     </>
+}
+
+
+export function FriendSelector(){
+
+    let nav=useNavigate();        
+    let [fname,setFName]=useState("");
+            let [friendList,setFriendList]=useState([]);
+            let [curFriends,setCurFriends]=useState(["akash","bekash","dakash","lokash"]);
+        return <>
+
+
+    <div className="friendSelector">
+        <div className="friendLabel">
+            <div className="TOIcon"></div>
+            <h4>Play a Friend</h4>
+        </div>
+        <div className="searchInput">
+            <label htmlFor="search" className="searchLabel"></label>
+        <input type="text" value={fname} onChange={(event:any)=>checkFriends(event,setFName,fname,setFriendList)} name="search" className="search" placeholder="enter username or email id"/>
+        </div>
+        
+        <div className="listFriends"style={{display:fname===""?"flex":"none"}} >
+            <h3>Friends</h3>
+        
+            <div style={{color:"grey"}}>Suggestions</div>
+            {curFriends.map((friend)=>{
+                return <div  key={friend}>
+                     {friend}
+
+                </div>
+            })
+        }
+        
+        
+        </div>
+       < div   className="dropDownFList" style={{display:fname!==""?"flex":"none"}}>
+        <div style={{color:"grey"}}>Suggestions</div>
+            {friendList.map((friend)=>{
+                return <div  onClick={(event)=>{setCurFriends(cur=>[...cur,friend]);ping(nav); setFName("")}} key="friend">
+                     {friend}
+
+                </div>
+            })
+        }
+        </div>
+    </div>
+    </>
+}
+
+function ping(nav:any){
+
+    alert();
+    let ws=new WebSocket("wss://6ph3c75vv0.execute-api.us-east-1.amazonaws.com/production/");
+    ws.onopen=()=>{
+     console.log({"action":"auth","jwt":localStorage.getItem("jwt")});
+    ws.send(JSON.stringify({"action":"auth","jwt":localStorage.getItem("jwt")}))
+    }
+    ws.onmessage=((val:any)=>{
+        console.log(typeof val.data)
+        let data=JSON.parse(val.data)
+        if(!data.authorised)
+        nav("/login");
+    })
+    
+}
+function checkFriends(event:any,setFName:any,fname:any,setFriendList:any){
+
+
+    setFName(event.target.value);
+    let res=["akashkvit@gmail.com","ashwinkvit@gmail.com"]
+    setFriendList(res);
+    
+    
 }

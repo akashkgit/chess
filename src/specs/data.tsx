@@ -1,3 +1,5 @@
+import { startGame } from "../reduxFiles/configs";
+
 export let boardMode={
     defaultMode:[
         "#e9eecc",
@@ -88,3 +90,41 @@ export let mapping:{[key:string]:string}={
 export let url={
     "logsign":"https://s38121vp76.execute-api.us-east-1.amazonaws.com"
 }
+
+//------------------- Handlers ----------------------------------
+export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
+    return (msg:any)=>{
+        console.log("MESSAGE EVENT HANDLER",msg)
+        msg=JSON.parse(msg.data);
+      //  alert("called"+JSON.stringify(msg));
+        if(msg && msg.type && msg.type==="requestInit"){
+          //  alert(" inside ")
+            activate(true);
+            console.log(" message is ",msg);
+            if(msg.src){
+            alert(" setting src to "+msg)
+            setSrc(msg.src);
+            }
+            
+            if(clearId.current!==0)window.clearInterval(clearId.current);
+            clearId.current=window.setInterval(()=>{
+                activate(false);
+            },10000)
+
+            
+        }
+        else if(msg && msg.type && msg.type==="requestAck"){
+            alert(" acknowledgement recieved ")
+           disp(startGame({start:true,myCoin:"white"}))
+
+            
+        }
+    }
+}
+    
+    export function reqAck(){
+
+        return (msg:any)=>{
+
+        }
+    }

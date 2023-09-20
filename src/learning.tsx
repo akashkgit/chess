@@ -18,5 +18,10 @@ let data=
 16.nonce and replay attacks\
 17.bcakgroundprops does not work when when it is written in a class different from \
 . its corresponding background:url() class\
-18.\
+18.using a:link to removeunderline\
+19. one way to add symbols to input is to similarize the color of background of the parent divs, input and the symbols and then place next to each other\
+20. content method or background image  method\
+21. cors : request origin controls headers, response origin control headers, preflight options ytpe request and simple request\
+22.cors: cookie : domain and samesite\
+23.mode in fetch`\
 "  

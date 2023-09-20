@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {Link} from "react-router-dom"
 import "./LeftPane.scss"
+import { authUrl } from "../specs/config";
+import * as dummy from "../test"
+//alert(" from layout "+dummy.value);
+//console.log();
 export function LeftPane(){
+
+    useLayoutEffect(()=>{
+
+
+    },[])
     return <div id="LefPane" className="LeftPane">
         <div className="flex1" >
             <Link className="child1" to="/" ></Link>

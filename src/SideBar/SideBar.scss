@@ -6,23 +6,29 @@ $sidebar:rgba(38,37,34,1);
     margin-top:var(--topMargin);
     margin-left:7%;
     border-radius:1rem;
-    padding-top:1rem;
+    
     height:90%;
     margin-top:2rem;
     font-family: var(--PrimFont);
     
 }
 .flexy{
+    
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color:white;
+    color:#ffffffb8;
+    padding:0.5rem;
+    width:100%;
+    
+    
+    font-size: 1.5rem;
 
 }
 .AtRestHeader > h2{
     
-    color:white;
+    color:#ffffffb8;
     margin:0rem auto;
     width:40%;
     display:block;
@@ -31,6 +37,7 @@ $sidebar:rgba(38,37,34,1);
     //border:2px solid Red;
     margin-bottom:0rem;
     width:100%;
+    padding-top:1rem;
     
     
     
@@ -58,6 +65,70 @@ a:link{
     
     
 }
+a:link{
+    color:#ffffffb8;
+}
+.newGameEx > a{
+    width:100%;
+    height:4rem;
+}
+.timeOption{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:0.5rem;
+}
+.timeOption span::before{
+    content:"\1F1B";
+    color:#81b64c;
+    font-family: Chess V3;
+    
+}
+.TOPlayAFriend .TOIcon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/handshake.8c90be47.svg");
+    background-size: contain;
+
+}
+.TOTournaments .TOIcon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/tournaments.d5eac419.svg");
+    background-size: contain;
+
+}
+.playIconSideBar{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/playwhite.cea685ba.svg")
+}
+.TOPlayAFriend,.TOTournaments{
+    color:#ffffffb8;
+    border-radius:0.5rem;
+    margin:auto auto;
+    width:95%;
+    height:100%;
+    display:flex;
+    gap:0.5rem;
+    align-items: center;
+    justify-content: center;
+    background-color:#343331 ;
+}
+.dropDownFList,.listFriends{
+    display:flex;
+    flex-direction: column;
+    color:grey;
+    font-size:0.75rem;
+    width:100%;
+    
+
+    justify-content: flex-start;
+}
+
+.dropDownFList div,.listFriends div{
+    height:1.5rem;
+    
+}
+.TOIcon{
+    width:1.5rem;
+    height:50%;
+    
+}
 .computer > .icon{
     background:url("https://www.chess.com/bundles/web/images/color-icons/computer.f36f0d84.svg");
     background-size:contain;
@@ -68,6 +139,7 @@ a:link{
 .playAFriend > .icon{
     background:url("https://www.chess.com/bundles/web/images/color-icons/handshake.8c90be47.svg");
     background-size:contain;
+    
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -84,8 +156,98 @@ a:link{
     background-position: center;
     
 }
+.searchInput{
+    width:100%;
+    align-items: center;
+    background-color:#ffffff14;
+    display:flex;
+    padding:0.5rem;
+    border-radius:0.25rem;
+    color:grey;
+    font-family: var(--PrimtFont);
+}
+.searchLabel{
+    height:2.5rem;
+    display:flex;
+    align-items: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 
 
+
+}
+.searchLabel::before{
+    content:"\2013";
+    font-family: Chess V3;
+    
+    font-weight: 400;
+    color:grey;
+    
+}
+.listFriends {
+ color:grey;
+ display:flex;
+ justify-content: flex-start;
+ flex-direction: column;
+
+ width:100%;
+
+}
+.listFriends h5{
+    
+}
+
+.friendSelector input{
+    width:100%;
+    color:grey;
+    height:2.5rem;
+    background-color: rgba(0,0,0,0);
+    outline:none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border:none;
+}
+.friendSelector input::before{
+    
+    background-color: red;
+}
+.friendSelector{
+    border:2px solid green;
+    width:100%;
+    height:180%;
+    display:flex;
+    padding:1rem;
+    gap:2rem;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+}
+.friendLabel{
+    display:flex;
+    width:70%;
+    align-items: center;
+    gap:0.25rem;
+    
+    color:White;
+    justify-content: center;
+}
+.friendLabel h4{
+    margin:0;
+    color:White;
+    
+}
+.friendLabel .TOIcon{
+    
+    height:1.5rem;
+    width:1.5rem;
+    background: url("https://www.chess.com/bundles/web/images/color-icons/handshake.svg");
+    background-size: contain;
+
+}
+.optionExpander{
+    background-color:rgba(38,37,34,1);
+    height:100%;
+}
 .icon{
     box-sizing: border-box;
     height:70%;
@@ -118,7 +280,7 @@ a:link{
 .AtRestOptions >a:visited{
     text-decoration:dashed;
     
-    color:yellow;
+    
 }
 .AtRestOptions > a > div{
     display:flex;
@@ -131,7 +293,7 @@ align-items: center;
 
     display:bock;
     background-color: rgba(0,0,0,0.4);
-    color:white;
+    color:#ffffffb8;
     height:100%;
     gap:1rem;
     border-radius:0.25rem;
@@ -161,8 +323,38 @@ align-items: center;
 .topSideBar{
     display:flex;
     width:100%;
-    height:6%;
+    
+    box-sizing: border-box;
+    height:4rem;
+    
 
+}
+
+.newGameEx{
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+    
+    align-items: center;
+    padding:1rem;
+ 
+}
+.timeOption,.playButton{
+    width:95%;
+    border-radius:0.5rem;
+    border:none;
+    font-family:var(--PrimFont);
+    color:#ffffffb8;
+    height:3rem;
+    background-color: #4c4b49;
+    
+}
+.playButton{
+    background-color: #81b64c;
+}
+.custom{
+    color:#ffffffb8;
+    font-size:0.75rem;
 }
 .topSideBar > div{
     width:33.33%;

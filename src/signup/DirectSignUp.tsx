@@ -11,7 +11,7 @@ function visibilityToggler(event:any){
 
 export function DirectSignUp(){
 
-    console.log("ren defred")
+    //console.log("ren defred")
     let [selected,setSelected]=useState("");
      let  [cont,setContinue]=useState(0);
      let submit=useRef(false);

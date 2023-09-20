@@ -1,4 +1,174 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@600&family=Roboto+Slab:wght@200;500;800&display=swap');
+
+
 *{
     --PrimFont: "Montserrat",sans-serif;
+    --textFont:#ffffffb8;
+}
+
+.notification{
+    
+    height:3rem;
+    position:fixed;
+    box-shadow: 1rem 0.1rem 0.1rem -5rem 5rem black;
+    bottom:5rem;
+    right:3rem;
+    background-color:#4a4847 ;
+    display: flex;
+    gap:0.3rem;
+}
+
+
+.notificationP2{
+    display:flex;
+   
+   
+    gap:0.5rem;
+    padding:0.3rem;
+    flex-direction: row;
+    background-color:#4a4847 ;
+    justify-content: flex-start;
+    
+    align-items: center;
+
+
+}
+.timerlogo{
+ width:2.5rem;
+ box-sizing: border-box;
+ height:100%;
+ background-image: url("https://www.chess.com/bundles/web/images/color-icons/rapid.d3940770.svg") ;
+ background-repeat: no-repeat;
+ background-color:#5d9948;
+ padding:0.2rem;
+ padding-top:0.5rem;
+ 
+ 
+background-size:contain ;
+background-origin: content-box;
+}
+.sentBy{
+    color:white;
+
+   
+
+}
+.accept::before,.reject::before{
+    
+    font-family: Chess V3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    font-size: 1rem;
+    color:var(--textFont);
+}
+.accept::before{
+    content: '\1F30';
+
+}
+.reject::before{
+    content: '\1F3F';
+
+}
+
+.accept{
+
+    background-color: #80b64b;
+}
+.reject{
+    background-color: #585655;
+}
+.accept,.reject{
+    height:2rem;
+    border-radius:0.25rem;
+    width:2rem;
+    
+}
+
+@media (min-width:1000px) and (max-resolution:190dpi){
+
+
+
+
+    .notification{
+    
+        height:3rem;
+        position:fixed;
+        box-shadow: 1rem 0.1rem 0.1rem -5rem 5rem black;
+        bottom:5rem;
+        right:3rem;
+        background-color:#4a4847 ;
+        display: flex;
+        gap:0.3rem;
+    }
+    
+    
+    .notificationP2{
+        display:flex;
+       
+       
+        gap:0.5rem;
+        padding:0.3rem;
+        flex-direction: row;
+        background-color:#4a4847 ;
+        justify-content: flex-start;
+        
+        align-items: center;
+    
+    
+    }
+    .timerlogo{
+     width:2.5rem;
+     box-sizing: border-box;
+     height:100%;
+     background-image: url("https://www.chess.com/bundles/web/images/color-icons/rapid.d3940770.svg") ;
+     background-repeat: no-repeat;
+     background-color:#5d9948;
+     padding:0.2rem;
+     padding-top:0.5rem;
+     
+     
+    background-size:contain ;
+    background-origin: content-box;
+    }
+    .sentBy{
+        color:white;
+    
+       
+    
+    }
+    .accept::before,.reject::before{
+        
+        font-family: Chess V3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height:100%;
+        font-size: 1rem;
+        color:var(--textFont);
+    }
+    .accept::before{
+        content: '\1F30';
+    
+    }
+    .reject::before{
+        content: '\1F3F';
+    
+    }
+    
+    .accept{
+    
+        background-color: #80b64b;
+    }
+    .reject{
+        background-color: #585655;
+    }
+    .accept,.reject{
+        height:2rem;
+        border-radius:0.25rem;
+        width:2rem;
+        
+    }
+
 }

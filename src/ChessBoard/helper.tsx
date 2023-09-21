@@ -48,7 +48,7 @@ function checkIfPossible(futurePos:String, coin:HTMLDivElement){
 }
 
 
-export function putPiece(event:any,state:{[k:string]:any},position:initCoinPos){
+export function putPiece(event:any,state:{[k:string]:any},position:initCoinPos,myCoin:string){
 
 if(state.click===true){
 
@@ -56,7 +56,7 @@ if(state.click===true){
     let {top,left,right,bottom,width,height}=origin.getBoundingClientRect();
     let details=origin.dataset.coin.split("");
    console.log("calling",details[1]);
-    handlerMapping[details[1]](state,position,event);
+    handlerMapping[details[1]](state,position,event,);
     console.log(" to ",top)
    
     state.click=false;

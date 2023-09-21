@@ -1,4 +1,4 @@
-import { startGame } from "../reduxFiles/configs";
+import { startGame, switchTurn } from "../reduxFiles/configs";
 
 export let boardMode={
     defaultMode:[
@@ -46,7 +46,8 @@ export let urls={
 
 export const coins=["1","2","7","8"];    
 
-export let mapping:{[key:string]:string}={
+export let mapping:{[key:string]:{[key:string]:string}}={
+    "white":{
     '8a':"br",
     '8b':"bh",
     '8c':"bb",
@@ -83,8 +84,48 @@ export let mapping:{[key:string]:string}={
     '2f':"wp",
     '2g':"wp",
     '2h':"wp",
+    },
+"black":{
+    '1a':"br",
+    '1b':"bh",
+    '1c':"bb",
+    '1d':"bq",
+    '1e':"bk",
+    '1f':"bb",
+    '1g':"bh",
+    '1h':"br",
+    
+
+    '2a':"bp",
+    '2b':"bp",
+    '2c':"bp",
+    '2d':"bp",
+    '2e':"bp",
+    '2f':"bp",
+    '2g':"bp",
+    '2h':"bp",
+
+    '8a':"wr",
+    '8b':"wh",
+    '8c':"wb",
+    '8d':"wk",
+    '8e':"wq",
+    '8f':"wb",
+    '8g':"wh",
+    '8h':"wr",
+
+    '7a':"wp",
+    '7b':"wp",
+    '7c':"wp",
+    '7d':"wp",
+    '7e':"wp",
+    '7f':"wp",
+    '7g':"wp",
+    '7h':"wp",
     
 }
+}
+
 
 
 export let url={
@@ -116,6 +157,7 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
         else if(msg && msg.type && msg.type==="requestAck"){
             alert(" acknowledgement recieved ")
            disp(startGame({start:true,myCoin:"white"}))
+           disp(switchTurn());
 
             
         }

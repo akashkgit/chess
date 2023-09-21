@@ -9,7 +9,7 @@ import {DirectSignUp} from "./signup/DirectSignUp"
 import { LogIn } from './login/login';
 import {configureStore} from "@reduxjs/toolkit"
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { authCheck, globalState } from "./reduxFiles/configs";
+import { authCheck, globalState, startGame } from "./reduxFiles/configs";
 import { RightPane } from "./RightPane/RightPane";
 import { AtRest, FriendSelector, RandomGame, StartPlay } from "./SideBar/SideBar";
 import * as dummy from "./test"
@@ -123,13 +123,14 @@ function App2(){
     return <><h2>app5</h2></>
 }
 
-function acceptRreject(event:any,ws:WebSocket,src:string){
+function acceptRreject(event:any,ws:WebSocket,src:string,disp:any){
     let choice=event.target.id;
     let parent=event.target.parentNode;
     (document.querySelector(".notification") as HTMLDivElement).style.display="none";
     //parent.style.display="none";
     alert(" sending the data"+JSON.stringify({action:"matchManager",type:"requestAck","choice":"accept","src":src,"dest":localStorage.getItem("username")}));
     ws.send(JSON.stringify({action:"matchManager",type:"requestAck","choice":"accept","src":src,"dest":localStorage.getItem("username")}))
+    disp(startGame({start:true,myCoin:"black"}))
 
 }
 function Notification(){
@@ -158,8 +159,8 @@ function Notification(){
     </div>
     <div className="notificationP2">
         <div className="sentBy">{src}</div>
-        <span className="accept"  onClick={(val)=>acceptRreject(val,ws,src)}id="accept"></span>
-        <span className="reject" onClick={(val)=>acceptRreject(val,ws,src)} id="reject"></span>
+        <span className="accept"  onClick={(val)=>acceptRreject(val,ws,src,disp,)}id="accept"></span>
+        <span className="reject" onClick={(val)=>acceptRreject(val,ws,src,disp)} id="reject"></span>
     </div>
     </div>
     </>

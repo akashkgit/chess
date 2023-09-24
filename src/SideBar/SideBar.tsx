@@ -2,6 +2,7 @@ import { Link, Outlet, useNavigate, useOutletContext } from "react-router-dom";
 import "./SideBar.scss"
 import React, { useContext, useState } from "react";
 import { PlayCntxt } from "../RightPane/RightPane";
+import { useSelector } from "react-redux";
 export function SideBar(){
     let {playstate,setPlaystate}=useContext(PlayCntxt);
     return <div id="SideBar" className="SideBar">
@@ -148,6 +149,9 @@ export function AtRest(){
 export function FriendSelector(){
 
     let nav=useNavigate();        
+    let ws=useSelector((state:any)=>state.loginRed.ws)
+    let uname=useSelector((state:any)=>state.loginRed.uname)
+    
     let [fname,setFName]=useState("");
             let [friendList,setFriendList]=useState([]);
             let [curFriends,setCurFriends]=useState(["akash","bekash","dakash","lokash"]);
@@ -181,7 +185,7 @@ export function FriendSelector(){
        < div   className="dropDownFList" style={{display:fname!==""?"flex":"none"}}>
         <div style={{color:"grey"}}>Suggestions</div>
             {friendList.map((friend)=>{
-                return <div  onClick={(event)=>{setCurFriends(cur=>[...cur,friend]);ping(nav); setFName("")}} key="friend">
+                return <div  onClick={(event)=>{setCurFriends(cur=>[...cur,friend]);ping(nav,ws,uname); setFName("")}} key="friend">
                      {friend}
 
                 </div>
@@ -192,20 +196,17 @@ export function FriendSelector(){
     </>
 }
 
-function ping(nav:any){
+function ping(nav:any,ws:any,uname:string){
 
-    alert();
-    let ws=new WebSocket("wss://6ph3c75vv0.execute-api.us-east-1.amazonaws.com/production/");
-    ws.onopen=()=>{
-     console.log({"action":"auth","jwt":localStorage.getItem("jwt")});
-    ws.send(JSON.stringify({"action":"auth","jwt":localStorage.getItem("jwt")}))
-    }
-    ws.onmessage=((val:any)=>{
-        console.log(typeof val.data)
-        let data=JSON.parse(val.data)
-        if(!data.authorised)
-        nav("/login");
-    })
+    let toBSent=JSON.stringify({
+        "action":"matchManager",
+        "type": "requestInit",
+        "dest": "akashkvit@gmail.com",
+        "src":uname
+      });
+    alert(toBSent);
+    
+    ws.send(toBSent)
     
 }
 function checkFriends(event:any,setFName:any,fname:any,setFriendList:any){

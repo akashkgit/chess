@@ -7,6 +7,7 @@ const loginSlice=createSlice({
     initialState:{
         login:false,
         ws:null,
+        uname:""
     },
     reducers:{
         login:(state,action)=>{
@@ -33,13 +34,14 @@ const gameSlice=createSlice({
     initialState:{
         start:false,
         myCoin:"black",
+        opp:""
     },
     reducers:{
         startGame:(state,action)=>{
           
 
             
-            return {start:action.payload.start,myCoin:action.payload.myCoin};
+            return {...state,start:action.payload.start,myCoin:action.payload.myCoin,opp:action.payload.opp};
          
         
         },
@@ -52,6 +54,7 @@ const gameSession=createSlice({
     name:"gameSession",
     initialState:{
         myTurn:false,
+        move:null
 
         
     },
@@ -60,9 +63,13 @@ const gameSession=createSlice({
           
 
             
-            return {myTurn:!state.myTurn}
+            return {...state,myTurn:!state.myTurn}
          
         
+        },
+        setMove:(state,action)=>{
+            alert(" setting move"+JSON.stringify(action))
+            return {...state,move:action.payload.move}
         }
        
     }
@@ -77,7 +84,7 @@ export let globalState=configureStore({
 })
 export const {login,wsChanger}=loginSlice.actions
 export const {startGame}=gameSlice.actions
-export const {switchTurn}=gameSession.actions
+export const {switchTurn,setMove}=gameSession.actions
 
 export function authCheck(){
    

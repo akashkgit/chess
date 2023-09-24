@@ -24,4 +24,8 @@ let data=
 21. cors : request origin controls headers, response origin control headers, preflight options ytpe request and simple request\
 22.cors: cookie : domain and samesite\
 23.mode in fetch`\
+24.Dont give any size for the outer container if u want it to adjust as per the contents of the inner container(invitatino popup)\
+25. usestate vs redux : i need to get src from notficatino into chessboard which is difficult with set src in notification. So, to conclude  i will have to pull all the state to the top elemenet to make it available to any of the children\
+26.% in translate takes the width that item as the percentage total instead of its parent. So, it was easy to translate by 100% to \
+that box by its unit size\
 "  

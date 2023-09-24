@@ -1,4 +1,4 @@
-import { startGame, switchTurn } from "../reduxFiles/configs";
+import { setMove, startGame, switchTurn } from "../reduxFiles/configs";
 
 export let boardMode={
     defaultMode:[
@@ -48,33 +48,53 @@ export const coins=["1","2","7","8"];
 
 export let mapping:{[key:string]:{[key:string]:string}}={
     "white":{
-    '8a':"br",
-    '8b':"bh",
-    '8c':"bb",
-    '8d':"bq",
-    '8e':"bk",
-    '8f':"bb",
-    '8g':"bh",
     '8h':"br",
+    '8g':"bh",
+    '8f':"bb",
+    '8e':"bk",
+    '8d':"bq",
+    '8c':"bb",
+    '8b':"bh",
+    '8a':"br",
     
 
-    '7a':"bp",
-    '7b':"bp",
-    '7c':"bp",
-    '7d':"bp",
-    '7e':"bp",
-    '7f':"bp",
-    '7g':"bp",
     '7h':"bp",
+    '7g':"bp",
+    '7f':"bp",
+    '7e':"bp",
+    '7d':"bp",
+    '7c':"bp",
+    '7b':"bp",
+    '7a':"bp",
 
+    '1h':"wr",
+    '1g':"wh",
+    '1f':"wb",
+    '1e':"wk",
+    '1d':"wq",
+    '1c':"wb",
+    '1b':"wh",
+    '1a':"wr",
+
+    '2h':"wp",
+    '2g':"wp",
+    '2f':"wp",
+    '2e':"wp",
+    '2d':"wp",
+    '2c':"wp",
+    '2b':"wp",
+    '2a':"wp",
+    },
+"black":{
     '1a':"wr",
     '1b':"wh",
     '1c':"wb",
-    '1d':"wk",
-    '1e':"wq",
+    '1d':"wq",
+    '1e':"wk",
     '1f':"wb",
     '1g':"wh",
     '1h':"wr",
+    
 
     '2a':"wp",
     '2b':"wp",
@@ -84,44 +104,24 @@ export let mapping:{[key:string]:{[key:string]:string}}={
     '2f':"wp",
     '2g':"wp",
     '2h':"wp",
-    },
-"black":{
-    '1a':"br",
-    '1b':"bh",
-    '1c':"bb",
-    '1d':"bq",
-    '1e':"bk",
-    '1f':"bb",
-    '1g':"bh",
-    '1h':"br",
-    
 
-    '2a':"bp",
-    '2b':"bp",
-    '2c':"bp",
-    '2d':"bp",
-    '2e':"bp",
-    '2f':"bp",
-    '2g':"bp",
-    '2h':"bp",
+    '8a':"br",
+    '8b':"bh",
+    '8c':"bb",
+    '8d':"bq",
+    '8e':"bk",
+    '8f':"bb",
+    '8g':"bh",
+    '8h':"br",
 
-    '8a':"wr",
-    '8b':"wh",
-    '8c':"wb",
-    '8d':"wk",
-    '8e':"wq",
-    '8f':"wb",
-    '8g':"wh",
-    '8h':"wr",
-
-    '7a':"wp",
-    '7b':"wp",
-    '7c':"wp",
-    '7d':"wp",
-    '7e':"wp",
-    '7f':"wp",
-    '7g':"wp",
-    '7h':"wp",
+    '7a':"bp",
+    '7b':"bp",
+    '7c':"bp",
+    '7d':"bp",
+    '7e':"bp",
+    '7f':"bp",
+    '7g':"bp",
+    '7h':"bp",
     
 }
 }
@@ -145,6 +145,9 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
             if(msg.src){
             alert(" setting src to "+msg)
             setSrc(msg.src);
+            
+
+
             }
             
             if(clearId.current!==0)window.clearInterval(clearId.current);
@@ -155,11 +158,16 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
             
         }
         else if(msg && msg.type && msg.type==="requestAck"){
-            alert(" acknowledgement recieved ")
-           disp(startGame({start:true,myCoin:"white"}))
+            alert(" acknowledgement recieved "+JSON.stringify(msg)+" "+JSON.stringify({start:true,myCoin:"white",opp:msg.dest}))
+           disp(startGame({start:true,myCoin:"white",opp:msg.dest}))
            disp(switchTurn());
 
             
+        }
+        else if (msg && msg.type && msg.type==="play"){
+            alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
+            disp(setMove({move:msg.coinMoved}))
+            disp(switchTurn());
         }
     }
 }

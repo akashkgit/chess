@@ -1,23 +1,28 @@
 import {mapping} from "../specs/data"
 import { initCoinPos } from "./types";
 import {handlerMapping} from "./handlers";
+import { switchTurn } from "../reduxFiles/configs";
 export function mouseOver(event:any){
 }
 
 
-export  let moveCoin=(event:any,state:{[k:string]:any},position:initCoinPos)=>{
+ export  let moveCoin=(event:any,state:{[k:string]:any},position:initCoinPos,myCoin:string)=>{
     
 
     
     
-    
-        if(state.click===false){
+    console.log(" CLick event stats ",event.target.dataset.mycoin===myCoin,myCoin,event.target.dataset.mycoin)
+        if(state.click===false ){
+           
+           if(event.target.dataset.mycoin===myCoin){
+            
             console.log(" clicking to true");
             
             state.click=true;
         
             state.el=event.target;
             event.stopPropagation();
+           }
             }
             else{
 
@@ -40,6 +45,7 @@ function checkIfPossible(futurePos:String, coin:HTMLDivElement){
 
     let coinName=coin.dataset.coin;
     let coinBox=coin.getBoundingClientRect();
+
    
 
 
@@ -48,15 +54,31 @@ function checkIfPossible(futurePos:String, coin:HTMLDivElement){
 }
 
 
-export function putPiece(event:any,state:{[k:string]:any},position:initCoinPos,myCoin:string){
-
+export function putPiece(event:any,state:{[k:string]:any},position:initCoinPos,myCoin:string,disp:any,wsock:WebSocket,uname:any,opp:any){
+//alert(" putting piece ");
 if(state.click===true){
 
     let origin:HTMLDivElement=state.el;
     let {top,left,right,bottom,width,height}=origin.getBoundingClientRect();
     let details=origin.dataset.coin.split("");
    console.log("calling",details[1]);
-    handlerMapping[details[1]](state,position,event,);
+    let switching=handlerMapping[details[1]](state,position,event,myCoin)
+    
+
+    if(switching[0]){
+    console.log("!!switching"+switching)
+    // freeze the clock
+    // switch
+    disp(switchTurn());
+    let dataSend=JSON.stringify({action:"matchManager","type":"play","coinMoved":{coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]}},"dest":opp,"src":uname})
+    alert(" sending "+dataSend)
+
+    wsock.send(dataSend)
+
+
+
+
+    }
     console.log(" to ",top)
    
     state.click=false;

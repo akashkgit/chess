@@ -9,7 +9,7 @@ import {DirectSignUp} from "./signup/DirectSignUp"
 import { LogIn } from './login/login';
 import {configureStore} from "@reduxjs/toolkit"
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { authCheck, globalState, startGame } from "./reduxFiles/configs";
+import { authCheck, globalState, login, startGame, wsChanger } from "./reduxFiles/configs";
 import { RightPane } from "./RightPane/RightPane";
 import { AtRest, FriendSelector, RandomGame, StartPlay } from "./SideBar/SideBar";
 import * as dummy from "./test"
@@ -87,9 +87,10 @@ const router=createBrowserRouter([
 
 ])
 
+function init(disp:any){
 let jwt=localStorage.getItem("jwt");
 var wsock:WebSocket;
-//alert("jwt is "+jwt)
+alert("jwt is "+jwt)
 if(jwt!==undefined){
     wsock=new WebSocket(authUrl);
     wsock.onopen=()=>{
@@ -97,15 +98,25 @@ if(jwt!==undefined){
         wsock.send(JSON.stringify({"action":"auth","jwt":jwt}))
        }
        wsock.onmessage=((val:any)=>{
-           //alert("ONMESSAGE "+val.data)
+           //\alert("ONMESSAGE "+val.data)
+
+           
            let data=JSON.parse(val.data)
+           if(data.type==="auth"){
+            alert(" auth message");
+            
            if(!data.authorized){
            // alert(" chaning path name to ogin : not authoried by api")
             window.location.pathname="/login"
            }
+           else{
+            console.log(" setting wsock to ",wsock);
+            disp(wsChanger({ws:wsock}));
+           }
+        }
            
        })
-
+    
        //alert(" created socket as it had jwt verified ");
     }
 
@@ -114,7 +125,7 @@ else{
   //  alert(" else : chaning path name to ogin")
     window.location.pathname="/login"
 }
-
+}
 
 let rRoot=createRoot(document.querySelector("#reactRoot") as Element)
 rRoot.render(<Provider store={globalState} ><RouterProvider router={router} /><Notification /></Provider>);
@@ -130,12 +141,13 @@ function acceptRreject(event:any,ws:WebSocket,src:string,disp:any){
     //parent.style.display="none";
     alert(" sending the data"+JSON.stringify({action:"matchManager",type:"requestAck","choice":"accept","src":src,"dest":localStorage.getItem("username")}));
     ws.send(JSON.stringify({action:"matchManager",type:"requestAck","choice":"accept","src":src,"dest":localStorage.getItem("username")}))
-    disp(startGame({start:true,myCoin:"black"}))
+    disp(startGame({start:true,myCoin:"black",opp:src}))
 
 }
 function Notification(){
     
     
+
     let [active,activate]=useState(false);
     let [src,setSrc]=useState("");
     let ws=useSelector((state:any)=>state.loginRed.ws);
@@ -150,6 +162,10 @@ function Notification(){
         if(ws)
         ws.addEventListener("message",handler)
     },[ws])
+
+    useEffect(()=>{
+            init(disp);
+    },[])
   
     
     return<>
@@ -159,7 +175,7 @@ function Notification(){
     </div>
     <div className="notificationP2">
         <div className="sentBy">{src}</div>
-        <span className="accept"  onClick={(val)=>acceptRreject(val,ws,src,disp,)}id="accept"></span>
+        <span className="accept"  onClick={(val)=>acceptRreject(val,ws,src,disp)}id="accept"></span>
         <span className="reject" onClick={(val)=>acceptRreject(val,ws,src,disp)} id="reject"></span>
     </div>
     </div>

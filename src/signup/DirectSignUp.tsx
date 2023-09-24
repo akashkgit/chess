@@ -115,12 +115,12 @@ export function UserDetails(props:any){
 function continueFunc(event:any,cont:number,setContinue:(k:any)=>void,submit:any,nav:any){
     
     if(cont>1){
-        console.log(" going to submite");
+       
         let url="https://s38121vp76.execute-api.us-east-1.amazonaws.com/signup";
         let emailId=(document.querySelector(".email")as HTMLInputElement).value
         let pwd=(document.querySelector(".pwd") as HTMLInputElement).value
         let data=JSON.stringify({emailId,password:pwd})
-        console.log(data);
+       
         fetch(url,{
             method:"POST",
             mode:"cors",

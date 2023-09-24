@@ -204,7 +204,7 @@ function ping(nav:any,ws:any,uname:string){
         "dest": "akashkvit@gmail.com",
         "src":uname
       });
-    alert(toBSent);
+   // alert(toBSent);
     
     ws.send(toBSent)
     

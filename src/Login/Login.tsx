@@ -41,14 +41,14 @@ return found;
     let ws:any=null;
 
     if(found){
-        alert("creating new socket in login");
+        //alert("creating new socket in login");
         ws=new WebSocket(authUrl);
         ws.onopen=()=>{
-            console.log({"action":"auth","jwt":localStorage.getItem("jwt")});
+           // console.log({"action":"auth","jwt":localStorage.getItem("jwt")});
            ws.send(JSON.stringify({"action":"auth","jwt":localStorage.getItem("jwt")}))
            }
            ws.onmessage=((val:any)=>{
-               console.log("ONMESSAGE ",val)
+             //  console.log("ONMESSAGE ",val)
                let data=JSON.parse(val.data)
                if(!data.authorised)
                setErr((val)=>false);
@@ -57,7 +57,7 @@ return found;
            })
            
     }
-    console.log(" updating the state ",{login:found,uname:found===true?emailId.value:"",ws:JSON.stringify(ws)},"ws ",String(ws))
+    //console.log(" updating the state ",{login:found,uname:found===true?emailId.value:"",ws:JSON.stringify(ws)},"ws ",String(ws))
     disp(log({login:found,uname:found===true?emailId.value:""}))
     disp(wsChanger({ws:ws}));
 }
@@ -66,8 +66,8 @@ return found;
 export function LogIn(){
 
     let [err,setErr]=useState(true)
-    let login=useSelector((state:any)=>{console.log("State",state);return state.loginRed.login})
-    let ws=useSelector((state:any)=>{console.log("State",state);return state.loginRed.ws})
+    let login=useSelector((state:any)=>{return state.loginRed.login})
+    let ws=useSelector((state:any)=>{return state.loginRed.ws})
     let disp=useDispatch();
 
     let nav=useNavigate();

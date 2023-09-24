@@ -12,7 +12,7 @@ let state=drag;
 let position:initCoinPos={};
 
 function moveOppCoin(move:any){
-console.log(move);
+console.log(" move ",move);
     let [x,y]=move.Pos;
     let killed=move.kill.kill
     let killedCoin=move.kill.dataPos
@@ -30,19 +30,19 @@ else killedPiece='2';
 
 
 
-alert("killing ?"+killed+" icon "+killedCoin)
+//alert("killing ?"+killed+" icon "+killedCoin)
 if(killed===true){
-    console.log(" removing ",document.querySelector(`[data-pos="${killedCoin}"]`))
+    //console.log(" removing ",document.querySelector(`[data-pos="${killedCoin}"]`))
     document.querySelector("#chessBoard").removeChild(document.querySelector(`[data-pos="${killedCoin}"]`));
 }
 
 let target:HTMLDivElement=document.querySelector(`[data-pos="${tarPos}"]`) 
-console.log(target,"is the target ");
-console.log(target.style.transform+" <= "+"before")
+//console.log(target,"is the target ");
+//console.log(target.style.transform+" <= "+"before")
 let futurePos = getComputedStyle(target).transform + `translateY(${y * -100}%) translateX(${x * -100}%)`
-console.log(target.style.transform+" <= "+"after")
+//console.log(target.style.transform+" <= "+"after")
 target.style.transform = futurePos;
-console.log(target.style.transform)
+//console.log(target.style.transform)
 
 
 }
@@ -54,10 +54,10 @@ export function ChessBoard(){
             position[box.id]=box.getBoundingClientRect();
             position[box.id]["transform"]=getComputedStyle(box).transform;
         })
-        console.log("position",position);
+       // console.log("position",position);
     },[])
     let color:boolean=true;
-    console.log(boxMap)
+    //console.log(boxMap)
     let myCoin=useSelector((state:any)=>state.game.myCoin )
     let start=useSelector((state:any)=>state.game.start )
     let myTurn=useSelector((state:any)=>state.gameSession.myTurn )
@@ -71,7 +71,7 @@ export function ChessBoard(){
     
 
     useEffect(()=>{
-    alert(move);
+   // alert(move);
     console.log(move);
         if(move)moveOppCoin(move)
     },[move])

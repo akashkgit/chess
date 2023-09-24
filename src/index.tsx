@@ -90,7 +90,7 @@ const router=createBrowserRouter([
 function init(disp:any){
 let jwt=localStorage.getItem("jwt");
 var wsock:WebSocket;
-alert("jwt is "+jwt)
+//alert("jwt is "+jwt)
 if(jwt!==undefined){
     wsock=new WebSocket(authUrl);
     wsock.onopen=()=>{
@@ -103,14 +103,14 @@ if(jwt!==undefined){
            
            let data=JSON.parse(val.data)
            if(data.type==="auth"){
-            alert(" auth message");
-            
+           // alert(" auth message");
+
            if(!data.authorized){
            // alert(" chaning path name to ogin : not authoried by api")
             window.location.pathname="/login"
            }
            else{
-            console.log(" setting wsock to ",wsock);
+           // console.log(" setting wsock to ",wsock);
             disp(wsChanger({ws:wsock}));
            }
         }
@@ -139,7 +139,7 @@ function acceptRreject(event:any,ws:WebSocket,src:string,disp:any){
     let parent=event.target.parentNode;
     (document.querySelector(".notification") as HTMLDivElement).style.display="none";
     //parent.style.display="none";
-    alert(" sending the data"+JSON.stringify({action:"matchManager",type:"requestAck","choice":"accept","src":src,"dest":localStorage.getItem("username")}));
+    //alert(" sending the data"+JSON.stringify({action:"matchManager",type:"requestAck","choice":"accept","src":src,"dest":localStorage.getItem("username")}));
     ws.send(JSON.stringify({action:"matchManager",type:"requestAck","choice":"accept","src":src,"dest":localStorage.getItem("username")}))
     disp(startGame({start:true,myCoin:"black",opp:src}))
 

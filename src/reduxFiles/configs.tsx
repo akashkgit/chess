@@ -68,7 +68,7 @@ const gameSession=createSlice({
         
         },
         setMove:(state,action)=>{
-            alert(" setting move"+JSON.stringify(action))
+          //  alert(" setting move"+JSON.stringify(action))
             return {...state,move:action.payload.move}
         }
        

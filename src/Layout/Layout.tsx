@@ -9,7 +9,7 @@ import {authUrl} from "../specs/config"
 export function Layout(props:props){
     
     let nav=useNavigate();
-   console.log(props.children)
+   //console.log(props.children)
     return <>
     <div id="layout" className="layout">
      <LeftPane />

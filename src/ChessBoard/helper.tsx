@@ -2,25 +2,97 @@ import {mapping} from "../specs/data"
 import { initCoinPos } from "./types";
 import {handlerMapping} from "./handlers";
 import { switchTurn } from "../reduxFiles/configs";
+
+
+
 export function mouseOver(event:any){
 }
 
+
+export function isAttacked(mycoin:string,byPass:HTMLDivElement){
+    let oppCoin=mycoin==="white"?"black":"white";
+    let myCoins=Object.keys(mapping[mycoin])
+    let myCoinMap=mapping[mycoin];
+    let kingCoin=oppCoin.split("")[0]+"k";
+    console.log(" king coin is ",`div[data-coin="${kingCoin}"]`," and bypass",byPass)
+    let state:{[k:string]:any}={
+        
+        
+    dest:document.querySelector(`div[data-coin="${kingCoin}"]`)
+        
+     }
+     let out=Array.from(document.querySelectorAll(`div[data-mycoin="${mycoin}"]`)).filter((val:HTMLDivElement)=>{
+let coin=val.dataset.coin;
+return coin.split("")[0]===mycoin.split("")[0]
+     })
+     console.log("---->",out)
+    for(let c=0;c<out.length;c++){
+        console.log(myCoinMap[myCoins[c]].split("")[0]!==mycoin.split("")[0]);
+        
+        state.el= out[c]
+       console.log("\t-====>",state.el," passing bypass") 
+        let {top,left,right,bottom,width,height}=state.el.getBoundingClientRect();
+    let res=handlerMapping[state.el.dataset.coin.split("")[1]](state,undefined,mycoin,true,true,false,true)
+        if(res[0])return false;
+        
+    }
+    return true;
+
+}
+
+
+export function isAllowed(mycoin:string,byPass:HTMLDivElement){
+    let oppCoin=mycoin==="white"?"black":"white";
+    let oppCoins=Object.keys(mapping[oppCoin])
+    let oppCoinMap=mapping[oppCoin];
+    let kingCoin=mycoin.split("")[0]+"k";
+    console.log(" king coin is ",`div[data-coin="${kingCoin}"]`," and bypass",byPass)
+    let state:{[k:string]:any}={
+        
+        
+    dest:document.querySelector(`div[data-coin="${kingCoin}"]`)
+        
+     }
+     let out=Array.from(document.querySelectorAll(`div[data-mycoin="${mycoin}"]`)).filter((val:HTMLDivElement)=>{
+let coin=val.dataset.coin;
+return coin.split("")[0]===oppCoin.split("")[0]
+     })
+     console.log("---->",out)
+    for(let c=0;c<out.length;c++){
+        console.log(oppCoinMap[oppCoins[c]].split("")[0]!==oppCoin.split("")[0]);
+        
+        state.el= out[c]
+       console.log("\t-====>",state.el," passing bypass") 
+        let {top,left,right,bottom,width,height}=state.el.getBoundingClientRect();
+    let res=handlerMapping[state.el.dataset.coin.split("")[1]](state,undefined,mycoin,true,true,byPass)
+        if(res[0])return false;
+        
+    }
+    return true;
+
+}
 
  export  let moveCoin=(event:any,state:{[k:string]:any},position:initCoinPos,myCoin:string)=>{
     
 
     
     
-    console.log(" CLick event stats ",event.target.dataset.mycoin===myCoin,myCoin,event.target.dataset.mycoin)
+   // console.log(" CLick event stats ",event.target.dataset.mycoin===myCoin,myCoin,event.target.dataset.mycoin)
         if(state.click===false ){
            
            if(event.target.dataset.mycoin===myCoin){
             
-            console.log(" clicking to true");
             
-            state.click=true;
+            
+            
         
             state.el=event.target;
+            if(!isAllowed(myCoin,state.el)){
+                alert(" not allowed");
+                return ;
+            }
+            console.log(" clicking to true");
+            state.click=true;
             event.stopPropagation();
            }
             }
@@ -61,17 +133,17 @@ if(state.click===true){
     let origin:HTMLDivElement=state.el;
     let {top,left,right,bottom,width,height}=origin.getBoundingClientRect();
     let details=origin.dataset.coin.split("");
-   console.log("calling",details[1]);
+  // console.log("calling",details[1]);
     let switching=handlerMapping[details[1]](state,position,event,myCoin)
     
 
     if(switching[0]){
-    console.log("!!switching"+switching)
+   // console.log("!!switching"+switching)
     // freeze the clock
     // switch
     disp(switchTurn());
     let dataSend=JSON.stringify({action:"matchManager","type":"play","coinMoved":{coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]}},"dest":opp,"src":uname})
-    alert(" sending "+dataSend)
+    //alert(" sending "+dataSend)
 
     wsock.send(dataSend)
 
@@ -79,7 +151,7 @@ if(state.click===true){
 
 
     }
-    console.log(" to ",top)
+    //console.log(" to ",top)
    
     state.click=false;
 }
@@ -186,10 +258,10 @@ export function mouseDown(event:any,drag:{[k:string]:any},position:initCoinPos){
   
     
 
-    console.log(event.detail,"is the count")
+   // console.log(event.detail,"is the count")
    
     drag.dragging=true;
-   console.log("mousedown");
+   //console.log("mousedown");
     let style=false;
     
     function mouseUp(event:any){
@@ -266,7 +338,7 @@ export function mouseDown(event:any,drag:{[k:string]:any},position:initCoinPos){
     }
     
     let target=event.target as HTMLDivElement
-    console.log("mousedown");
+    //console.log("mousedown");
    // console.log("!! target is ",target,event.currentTarget);
     let parent=target.parentElement;
 

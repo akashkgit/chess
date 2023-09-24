@@ -135,15 +135,15 @@ export let url={
 //------------------- Handlers ----------------------------------
 export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
     return (msg:any)=>{
-        console.log("MESSAGE EVENT HANDLER",msg)
+        
         msg=JSON.parse(msg.data);
       //  alert("called"+JSON.stringify(msg));
         if(msg && msg.type && msg.type==="requestInit"){
           //  alert(" inside ")
             activate(true);
-            console.log(" message is ",msg);
+            
             if(msg.src){
-            alert(" setting src to "+msg)
+           // alert(" setting src to "+msg)
             setSrc(msg.src);
             
 
@@ -158,14 +158,14 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
             
         }
         else if(msg && msg.type && msg.type==="requestAck"){
-            alert(" acknowledgement recieved "+JSON.stringify(msg)+" "+JSON.stringify({start:true,myCoin:"white",opp:msg.dest}))
+          //  alert(" acknowledgement recieved "+JSON.stringify(msg)+" "+JSON.stringify({start:true,myCoin:"white",opp:msg.dest}))
            disp(startGame({start:true,myCoin:"white",opp:msg.dest}))
            disp(switchTurn());
 
             
         }
         else if (msg && msg.type && msg.type==="play"){
-            alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
+          //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
             disp(setMove({move:msg.coinMoved}))
             disp(switchTurn());
         }

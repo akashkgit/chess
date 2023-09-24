@@ -9,7 +9,7 @@ export function mouseOver(event:any){
 }
 
 
-export function isAttacked(mycoin:string,byPass:HTMLDivElement){
+export function isAttacked(mycoin:string,byPass?:HTMLDivElement){
     let oppCoin=mycoin==="white"?"black":"white";
     let myCoins=Object.keys(mapping[mycoin])
     let myCoinMap=mapping[mycoin];
@@ -32,11 +32,11 @@ return coin.split("")[0]===mycoin.split("")[0]
         state.el= out[c]
        console.log("\t-====>",state.el," passing bypass") 
         let {top,left,right,bottom,width,height}=state.el.getBoundingClientRect();
-    let res=handlerMapping[state.el.dataset.coin.split("")[1]](state,undefined,mycoin,true,true,false,true)
-        if(res[0])return false;
+    let res=handlerMapping[state.el.dataset.coin.split("")[1]](state,undefined,mycoin,true,true)
+        if(res[0])return true;
         
     }
-    return true;
+    return false;
 
 }
 
@@ -142,8 +142,17 @@ if(state.click===true){
     // freeze the clock
     // switch
     disp(switchTurn());
-    let dataSend=JSON.stringify({action:"matchManager","type":"play","coinMoved":{coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]}},"dest":opp,"src":uname})
-    //alert(" sending "+dataSend)
+    let check=isAttacked(myCoin);
+    console.log("is attacked ",check)
+    let dataSend=JSON.stringify({
+        action:"matchManager","type":"play","coinMoved":{
+            coin:{"type":details[1],"boxId":origin.dataset.pos},
+            "Pos":[switching[1],switching[2]],
+            "kill":{"kill":switching[3],dataPos:switching[4]},
+            "check":check
+        },
+        "dest":opp,"src":uname})
+    alert(" sending -> "+dataSend)
 
     wsock.send(dataSend)
 

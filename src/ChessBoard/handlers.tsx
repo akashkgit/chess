@@ -48,7 +48,7 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any,m
     let tempX:number,tempY:number;
     let cBox=document.querySelector("#chessBoard").getBoundingClientRect();
     //console.log(event.clientX>=right , event.clientY<=top);
-    if((event.clientX>=right && event.clientY<=top) || byPass!==undefined){
+    if((event.clientX>=right && event.clientY<=top) || byPass!==undefined  ||  dryRun){
         let i=1;
         tempX=left+width;
         tempY=top-height;
@@ -64,7 +64,7 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any,m
             }
         
     }
-    if((event.clientX<=left && event.clientY<=top) || byPass!==undefined){
+    if((event.clientX<=left && event.clientY<=top) || byPass!==undefined  ||  dryRun ){
         let i=1;
         tempX=left-width;
         tempY=top-height;
@@ -82,7 +82,7 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any,m
             }
         
     }
-   if((event.clientX>=right && event.clientY>=bottom ) || byPass!==undefined){
+   if((event.clientX>=right && event.clientY>=bottom ) || byPass!==undefined ||  dryRun ){
         let i=1;
         tempX=left+width;
         tempY=top+height;
@@ -99,7 +99,7 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any,m
             }
         
     }
-    if((event.clientX<=left && event.clientY>=bottom) || byPass!==undefined){
+    if((event.clientX<=left && event.clientY>=bottom) || byPass!==undefined ||  dryRun){
         let i=1;
         tempX=left-width;
         console.log("c4")
@@ -156,8 +156,9 @@ function rook(state: { [k: string]: any }, position: initCoinPos, event: any,myC
     let temp:number;
     let cBox=document.querySelector("#chessBoard").getBoundingClientRect();
     let success=false;
-    if(event.clientY<=top || byPass!==undefined ){
+    if(event.clientY<=top || byPass!==undefined || dryRun){
     temp=top;
+    console.log(" R1")
     let i=0;
     while(temp>=cBox.top && temp<=cBox.bottom ){
 
@@ -168,8 +169,9 @@ function rook(state: { [k: string]: any }, position: initCoinPos, event: any,myC
         temp=temp-height;
     }
 }
-if(event.clientY>=bottom|| byPass!==undefined ){
+if(event.clientY>=bottom|| byPass!==undefined ||dryRun ){
     temp=bottom;
+    console.log(" R2")
     let i=1;
     while(temp>=cBox.top&& temp<=cBox.bottom){
 
@@ -181,9 +183,10 @@ if(event.clientY>=bottom|| byPass!==undefined ){
         temp=temp+height;
     }
 }
- if(event.clientX>=left || byPass!==undefined){
+ if(event.clientX>=left || byPass!==undefined ||  dryRun ){
     temp=right;
     let i=1;
+    console.log(" R3")
     while(temp>=cBox.left && temp<=cBox.right){
 
         let res=check(top, temp, state, position, event, width, height, top, left, i , 0,false,myCoin,dryRun,byPass)
@@ -193,9 +196,10 @@ if(event.clientY>=bottom|| byPass!==undefined ){
         temp=temp+width;
     }
 }
-if(event.clientX<=left || byPass!==undefined){
+if(event.clientX<=left || byPass!==undefined ||  dryRun){
     temp=left-width;
     let i=1;
+    console.log(" R4")
     while(temp>=cBox.left && temp<=cBox.right){
 
         
@@ -246,11 +250,12 @@ export function check(y: number, x: number, state: { [k: string]: any }, positio
     let fromPointPos = fromPoint.getBoundingClientRect();
     console.log(" from & state.dest ,bypass",fromPoint, state.dest,byPass);
    // console.log("from point ",fromPoint,(fromPoint as HTMLDivElement).dataset.mycoin);
-
+   console.log("Returning true?"+fromPoint && state.dest && fromPoint.id === state.dest.id && fromPoint.dataset.coin===state.dest.dataset.coin )
     if (fromPoint && state.dest && fromPoint.id === state.dest.id && fromPoint.dataset.coin===state.dest.dataset.coin )  {
 
 
         //let temp=getComputedStyle(state.el).transform ;
+        // alert("Returning true")
         if(dryRun)return [true]
         let futurePos = getComputedStyle(state.el).transform + `translateY(${yTrans * 100}%) translateX(${xTrans * 100}%)`
         // if(state.dest.dataset.coin.split("")[1]==='k'){

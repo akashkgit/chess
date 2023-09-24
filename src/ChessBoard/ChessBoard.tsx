@@ -71,8 +71,8 @@ export function ChessBoard(){
     
 
     useEffect(()=>{
-   // alert(move);
-    console.log(move);
+    //alert(move);
+    console.log("move- >",move);
         if(move)moveOppCoin(move)
     },[move])
 

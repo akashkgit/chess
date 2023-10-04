@@ -17,6 +17,7 @@ export function playArea(){
     
     let {playState,setPlayState}=useContext(PlayCntxt);
     let start:boolean=useSelector((state:any)=>state.game.start)
+    let opp:boolean=useSelector((state:any)=>state.game.opp)
     let myTurn:boolean=useSelector((state:any)=>state.gameSession.myTurn)
     let myCoin=useSelector((state:any)=>state.game.myCoin)
     //alert(" rending "+start);
@@ -33,9 +34,9 @@ export function playArea(){
     
     return <div id="playArea"  style={{pointerEvents:start && myTurn?"auto":"none"}} className="playArea">
 
-    <OppComp />
+    <OppComp uname={opp} />
     <ChessBoard />
-    <OppComp uname={loginRed.uname}/>
+    <OppComp uname={loginRed.uname} />
     
     </div>
 }

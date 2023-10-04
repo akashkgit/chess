@@ -2,7 +2,7 @@ import "./index.scss"
 import { authUrl } from "./specs/config";
 import {createRoot} from 'react-dom/client';
 import React, { Children, useEffect, useReducer, useRef, useState } from 'react';
-import { createBrowserRouter,RouterProvider} from 'react-router-dom'
+import { createHashRouter,RouterProvider} from 'react-router-dom'
 import {App} from "./App/app";
 import { SignUp } from './signup/SignUp';
 import {DirectSignUp} from "./signup/DirectSignUp"
@@ -17,7 +17,7 @@ import { reqAck, wsHandler } from "./specs/data";
 //alert(" from index "+dummy.value);
 
 
-const router=createBrowserRouter([
+const router=createHashRouter([
     {
         path:"/signup",
         children:[
@@ -83,7 +83,6 @@ const router=createBrowserRouter([
 
     }
    
-
 
 ])
 

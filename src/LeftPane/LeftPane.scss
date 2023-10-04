@@ -7,9 +7,43 @@
     
 }
 
+.signupClickButton{
+   background-color:#494846;
+}
+.loginClickButton{
+ background-color: #80b64b;  
+}
+
+.signupClickButton,.loginClickButton{
+   justify-content: center;
+   height: 2.2rem;
+   box-sizing: border-box;
+   padding:0.1rem;
+   margin-left:0%;
+   margin-right:0.1rem;
+   border-radius: 0.25rem;
+   display:flex;
+    
+   font-size: 5rem;
+   color:hsla(0,0%,100%,0.85);
+   width:90%;
+   gap: 0.5rem;
+   
+   
+   
+   font-family:"Montserrat",sans-serif;
+   text-decoration:none;
+   align-items: center;
+}
+.disable{
+   pointer-events: none;
+}
+.hidden{
+   display:none;
+}
  .leftPaneItem.leftPaneItem {
     display:flex;
-    width:60%;
+    
     font-size: 5rem;
     color:hsla(0,0%,100%,0.85);
     width:100%;

@@ -2,7 +2,8 @@ import {mapping} from "../specs/data"
 import { initCoinPos } from "./types";
 import {handlerMapping} from "./handlers";
 import { switchTurn } from "../reduxFiles/configs";
-import {handlerKingMapping} from "./kingHandler";
+import {handlerCheckMateMapping} from "./checkMateHandler";
+import {handlerKingMapping} from "./kingHandler"
 
 
 
@@ -80,11 +81,11 @@ return coin.split("")[0]===oppCoin.split("")[0]
 
 
 
-export function isChecked(mycoin:string,byPass:HTMLDivElement){
+export function isCheckMate(mycoin:string,byPass:HTMLDivElement){
     let oppCoin=mycoin==="white"?"black":"white";
-    let myCoins=Object.keys(mapping[mycoin])
-    let myCoinMap=mapping[mycoin];
-    let kingCoin=oppCoin.split("")[0]+"k";
+    let oppCoins=Object.keys(mapping[oppCoin])
+    let oppCoinMap=mapping[oppCoin];
+    let kingCoin=mycoin.split("")[0]+"k";
     console.log(" king coin is ",`div[data-coin="${kingCoin}"]`," and bypass",byPass)
     let state:{[k:string]:any}={
         
@@ -94,19 +95,19 @@ export function isChecked(mycoin:string,byPass:HTMLDivElement){
      }
      let out=Array.from(document.querySelectorAll(`div[data-mycoin="${mycoin}"]`)).filter((val:HTMLDivElement)=>{
 let coin=val.dataset.coin;
-return coin.split("")[0]===mycoin.split("")[0]
+return coin.split("")[0]===oppCoin.split("")[0]
      })
      console.log("---->",out)
     for(let c=0;c<out.length;c++){
-        console.log(myCoinMap[myCoins[c]].split("")[0]!==mycoin.split("")[0]);
+        console.log(oppCoinMap[oppCoins[c]].split("")[0]!==oppCoin.split("")[0]);
         
         state.el= out[c]
        console.log("\t-====>",state.el," passing bypass") 
         let {top,left,right,bottom,width,height}=state.el.getBoundingClientRect();
-        let res= handlerKingMapping[state.el.dataset.coin.split("")[1]](state,undefined,undefined,mycoin,true,byPass)
-        console.log("|||||| ",state.el.id,res,"|||||||");
+        let res= handlerCheckMateMapping[state.el.dataset.coin.split("")[1]](state,undefined,undefined,mycoin,true,byPass)
+        console.log("(((((( ",state.el.id,res,")))))))))))");
         if(!res[0]){
-            console.log("|||| ---->",state.el.id,res,"<--------|||||||");
+            console.log("(((((( ---->",state.el.id,res,"<--------)))))))))))");
             return res[0];
         }
         
@@ -116,8 +117,7 @@ return coin.split("")[0]===mycoin.split("")[0]
 }
 
 
-
-export function ischeckMate(mycoin:string,byPass:HTMLDivElement){
+export function isChecked(mycoin:string,byPass:HTMLDivElement){
     let oppCoin=mycoin==="white"?"black":"white";
     let myCoins=Object.keys(mapping[mycoin])
     let myCoinMap=mapping[mycoin];
@@ -225,7 +225,7 @@ if(state.click===true){
     // switch
     disp(switchTurn());
     let dataSend=JSON.stringify({action:"matchManager","type":"play","coinMoved":{coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]},"check":check},"dest":opp,"src":uname})
-    if(check)alert(" sending "+dataSend)
+    if(check)alert(" Check ");
 
     wsock.send(dataSend)
 

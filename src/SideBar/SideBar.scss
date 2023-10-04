@@ -87,6 +87,7 @@ a:link{
 .TOPlayAFriend .TOIcon{
     background:url("https://www.chess.com/bundles/web/images/color-icons/handshake.8c90be47.svg");
     background-size: contain;
+    
 
 }
 .TOTournaments .TOIcon{
@@ -126,7 +127,7 @@ a:link{
 }
 .TOIcon{
     width:1.5rem;
-    height:50%;
+    height:40%;
     
 }
 .computer > .icon{
@@ -212,7 +213,7 @@ a:link{
     background-color: red;
 }
 .friendSelector{
-    border:2px solid green;
+    // border:2px solid green;
     width:100%;
     height:180%;
     display:flex;

@@ -100,9 +100,9 @@ export function LogIn(){
         </div>
 
         <div className="oAuth modOAuth">
-            <Link to="/google"><span className="google"></span><span >Continue with Google</span></Link>
-            <Link to="/apple"><span className="apple"></span><span >Continue with apple</span></Link>
-            <Link to="/facebook"><span className="facebook"></span><span >Continue with facebook</span></Link>
+            <Link to="/google" className="googleLink"><span className="google"></span><span >Continue with Google</span></Link>
+            <Link to="/apple" className="appleLink"><span className="apple"></span><span >Continue with apple</span></Link>
+            <Link to="/facebook" className="fbLink"><span className="facebook"></span><span >Continue with facebook</span></Link>
         </div>
 
 

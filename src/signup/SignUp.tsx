@@ -4,7 +4,8 @@ import {Link, Outlet} from "react-router-dom"
 export function SignUp(){
     return <>
     <div className="container">
-         
+        <Link to="/login" className="signupLogin"><p>Login</p></Link>
+        <div className="chessLabel3"><a>Chess.com</a></div>
         <div className="remComp">
         <h1>Create your chess.com account</h1>
         <img src="https://www.chess.com/bundles/web/images/pawn-on-board.svg"></img>

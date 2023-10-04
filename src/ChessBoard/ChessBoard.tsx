@@ -102,7 +102,7 @@ export function ChessBoard(){
         // if(letters[0]==='b')pEvents=false
         console.log(letters[0]," => ",pEvents,pEvents && myTurn)
 
-        return <div   style={{pointerEvents:pEvents &&  start && myTurn ?"auto":"none"}}  draggable  onClick={(event)=>moveCoin(event,drag,position,myCoin)} onDragStart={(event:any)=>{mouseDown(event,drag,position);}} data-mycoin="white" data-pos={key} data-coin={mapping["white"][key]} className={`chessBox sq_${key}W box_${mapping["white"][key]}`}   id={key} key={key}>{"box" +key} </div>
+        return <div   style={{pointerEvents:pEvents &&  start && myTurn ?"auto":"none"}}  draggable  onClick={(event)=>moveCoin(event,drag,position,myCoin)} onDragStart={(event:any)=>{mouseDown(event,drag,position);}} data-mycoin="white" data-pos={key} data-coin={mapping["white"][key]} className={`chessBox sq_${key}W box_${mapping["white"][key]}`}   id={key} key={key}></div>
         
     })
  
@@ -116,7 +116,7 @@ export function ChessBoard(){
         // if(letters[0]==='w')pEvents=false
         console.log(letters[0]," -> ",pEvents)
         
-        return <div  style={{pointerEvents:pEvents && myTurn}}     draggable  onClick={(event)=>moveCoin(event,drag,position,myCoin)} data-myCoin="black" onDragStart={(event:any)=>{mouseDown(event,drag,position);}}  data-pos={key} data-coin={mapping["black"][key]} className={`chessBox sq_${key}B box_${mapping["black"][key]}`}   id={key} key={key}>{"box" +key} </div>
+        return <div  style={{pointerEvents:pEvents && myTurn}}     draggable  onClick={(event)=>moveCoin(event,drag,position,myCoin)} data-myCoin="black" onDragStart={(event:any)=>{mouseDown(event,drag,position);}}  data-pos={key} data-coin={mapping["black"][key]} className={`chessBox sq_${key}B box_${mapping["black"][key]}`}   id={key} key={key}></div>
         
     })
  

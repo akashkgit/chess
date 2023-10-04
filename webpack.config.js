@@ -22,7 +22,7 @@ const config = {
   devServer: {
     open: true,
     static: path.join(__dirname, 'dist'), 
-    port:8080,
+    port:8082,
     host: "localhost",
     historyApiFallback: true,
     

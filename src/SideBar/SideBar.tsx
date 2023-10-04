@@ -154,7 +154,7 @@ export function FriendSelector(){
     
     let [fname,setFName]=useState("");
             let [friendList,setFriendList]=useState([]);
-            let [curFriends,setCurFriends]=useState(["akash","bekash","dakash","lokash"]);
+            let [curFriends,setCurFriends]=useState(["rerr234@gmail.com","bobchess898@gmail.com","kinder87@gmail.com","lomyom2@gmail.com"]);
         return <>
 
 
@@ -201,7 +201,7 @@ function ping(nav:any,ws:any,uname:string){
     let toBSent=JSON.stringify({
         "action":"matchManager",
         "type": "requestInit",
-        "dest": "akashkvit@gmail.com",
+        "dest": "player2chess@gmail.com",
         "src":uname
       });
    // alert(toBSent);
@@ -213,7 +213,7 @@ function checkFriends(event:any,setFName:any,fname:any,setFriendList:any){
 
 
     setFName(event.target.value);
-    let res=["akashkvit@gmail.com","ashwinkvit@gmail.com"]
+    let res=["player2chess@gmail.com","player3chess@gmail.com"]
     setFriendList(res);
     
     

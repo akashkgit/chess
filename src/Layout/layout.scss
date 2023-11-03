@@ -1,6 +1,6 @@
 
 
-@media (min-width:700px) and ( min-resolution:190dpi){
+
 :root{
     --layoutHeight:100dvh;
     --layoutMinHeight:100dvh;
@@ -8,8 +8,8 @@
     --optionsPane:150px;
 
 }
-}
-@media (min-width:1250px) and ( min-resolution:90dpi){
+
+
     :root{
         --layoutHeight:100dvh;
         --layoutMinHeight:100dvh;
@@ -17,16 +17,16 @@
         --optionsPane:150px;
     
     }
-    }
 .layout{
     display:grid;
     
     grid-template: 1fr/140px auto;
     height:var(--layoutHeight);
+    box-sizing: border-box;
     overflow-y: scroll; 
     min-height: var(--layoutMinHeight);
     margin:0;
-    
+    border:2px solid yellow;
     
     
 }

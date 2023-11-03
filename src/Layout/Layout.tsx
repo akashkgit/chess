@@ -13,7 +13,7 @@ export function Layout(props:props){
     return <>
     <div id="layout" className="layout">
      <LeftPane />
-     <Outlet />
+     {/* <Outlet /> */}
     </div>
     </>
 }

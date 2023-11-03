@@ -167,12 +167,12 @@
 
 .child1{
     height:2rem;
-    background-size: 122% ;
+    background-size: 122%;
     background-repeat: no-repeat;
     background-position-x:104%;
     
     
-    width:80%;
+    width:100%;
     
     display:block;
     
@@ -181,6 +181,7 @@
 }
 .LeftPane{
     background-color:rgba(0,0,0,0.2);
+    border:2px solid green;
     
     height:100%;
     
@@ -194,6 +195,7 @@
     padding-left:0.5rem;
     gap:1.5rem;
     width:100%;
+    border:2px solid red;
     height:100%;
     box-sizing: border-box;;
     

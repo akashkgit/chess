@@ -1,0 +1,188 @@
+@media (max-width:700px){
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@600&family=Roboto+Slab:wght@200;500;800&display=swap');
+
+    * {
+      --contWidth:35rem;
+    }
+.container{
+    width:var(--contWidth);
+    overflow: hidden;
+    max-width: 90rem;
+    margin:0 auto;
+    height:100dvh;
+    border: 2px solid red;
+    font-family: "Montserrat",sans-serif;
+}
+.signupLogin.signupLogin,.signupLogin:active,.signupLogin:visited{
+    color:white;
+    position:absolute;
+    top:0.5rem;
+    /* width:10rem; */
+    
+    right:1rem;
+    border:2px solid blue;
+}
+
+.oAuth a {
+    /* border:2px solid grey;    */
+}
+.signupLogin p{
+display:inline-block;
+}
+.signup,.signup:active,.signup:visited{
+    width:85%;
+    height:clamp(10px,10vh,60px);
+    display:block;
+    margin: auto auto;
+    background-color: #9dcc5d;
+    outline:none;
+    color:white;
+    border:none;
+    border-radius:0.5rem;
+    font-family: "Montserrat",sans-serif;
+
+}
+.or{
+color:white;
+}
+.oAuth{
+    
+    width:100%;
+}
+.oAuth a{
+    display:flex;
+    /* justify-content: space-evenly; */
+    padding-left:10%;
+    box-sizing: border-box;
+    gap:20%;
+    margin:auto auto;
+    margin-top:clamp(5px,2vh,6px);
+    width:70%;
+    height:5%;
+    border-radius: 10px;
+    font-family: "Montserrat",sans-serif;
+    font-size: clamp(20px,2vh,35px);
+    align-items: center;
+    color:white;
+    background-color: #00000073;
+    
+    text-decoration: none;
+    
+}
+
+.google,.facebook,.apple{
+    
+    width:1.5rem;
+    height:1.5rem;
+}
+a:link{
+    
+}
+.google{
+    background: url("https://www.chess.com/bundles/web/images/socials/google.d19562c0.svg") ;
+    background-size:contain;
+    /* background-color:white; */
+    color:black;
+}
+.apple{
+    background: url("https://www.chess.com/bundles/web/images/socials/apple.d77d954d.svg") ;
+    background-size:contain;
+    /* background-color:black; */
+}
+.facebook{
+    background: url("https://www.chess.com/bundles/web/images/socials/facebook.a8fa98c7.svg") ;
+    background-size:contain;
+    /* background-color: #1778f2; */
+}
+.dividerDiv{
+    margin:clamp(5px,2vh,14px) auto;
+    display:flex;
+    justify-content: center;
+    width:100%;
+    gap: 2%;
+    
+
+}
+.guest{
+    color:White;
+    width:calc(var(--contWidth)/5);
+    margin:clamp(10px,5%,20px) auto;
+    display:block;
+}
+.divider{
+    width:30%;
+    display:inline-block;
+    /* background-color: grey; */
+    height:0.1rem;
+    align-self: center;
+
+}
+img{
+    margin:auto auto;
+    display:block;
+    width:30rem;
+
+}
+.chessLabel3{
+    display:flex;
+    width:50%;
+    
+    height:5%;
+    
+    align-items: center;
+    justify-content: center;
+    margin: 5% auto;
+    
+}
+.chessLabel3 a{
+    background:url('https://www.chess.com/bundles/web/images/logo/logo.37fd465e.svg') no-repeat 50%;
+    text-indent: -990rem;
+    
+    width:13rem;
+    height: 100%;
+    background-size:contain ;
+}
+
+.chessLabel{
+display:flex;
+width:30%;
+
+height:5%;
+
+align-items: center;
+justify-content: center;
+margin: 5% auto;
+
+
+}
+.chessLabelSignup{
+
+}
+.remComp{
+    height:90%;
+    width:var(--contWidth);
+    font-weight: 600;
+    margin:auto auto;
+}
+h1{
+    margin:auto auto;
+    text-align: center;
+    font-size:1rem;
+    
+    word-break:normal;
+    white-space-collapse:break-spaces;
+    margin-bottom: clamp(1.6rem,5vw,2.4rem);
+    color:white;
+    
+}
+.chessLabel a{
+    background:url('https://www.chess.com/bundles/web/images/logo/logo.37fd465e.svg') no-repeat 50%;
+    text-indent: -990rem;
+    
+    width:13rem;
+    height: 100%;
+    background-size:contain ;
+}
+
+
+}

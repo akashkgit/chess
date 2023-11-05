@@ -66,7 +66,7 @@ return <>
         <span>{val.desc}</span>
         <span style={{display:selected===val.level?"block":"none"}} >{val.stats}</span>
     </div>
-    <img alt="error"></img>
+    {/* <img alt="error"></img> */}
 
  </div>
 </>

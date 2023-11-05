@@ -1,6 +1,6 @@
 
 *{
-    --directCont:30rem;
+    --directCont:35rem;
     font-family: "Montserrat",sans-serif;
     
 }
@@ -48,10 +48,13 @@
     font-family: "Montserrat",sans-serif;
 
 }
-
+input.pwd:autofill, input.uname:autofill {
+    box-shadow: inset 0 0 0 100px #444241;
+}
 .pwd,.uname{
     color:hsla(0,0%,100%,0.5);
-    background-color:hsla(0,0%,100%,0.2);
+    background-color:#444241 !important;
+    color-scheme: dark;
     width:100%;
     height:3rem;
     margin-top:1rem;
@@ -140,6 +143,7 @@ span:last-child{
 
 h1{
     color:white;
+    text-align: center;
     font-size: clamp(2.5rem,3vw,2.9rem);
     font-family: "Montserrat",sans-serif;
     

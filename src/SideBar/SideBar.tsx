@@ -5,6 +5,7 @@ import { PlayCntxt } from "../RightPane/RightPane";
 import { useSelector } from "react-redux";
 export function SideBar(){
     let {playstate,setPlaystate}=useContext(PlayCntxt);
+    
     return <div id="SideBar" className="SideBar">
         {/* <AtPlay /> */}
         <Outlet />
@@ -14,8 +15,9 @@ export function SideBar(){
     </div>
 }
 
-
-function start(event:any,setOption:any,setStarted:any,setPlayState:any){
+function start(login:boolean,event:any,setOption:any,setStarted:any,setPlayState:any){
+    
+    
     setPlayState((state:any)=>{return {...state,started:true}})
     
     setOption("inGame");
@@ -27,6 +29,7 @@ function start(event:any,setOption:any,setStarted:any,setPlayState:any){
 export function StartPlay(){
     const [started,setStarted]=useState(false);
     const [option,setOption]=useState("newGame");
+    
     let {playState,setPlayState}=useContext(PlayCntxt);
     let nav=useNavigate();
     return <>
@@ -53,13 +56,14 @@ export function StartPlay(){
 }
 export function RandomGame(){
     let [setOption,setStarted,setPlayState,option]:any[]= useOutletContext()
+    let login=useSelector((state:any)=>state.loginRed.login);
     return <>
     <div className="newGameEx" style={{display:option==="newGame"?"flex":"none"}}>
      <button className="timeOption">
             <span></span>
             <h5>10 min</h5>
         </button>
-        <button className="playButton" id="randomPlay" onClick={(event:any)=>start(event,setOption,setStarted,setPlayState)}>Play</button>
+        <button className="playButton" id="randomPlay" onClick={(event:any)=>start(login,event,setOption,setStarted,setPlayState)}>Play</button>
        <div className="custom">Custom</div>
        <Link to="friend">
                 <div className="TOPlayAFriend">
@@ -82,13 +86,19 @@ export function RandomGame(){
         </div></>
 }
 
+function checkLogin(ev:Event,login:boolean){
+    
+    if(!login)location.hash="login";
+    
+    ev.stopPropagation();
+}
 export function AtRest(){
     
-        
+    let login=useSelector((state:any)=>state.loginRed.login);    
     return <>
     
-    <div className="atRest">
-            <div className="AtRestHeader">
+    <div className="atRest" onClick={(ev:any)=> checkLogin(ev,login) }>
+            <div className="AtRestHeader" >
                 <h2>Play Chess</h2>
                 <div className="playIconSideBar"></div>
             </div>

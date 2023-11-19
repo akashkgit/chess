@@ -16,6 +16,7 @@ import * as dummy from "./test"
 import { reqAck, wsHandler } from "./specs/data";
 //alert(" from index "+dummy.value);
 
+    
 
 const router = createHashRouter([
     {
@@ -39,8 +40,27 @@ const router = createHashRouter([
         path: "/",
         element: <App />,
         children: [{
-            index: true,
-            element: <RightPane />
+            path:"",
+            element: <RightPane />,
+            children: [{
+                index: true,
+                element: <AtRest />
+
+            },
+            {
+                path: "online",
+                element: <StartPlay />,
+                children: [{
+                    index: true,
+                    element: <RandomGame />
+
+                }, {
+                    path: "friend",
+                    element: <FriendSelector />
+                }]
+            }
+            ]
+            
         }, {
             path: "play",
             element: <RightPane />,
@@ -127,7 +147,7 @@ function init(disp: any) {
 }
 
 let rRoot = createRoot(document.querySelector("#reactRoot") as Element)
-rRoot.render(<Provider store={globalState} ><RouterProvider router={router} /><Notification /></Provider>);
+rRoot.render(<Provider store={globalState} ><RouterProvider  router={router} /><Notification /></Provider>);
 
 function App2() {
     return <><h2>app5</h2></>

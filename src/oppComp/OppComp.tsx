@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import "./oppComp.scss";
+import "./oppComp.css";
 import React from "react"
 export function OppComp(props:any){
     let uname=props.uname;

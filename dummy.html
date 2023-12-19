@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    
+    <!-- <script defer="defer" src="/index.64790a89a55ffeb125ce.js"></script> -->
+    <!-- <link href="/index.css" rel="stylesheet"> -->
+</head>
+<script src="https://accounts.google.com/gsi/client" >
+    function resp(){
+    console.log(google);
+}    
+    google.accounts.id.initialize({
+      client_id: "409051565209-dndi5u65rkdcf6rfgt9kiu691vhjtj92.apps.googleusercontent.com",
+      callback: resp
+    });
+    google.accounts.id.prompt();
+
+
+</script>
+<body>
+     
+    <div id="g_id_onload"
+    data-client_id="409051565209-dndi5u65rkdcf6rfgt9kiu691vhjtj92.apps.googleusercontent.com"
+    data-context="signin"
+    data-ux_mode="popup"
+    data-callback="authResp"
+    data-auto_prompt="false">
+</div>
+
+<div className="g_id_signin"
+    data-type="standard"
+    data-shape="rectangular"
+    data-theme="outline"
+    data-text="signin_with"
+    data-size="large"
+    data-locale="en"
+    data-logo_alignment="left"
+    data-width="300">
+       
+</div>
+</body>
+
+</html>

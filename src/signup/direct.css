@@ -27,7 +27,7 @@
 .directCont{
     margin:0 auto;
     width:var(--directCont);
-    // border:2px solid red;
+    /* border:2px solid red; */
     height:100vh;
 }
 
@@ -128,7 +128,7 @@ span:last-child{
     font-size: clamp(0.2rem,0.7rem,1rem);
 }
 .boxed:last-child{
-    // background-color:red;
+    /* background-color:red; */
     
 }
 .directRemComp{

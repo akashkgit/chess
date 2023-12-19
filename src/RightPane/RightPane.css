@@ -1,7 +1,9 @@
 
-$bgcolor:#302e2b;
+*{
+--bgcolor:#302e2b;
+}
 body,.RightPane{
-    background-color: $bgcolor;
+    background-color: var(--bgcolor);
 }
 .RightPane{
     display:grid;

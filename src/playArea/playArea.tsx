@@ -1,4 +1,4 @@
-import "./playArea.scss"
+import "./playArea.css"
 import React, { useContext, useEffect } from "react"
 import {ChessBoard} from "../ChessBoard/ChessBoard"
 import {OppComp} from "../oppComp/OppComp"

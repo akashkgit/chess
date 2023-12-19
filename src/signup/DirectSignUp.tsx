@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
-import "./direct.scss"
+import "./direct.css"
 
 function visibilityToggler(event:any){
 

@@ -1,5 +1,5 @@
 import React from "react"
-import "./layout.scss";
+import "./layout.css";
 import {LeftPane } from "../LeftPane/LeftPane"
 import { props } from "../specs/types";
 import {RightPane} from "../RightPane/RightPane";
@@ -9,7 +9,6 @@ import {authUrl} from "../specs/config"
 export function Layout(props:props){
     
     let nav=useNavigate();
-   //console.log(props.children)
     return <>
     <div id="layout" className="layout">
      <LeftPane />

@@ -12,9 +12,10 @@ const stylesHandler = isProduction
   : "style-loader";
 
 const config = {
-  entry: "./src/index.tsx",
+  entry: { index:"./src/index.tsx"},
   output: {
     path: path.resolve(__dirname, "dist"),
+    filename:"[name].[contenthash].js",
     publicPath: '/'
   },
   
@@ -25,6 +26,10 @@ const config = {
 
     host: "localhost",
     
+    headers: {
+      'Cache-Control': 'no-store',
+    },
+    
     historyApiFallback: true,
     
     
@@ -33,6 +38,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "index.html",
+      chunks:["index"]
     }),
 
     // Add your plugins here
@@ -47,11 +53,11 @@ const config = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader", "sass-loader"],
+        use: [stylesHandler, "css-loader", "sass-loader"],
       },
       {
         test: /\.css$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader"],
+        use: [stylesHandler, "css-loader" ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,

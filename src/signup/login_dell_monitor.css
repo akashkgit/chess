@@ -10,7 +10,7 @@
     max-width: 90rem;
     margin:0 auto;
     height:100dvh;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     font-family: "Montserrat",sans-serif;
 }
 .signupLogin.signupLogin,.signupLogin:active,.signupLogin:visited{
@@ -69,8 +69,10 @@ color:white;
     text-decoration: none;
     
 }
-
-.google,.facebook,.apple{
+.google{
+    /* border:2px solid red; */
+}
+.facebook,.apple{
     
     width:1.5rem;
     height:1.5rem;
@@ -79,10 +81,10 @@ a:link{
     
 }
 .google{
-    background: url("https://www.chess.com/bundles/web/images/socials/google.d19562c0.svg") ;
-    background-size:contain;
+    /* background: url("https://www.chess.com/bundles/web/images/socials/google.d19562c0.svg") ; */
+    /* background-size:contain; */
     /* background-color:white; */
-    color:black;
+    /* color:black; */
 }
 .apple{
     background: url("https://www.chess.com/bundles/web/images/socials/apple.d77d954d.svg") ;

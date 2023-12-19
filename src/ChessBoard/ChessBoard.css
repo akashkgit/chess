@@ -1,9 +1,9 @@
-@use "sass:math";
+
 .ChessBoard{
     background-image:url('https://images.chesscomfiles.com/chess-themes/boards/green/200.png');
     background-size:100% 100%;
     background-repeat:no-repeat;
-    //border:2px solid blue;
+    /* border:2px solid blue; */
     position:relative;
 height:90%;
 width:100%;
@@ -17,7 +17,7 @@ width:100%;
  bottom:0;
  left:0;
  right:0;
- //border:2px solid red;
+ /* border:2px solid red; */
 
  
 }
@@ -154,13 +154,13 @@ width:100%;
     transform: translateX(300%) translateY(600%) ;
 }
 .sq_7fB{
-  //
+
 }
 .sq_7gB{
     transform: translateX(200%) translateY(600%) ;
 }
 .sq_7hB{
-   //
+
 }
 
 .sq_2aB{
@@ -339,7 +339,7 @@ width:100%;
     cursor:grab;
     filter:brightness(100%);
     height:calc(100%/8);
-    //  border:2px solid red;
+    /* border:2px solid red; */
     display:inline-block;
     
  

@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import {Link} from "react-router-dom"
-import "./LeftPane.scss"
+import "./LeftPane.css"
 import { authUrl } from "../specs/config";
 import * as dummy from "../test"
 import { useSelector } from "react-redux";

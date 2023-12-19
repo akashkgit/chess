@@ -1,6 +1,6 @@
 import {SideBar} from "../SideBar/SideBar"
 import React, { createContext, useState } from "react";
-import "./RightPane.scss";
+import "./RightPane.css";
 import {playArea as PlayArea} from "../playArea/playArea"
 
 

@@ -1,4 +1,7 @@
-$topMargin:2%;
+
+  *{
+    --topMargin:   topMargin:2%;
+  }
 body{--topMargin:1.5dvh}
 .playArea{
     grid-column-start: 2;

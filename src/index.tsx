@@ -1,4 +1,4 @@
-import "./index.scss"
+import "./index.css"
 import { authUrl } from "./specs/config";
 import { createRoot } from 'react-dom/client';
 import React, { Children, useEffect, useReducer, useRef, useState } from 'react';

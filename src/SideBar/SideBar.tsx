@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate, useOutletContext } from "react-router-dom";
-import "./SideBar.scss"
+import "./SideBar.css"
 import React, { useContext, useState } from "react";
 import { PlayCntxt } from "../RightPane/RightPane";
 import { useSelector } from "react-redux";

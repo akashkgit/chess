@@ -1,6 +1,6 @@
 import {moveCoin,mouseDown,putPiece} from "./helper";
 import { initCoinPos } from "./types";
-import "./ChessBoard.scss"
+import "./ChessBoard.css"
 import React, { useEffect } from "react";
 import {boardMode,boxMap, mapping} from "../specs/data"
 import { useDispatch, useSelector } from "react-redux";

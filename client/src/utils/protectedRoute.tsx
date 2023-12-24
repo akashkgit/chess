@@ -42,7 +42,7 @@ export function ProtectedRoute({children}:any){
                     console.log(response);
                     if(false === response.authorized){
                         console.log(" NOT ALLOWED NEED TO BE REDIRECTED");
-                        nav("/login",{replace:true});
+                        nav("/login");
                     }
                     
 

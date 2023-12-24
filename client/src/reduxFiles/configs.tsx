@@ -2,13 +2,24 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { useDispatch
  } from "react-redux";
 import { wsHandler } from "../specs/data";
+
+type loginInfo= {
+    
+    
+        login:boolean,
+        ws:WebSocket | null,
+        uname:string
+
+
+}
+let loginInitData:loginInfo={
+    login:false,
+    ws:null,
+    uname:""
+}
 const loginSlice=createSlice({
     name:"login",
-    initialState:{
-        login:false,
-        ws:null,
-        uname:""
-    },
+    initialState:loginInitData,
     reducers:{
         login:(state,action)=>{
           

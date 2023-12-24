@@ -72,7 +72,6 @@ export function LogIn(){
     let global:any=window;
     let nav=useNavigate();
     function response(data:{[idx:string]:any}){
-        alert();
         let url = "http://localhost:3000/token/login"
         let cred = data;
         type optionSpec = RequestInit;
@@ -94,8 +93,9 @@ export function LogIn(){
             else {
                 localStorage.setItem("jwt", resp.jwt);
                 localStorage.setItem("username", resp.username);
+                
                 disp(log({login:true}))
-                nav(resp.url,{replace:true});
+                nav(-1);
             }
         }).catch((err) => {
             console.log(" error ", err);

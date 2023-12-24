@@ -1,13 +1,18 @@
-import React, { useEffect, useLayoutEffect } from "react";
-import {Link} from "react-router-dom"
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import {Link, useNavigate} from "react-router-dom"
 import "./LeftPane.css"
 import { authUrl } from "../specs/config";
 import * as dummy from "../test"
-import { useSelector } from "react-redux";
+import {logout} from "../utils/google";
+import { useDispatch, useSelector } from "react-redux";
 //alert(" from layout "+dummy.value);
 //console.log();
 export function LeftPane(){
     let login=useSelector((state:any)=>state.loginRed.login)
+    let ws=useSelector((state:any)=>state.loginRed.ws)
+    let [settings, setSettings] = useState(false);
+    let disp=useDispatch()
+    let nav=useNavigate()
     useLayoutEffect(()=>{
 
 
@@ -25,8 +30,21 @@ export function LeftPane(){
             <Link id="freetrial" className="disable leftPaneItem FreeTrial" to="/Free Trial"><span>Free Trial</span></Link>
             <Link id="signup" to="signup" className={login?"hidden":"signupClickButton"}><span>Sign Up</span></Link>
             <Link id="login" to="login" className={login?"hidden":"loginClickButton"}><span>Log In</span></Link>
+            <div className={login?"flex2":"hidden"}>
+            <div className="leftPaneItem" onMouseOver={()=>{setSettings(true)}} onMouseLeave={()=>{setSettings(false)}}>
+                <div className="gear"></div><span>Settings</span>
+                <div  onClick={()=>logout(disp,ws,nav)} className={"secbox " +(settings?"":"hiddenVisibility")}>
+                <div className="triangle"></div>
+                    <div className="leftPaneItem" ><div className="logout"></div><span>logout</span></div>
+                    
+                </div>
             
+            
+            </div>
+           
+        </div>     
 
         </div>
+       
     </div>
 }

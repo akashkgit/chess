@@ -6,7 +6,61 @@
     
     
 }
+.hiddenVisibility{
+   visibility: hidden;
+  
+   
 
+}
+.flex2{
+   position:absolute;
+   bottom:1rem;
+   display: flex;
+   gap:2rem;
+   
+   flex-direction: row;
+   flex-wrap: no-wrap;
+
+}
+
+.settings{
+   display:flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+}
+.flex2  span{
+   font-size:medium !important;
+}
+.triangle{
+   width:1rem;
+   height:1rem;
+   rotate: 45deg;
+   background-color: black;
+   display:inline-block;
+   position: absolute;
+   top:calc(50% - 0.5rem) ;
+   left:-0.5rem;
+   
+   
+   
+}
+.secbox{
+   background-color: black;
+   padding:1rem;
+   
+   position:relative;
+}
+.logout::before{
+   content:"\00D7";
+   font-size: x-large;
+   font-family: Chess V3;
+}
+.gear::before{
+   font-family: Chess V3;
+   font-size: x-large;
+   content:"\00B7"
+   
+}
 .signupClickButton{
    background-color:#494846;
 }
@@ -191,6 +245,7 @@
 
 .flex1{
     display:flex;
+    position: relative;
     align-items: flex-start;
     padding-left:0.5rem;
     gap:1.5rem;

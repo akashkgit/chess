@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@600&family=Roboto+Slab:wght@200;500;800&display=swap');
+*{
+    font-family: var(--PrimFont);
+}
+#googlebtnlogin{
+    /* border:2px solid red; */
+    padding-left:0% !important;
+}
+
+
+.googleLink.googleLink{
+    background-color:white;
+    
+    
+}
+.googlebtnlogin:hover{
+    
+}
+
+.fbLink {
+    background-color: #1778f2 !important;
+    pointer-events:none;
+    opacity:0.5;
+
+    
+}
+.fbLink span:hover{
+    border:2px solid red;
+
+}
+.appleLink {
+    background-color:black;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.S9gUrf-YoZ4jf{
+    padding:0px !important;
+}
+.S9gUrf-YoZ4jf > div{
+    display:none;
+}
+.loginContainer{
+    height:100dvh;
+    width:100dvw;
+    margin: auto auto;
+    display:flex;
+    
+    flex-direction: column;
+    background:url('https://www.chess.com/bundles/web/images/web/chessboard-background.346891ba.png') no-repeat bottom;
+    background-size:contain;
+    padding:1rem;
+    box-sizing: border-box;
+    align-items: center;
+    
+}
+.loginBox{
+    width:20rem;
+    background-color: #262421;
+    padding:1.5rem;
+    border-radius:1rem;
+    
+}
+.userDetails{
+    display:flex;
+    flex-direction: column;
+    gap:0.5rem;
+}
+.options{
+    display:flex;
+    align-items: center;
+    color:grey;
+    justify-content:space-between;
+}
+ .loginButton,.loginButton button{
+  width:100%;
+  
+}
+.or{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:1rem;
+    margin-bottom:1rem;
+
+}
+.S9gUrf-YoZ4jf > div {
+    display:none !important;
+}
+.S9gUrf-YoZ4jf iframe{
+ /* margin:0 !important; */
+}
+.modOAuth div {
+    width:100% ;
+    height:3rem;
+    display:flex;
+    justify-content: center;
+    position:relative;
+    
+    box-sizing: border-box;
+}
+
+.modOAuth a{
+    width:100% ;
+    
+    height:3rem;
+    display:flex;
+    justify-content: center;
+    position:relative;
+    padding-left:1rem;
+    box-sizing: border-box;
+}
+
+.Error{
+    background-color:rgba(173, 43, 43, 0.83);
+    color:White;
+    width:100%;
+    padding:0.5rem;
+    box-sizing:border-box;
+}
+.modOAuth a span:first-child{
+    position:absolute;
+    left:1rem;
+
+}
+.or > span{
+width:30%;
+display:inline-block;
+height:0.04rem;
+background-color: gray;
+}
+.or > h4{
+    width:1rem;
+    
+    
+}
+.loginButton{
+    margin-top:3rem;
+    height:3rem;
+background-color: #81b64c;
+color:white;
+border:none;
+border-radius:0.25rem;
+}
+
+
+
+
+
+.userDetails{
+    width:100%;
+}
+.mod{
+    padding-left:10%;
+}

@@ -34,9 +34,10 @@ export function playArea(){
     
     return <div id="playArea"  style={{pointerEvents:start && myTurn?"auto":"none"}} className="playArea">
 
-    <OppComp uname={opp} />
+    <OppComp uname={opp} tick={start && myTurn===false} clockId="A"/>
     <ChessBoard />
-    <OppComp uname={loginRed.uname} />
+    
+    <OppComp uname={loginRed.uname} tick={ start && myTurn===true} clockId="B"/>
     
     </div>
 }

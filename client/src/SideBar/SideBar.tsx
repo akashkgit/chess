@@ -54,15 +54,53 @@ export function StartPlay(){
     </>
 
 }
+
+
+export function playOptionsStateMachine(){
+
+        useState(<RandomGame />)
+
+
+
+}
+let timingCategory:{[idx:string]:string[]}={
+    "Bullet":["1 min","1|1","2|1"],
+    "Blitz":["3 min","3|2","5 min"],
+    "Rapid":["10 min",'15|10',"30 min"],
+    "Daily":["1 day","3 days", "7 days"]
+}
 export function RandomGame(){
     let [setOption,setStarted,setPlayState,option]:any[]= useOutletContext()
+    let[innerState,setInnerState] = useState("startState");
+    let [timingOption, setTimingOption] = useState({type:"Bullet", option:"1 min"});
+    let [optionDD,setOptionDD] = useState(false);
     let login=useSelector((state:any)=>state.loginRed.login);
     return <>
     <div className="newGameEx" style={{display:option==="newGame"?"flex":"none"}}>
      <button className="timeOption">
             <span></span>
-            <h5>10 min</h5>
+            <h5>{timingOption.option}</h5>
+            <span className="dropDown" onClick={()=>setOptionDD((old)=>!old)}></span>
         </button>
+        <div className={"timingOptions "+(optionDD?"":"hidden")}>
+            
+            {
+            Object.keys(timingCategory).map((key)=>{
+            let subOptions:string[] = timingCategory[key];
+            return <div className={"timingCat"}>
+            <div className="header"><span className={`${key}`+" catIcon"}></span><span className="cat">{`${key}`}</span></div>
+            <div className="suboptions">
+                {subOptions.map((suboption)=>{
+                    return <div  id={`${suboption}`} onClick={()=>{setTimingOption({type:key,option:suboption})}}className={"suboptionitem "+ (timingOption.option === suboption?"selectedGreen":"")}>{suboption}</div>
+                })
+            }   
+                
+            </div>
+            
+        </div>    
+            })}
+            
+        </div>
         <button className="playButton" id="randomPlay" onClick={(event:any)=>start(login,event,setOption,setStarted,setPlayState)}>Play</button>
        <div className="custom">Custom</div>
        <Link to="friend">
@@ -165,7 +203,7 @@ export function FriendSelector(){
     
     let [fname,setFName]=useState("");
             let [friendList,setFriendList]=useState([]);
-            let [curFriends,setCurFriends]=useState(["rerr234@gmail.com","bobchess898@gmail.com","kinder87@gmail.com","lomyom2@gmail.com"]);
+            let [curFriends,setCurFriends]=useState([]);
         return <>
 
 
@@ -176,11 +214,11 @@ export function FriendSelector(){
         </div>
         <div className="searchInput">
             <label htmlFor="search" className="searchLabel"></label>
-        <input type="text" value={fname} onChange={(event:any)=>checkFriends(event,setFName,fname,setFriendList)} name="search" className="search" placeholder="enter username or email id"/>
+        <input type="text" value={fname}onChange={(event:any)=>checkFriends(event,setFName,fname,setFriendList,ws)} name="suggest" className="search" placeholder="enter username or email id"/>
         </div>
         
         <div className="listFriends"style={{display:fname===""?"flex":"none"}} >
-            <h3>Friends</h3>
+            {/* <h3>Friends</h3> */}
         
             <div style={{color:"grey"}}>Suggestions</div>
             {curFriends.map((friend)=>{
@@ -194,7 +232,7 @@ export function FriendSelector(){
         
         </div>
        < div   className="dropDownFList" style={{display:fname!==""?"flex":"none"}}>
-        <div style={{color:"grey"}}>Suggestions</div>
+        <div style={{color:"grey"}}>Suggestions<span className="friendsListCount"> {friendList.length }</span></div>
             {friendList.map((friend)=>{
                 return <div  onClick={(event)=>{setCurFriends(cur=>[...cur,friend]);ping(nav,ws,uname); setFName("")}} key="friend">
                      {friend}
@@ -212,20 +250,38 @@ function ping(nav:any,ws:any,uname:string){
     let toBSent=JSON.stringify({
         "action":"matchManager",
         "type": "requestInit",
-        "dest": "player2chess@gmail.com",
+        "dest": "akashkvit@gmail.com",
         "src":uname
       });
    // alert(toBSent);
     
-    ws.send(toBSent)
+    ws.send(toBSent,()=>{console.log(" sent ")})
     
 }
-function checkFriends(event:any,setFName:any,fname:any,setFriendList:any){
+function checkFriends(event:any,setFName:any,fname:any,setFriendList:any,ws:WebSocket){
 
 
+    
     setFName(event.target.value);
     let res=["player2chess@gmail.com","player3chess@gmail.com"]
     setFriendList(res);
-    
+    if(ws){
+    ws.send(JSON.stringify({"action":"friendList","startsWith":event.target.value}));
+    setFriendList(["......loading"]);
+    ws.addEventListener("message",function(message:any){
+        // alert(message);        
+        console.log(" message : ",message);
+        let friendList = JSON.parse(message.data).friendList;
+        if(friendList){
+            console.log(" friendList: ",message);
+            setFriendList(friendList.map((obj:any)=>obj["emailId"]))
+        }
+        // let json=JSON.parse(message);
+                // setFriendList(json.friendList);
+    })
+}
+else{
+    setFriendList(["...... selector not available. Kindly try again later or report the issue to the support team if reccurs"]);
+}
     
 }

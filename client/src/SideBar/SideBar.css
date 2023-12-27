@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: center;
     color:#ffffffb8;
-    padding:0.5rem;
+     padding:0.5rem !important;
     width:100%;
     font-size: 1.5rem;
 }
@@ -390,4 +390,111 @@ align-items: center;
 }
 .options4{
     flex:1 1 0;
+}
+
+
+.timingOptions{
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+    width:100%;
+    
+}
+.selectedGreen{
+    border:2px solid #81b64c;
+}
+.timeOption{
+    position:relative;
+}
+.hidden{
+    display:none;
+}
+.dropDown{
+    position:absolute;
+    right:5%;
+
+}
+.dropDown::before{
+    content: "\003C" !important;
+    color:grey !important;
+    font-size: medium;
+    display:inline !important;
+    /* font-family: Chess V3; */
+}
+.catIcon{
+    
+    
+    
+    font-size: x-large!important;
+    color:white;
+    font-family: Chess V3;
+}
+.timingCat{
+    display:flex;
+    width:100%;
+    gap:0.75rem;
+    flex-direction: column;
+}
+.timingCat .header{
+    display:flex;
+    align-items: center;
+    font-family: x-large;
+}
+.suboptions{
+    display:flex;
+    gap:1rem;
+    width:100%;
+    /* border:2px solid red; */
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.cat{
+    color:white;
+    font-size: large !important;
+    display:inline-block;
+    
+}
+.suboptionitem{
+    background-color: #ffffff1a;
+    padding:0.25rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width:5rem;
+    border-radius: 0.25rem;
+    color:white;
+    height:2rem;
+    
+}
+
+.Bullet::before{
+    
+    content:"\1F1D";
+    color:gold;
+    
+    
+}
+.Blitz::before{
+    content:"\1F1C";
+    color:yellow;
+    
+}
+.Rapid::before{
+    content:"\1F1B";
+    color:green;
+}
+.Daily::before{
+    content:"\1F1A";
+    color:orange;
+}
+.friendsListCount{
+    color:White;
+    display:inline !important;
+    padding:0.5rem;
+    padding-left:0.3rem;
+    display:flex;
+    margin-left:0.5rem;
+    justify-content: center;
+    font-size:medium;
+    background-color: grey;
 }

@@ -110,9 +110,9 @@ app.post("/token/:type", function (req, res) { return __awaiter(void 0, void 0, 
                     if ("signup" === req.params.type)
                         (0, awsClient_1.insertInto)("chessUsers", items).then(function (val) { return console.log(" succ:", val); }).catch(function (err) { return console.log("err :", err); });
                     if ("verification" === req.params.type)
-                        res.status(200).json({ result: "verified", jwt: credObj.credential, "url": "play", "username": body.name, authorized: true });
+                        res.status(200).json({ result: "verified", jwt: credObj.credential, "url": "play", "username": body.email, authorized: true });
                     else
-                        res.status(200).json({ result: " successefully verified ", jwt: credObj.credential, "url": "play", "username": body.name });
+                        res.status(200).json({ result: " successefully verified ", jwt: credObj.credential, "url": "play", "username": body.email });
                 }
                 else
                     res.status(200).json({ result: "unverified", jwt: credObj.credential, "url": "login", authorized: false });

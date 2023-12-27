@@ -9,7 +9,7 @@ export function ProtectedRoute({children}:any){
     const nav=useNavigate();
      let loginState=useSelector((state:any)=> state.loginRed.login);
      let disp=useDispatch()
-     alert(" protected route")
+    //  alert(" protected route")
      
      
      console.log(" post nav");
@@ -58,5 +58,59 @@ export function ProtectedRoute({children}:any){
         else loglogin({login:true});
      }
         return <>{children}</>
+    
+}
+
+
+export async function sessionValidator(){
+
+    
+     
+     
+        if( "true" != localStorage.getItem("login") ){
+            let jwt = localStorage.getItem("jwt");
+            // alert(!jwt);
+            if(!jwt){
+            //---- redirect to login page 
+            // alert("redirecting")
+            console.log(" moving to login page ")
+            // nav("/login") --- did not work
+            // previously wrriten as avbove
+            return false;
+            }
+            else{
+                let valid=true;
+                let options:RequestInit={
+                    method:"POST",
+                    mode:"cors",
+                    headers:{
+                            "Content-Type":"application/json",
+                    },
+                    body: JSON.stringify({credential:jwt})
+                }
+                //--- validate jwt fetching server token ur
+                 let result=await fetch(serverUrl.concat("token/verification"),options).then(async (succ)=>{
+                    let response=await succ.json()
+                    console.log(response);
+                    if(false === response.authorized){
+                        return false;
+                        
+                    }
+                    return true;
+                    
+
+                }).catch((err)=>console.log(err));
+                return result;
+                //----- wrong method ----- 
+                // if(!valid) 
+                // nav("/login") --- did not work
+            // previously wrriten as avbove
+            
+               
+            }
+        }
+        else return true;
+        
+       
     
 }

@@ -1,0 +1,52 @@
+.clockContainer{
+    background-color:#262421;
+    padding:0.5rem;
+    border-radius:0.4rem;
+
+    box-sizing: border-box;
+    color:white;
+  
+    margin-left:auto;
+  display:flex;
+  gap:0.25rem;
+  justify-content: center;
+  align-items: center;
+}
+.clockSVG{
+    
+    width:1.5rem;
+    height:1.5rem;
+    
+    position: relative;
+    /* z-index: 1; */
+    
+    
+    /* background-color:red; */
+   /* rotate:0deg; */
+   
+   
+   
+}
+.clockSVG  line{
+    background-color:blue;
+    /* stroke: black; */
+    transform-box:border-box;
+    transform-origin: center left;
+        
+    rotate:0deg;
+    
+    
+
+    
+    
+}
+.clockSVG circle{
+    /* stroke: yellow; */
+    
+}
+
+.clockContainer span{
+    width:5rem;
+    font-size:2rem;
+}
+

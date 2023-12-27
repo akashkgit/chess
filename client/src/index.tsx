@@ -9,12 +9,12 @@ import { DirectSignUp } from "./signup/DirectSignUp"
 import { LogIn } from './login/login';
 import { configureStore } from "@reduxjs/toolkit"
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { authCheck, globalState, login as log, startGame, wsChanger } from "./reduxFiles/configs";
+import { authCheck, globalState, login as log, login, startGame, wsChanger } from "./reduxFiles/configs";
 import { RightPane } from "./RightPane/RightPane";
 import { AtRest, FriendSelector, RandomGame, StartPlay } from "./SideBar/SideBar";
 import * as dummy from "./test"
 import { reqAck, wsHandler } from "./specs/data";
-import {ProtectedRoute} from "./utils/protectedRoute"
+import {ProtectedRoute, sessionValidator} from "./utils/protectedRoute"
 //alert(" from index "+dummy.value);
 
 
@@ -108,9 +108,15 @@ const router = createHashRouter([
 ], { basename: "/" })
 
 export function init(disp: any,nav:any) {
+    
     let jwt = localStorage.getItem("jwt");
     var wsock: WebSocket;
     //alert("jwt is "+jwt)
+    sessionValidator().then((val:boolean)=>{
+        // alert(val)
+        disp(log({login:val}))
+        
+    }).then(()=>{ 
     if (jwt) { 
         wsock = new WebSocket(authUrl);
         wsock.onopen = () => {
@@ -136,7 +142,7 @@ export function init(disp: any,nav:any) {
                     console.log(" init auth sucesss")
 
                     disp(wsChanger({ ws: wsock }));
-                    disp(log({ login: true }));
+                    // disp(log({ login: true }));
                 }
             }
 
@@ -150,6 +156,7 @@ export function init(disp: any,nav:any) {
         //  alert(" else : chaning path name to ogin")
         // window.location.pathname = "/login"
     }
+});
 }
 
 let rRoot = createRoot(document.querySelector("#reactRoot") as Element)

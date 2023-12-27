@@ -66,8 +66,8 @@ app.post("/token/:type", async (req, res) => {
 
             }
             if ("signup" === req.params.type) insertInto("chessUsers", items).then((val) => console.log(" succ:", val)).catch((err) => console.log("err :", err));
-            if("verification" === req.params.type)  res.status(200).json({ result: "verified", jwt: credObj.credential, "url": "play", "username": body.name, authorized:true});
-            else res.status(200).json({ result: " successefully verified ", jwt: credObj.credential, "url": "play", "username": body.name });
+            if("verification" === req.params.type)  res.status(200).json({ result: "verified", jwt: credObj.credential, "url": "play", "username": body.email, authorized:true});
+            else res.status(200).json({ result: " successefully verified ", jwt: credObj.credential, "url": "play", "username": body.email });
         }
         else  res.status(200).json({ result: "unverified", jwt: credObj.credential, "url": "login", authorized:false});
     }

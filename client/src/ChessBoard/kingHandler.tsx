@@ -127,7 +127,7 @@ function horse(state: { [k: string]: any }, position: initCoinPos, event: any,my
     let { top, left, bottom, width, height,right } = origin.getBoundingClientRect();
     
     let cBox=document.querySelector("#chessBoard").getBoundingClientRect();
-
+    console.log("cBox ",cBox)
     let res=check(top-height, left+ 2 * width, state, position, event, width, height, top, left, 2, -1 ,false,myCoin,dryRun,byPass)
     if(res[0]){return [false,2,-1,res[1],res[2]]}
     res=check(top-2 * height, left+ 1 * width, state, position, event, width, height, top, left, 1, -2 ,false,myCoin,dryRun,byPass)
@@ -237,8 +237,9 @@ export function check(y: number, x: number, state: { [k: string]: any }, positio
 
 
     //outofbox edge case
-
+    
     let cbBox = document.querySelector("#chessBoard").getBoundingClientRect();
+    console.log("BBOX ",cbBox);
     let [centerX, centerY] = [width / 2 + x, height / 2 + y];
     //console.log(cbBox.top <= centerY, cbBox.bottom >= centerY, cbBox.left <= centerX, cbBox.right >= centerX)
     if (!(cbBox.top <= centerY && cbBox.bottom >= centerY && cbBox.left <= centerX && cbBox.right >= centerX)) {
@@ -247,7 +248,10 @@ export function check(y: number, x: number, state: { [k: string]: any }, positio
     }
   //  console.log(" point ? ", (event.clientX >= x && event.clientX <= x + width && event.clientY >= y && event.clientY <= y + width))
     let fromPoint:any= document.elementFromPoint(centerX, centerY);
-    let fromPointPos = fromPoint.getBoundingClientRect();
+    console.log("fromPoint ",fromPoint)
+
+    let fromPointPos = fromPoint?.getBoundingClientRect();
+    console.log("fromPointEnd",fromPointPos)
     console.log(" from & state.dest ,bypass",fromPoint, state.dest,byPass);
    // console.log("from point ",fromPoint,(fromPoint as HTMLDivElement).dataset.mycoin);
 

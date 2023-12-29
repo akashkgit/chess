@@ -1,0 +1,87 @@
+.movePair {
+    display: flex;
+    /* border: 2px solid red; */
+    color: white;
+    flex-direction: row;
+    padding:3%;
+    width: 100%;
+    gap:5%;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+}
+.movePair h4{
+    width:auto !important;
+    display: inline-block;
+    margin:0 !important;
+}
+.lastMove {
+    background-color: #ffffff33;
+    border-bottom: 3px solid #ffffff1a;
+    box-sizing: border-box;
+    padding: 0.25rem;
+}
+
+.moveHistory {
+    width: 100%;
+    /* border: 2px solid blue; */
+}
+
+.even {
+    background-color: #ffffff05;
+}
+.inMatchControls{
+    display: flex;
+    flex-direction: row;
+    padding:2%;
+    box-sizing: border-box;
+
+    align-items: center;
+    justify-content: space-between;
+}
+.inMatchControls span{
+    display:inline-block!important;
+    color:white;
+    font-size: small;
+
+}
+
+.halflogo::before{
+    content:"\002B";
+    font-family: Chess V3;
+
+}
+.resign::before{
+    content:"\0059";
+    font-family: Chess V3;
+    color:white !important;
+}
+.startlogo::before{
+    content:"\0023";
+    font-family: Chess V3;
+}
+.backlogo::before{
+    content:"\002C";
+    font-family: Chess V3;
+}
+.forwardlogo::before{
+    content:"\2026";
+    font-family: Chess V3;
+}
+.endlogo::before{
+    content:"\0040";
+    font-family: Chess V3;
+}
+.undologo{
+    width:1rem;
+    height:1rem;
+    background: url("../assets/return.png");
+    background-size: contain;
+    }
+
+.pauselogo{
+    width:1rem;
+    height:1rem;
+    background: url("../assets/pause.png");
+    background-size: contain;   
+}

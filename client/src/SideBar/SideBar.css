@@ -44,7 +44,13 @@
     
 
 }
-
+.SubmitPlayRequestCont{
+    display:flex;
+    flex-direction: column;
+    gap:2rem;
+    justify-content: center;
+    align-items: center;
+}
 .subtitle{
     font-size: 0.75rem;
 }
@@ -61,12 +67,217 @@ a:link{
     background-position: center;
    width:17.5%;
 }
+.rated{
+    display:flex;
+    justify-content: space-between;
+    color:white;
+    /* border:2px solid blue; */
+    transition: all .3s ease-in;
+    width:100%;
+}
+.ratedselector{
+    width:3rem;
+    position: relative;
+    border-radius: 0.75rem;
+    display: flex;
+
+    align-items: center;
+    background-color: #5d9948;
+}
+.inviteLink{
+    width:90%;
+    color:white;
+    border:none !important;
+    height:3rem;
+    border-radius: 0.25rem;
+    background: hsla(0,0%,46%,.4) ;
+}
+.off{
+    background-color: hsla(0,0%,46%,.4) !important;
+}
+.buttonoff{
+left:0 !important;
+}
+.roundbutton{
+    width:1.5rem;
+    position: absolute;
+    height:1.5rem;
+    top:-10%;
+    right:0;
+    background-color: white;
+    border-radius: 2rem;
+}
+.oppInfo{
+    display:flex;
+    flex-direction: column;
+    gap:0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+.playAs{
+    width:90%;
+    
+    border:2px solid gold;
+    display: flex;
+    justify-content: space-between;
+
+align-items: center;
+
+}
+.playAs .txt{
+    color:white;
+    font-size: 1.5rem;
+    
+}
+.playAs .white, .playAs .black{
+box-sizing: border-box;
+/* border:2px solid red; */
+border-radius: 0.25rem;
+font-family: Chess V3;
+
+}
+
+.searchingforplayers{
+    display:flex;
+    flex-direction: column;
+}
+.searchingheader{
+    display:flex;
+    color:white;
+    justify-content: space-between;
+}
+.loadingdots{
+    display: inline-block !important;
+}
+.loadsearching{
+    display:inline-block !important;
+}
+.inlineblock{
+    display: inline-block !important;
+}
+.newGameinsearch{
+display:flex;
+
+flex-direction: row;
+}
+.waitingwrapper{
+    border:2px solid red;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+}
+.cancel:hover{
+    color:grey;
+}
+.profilepic{
+    width:4rem;
+    height:4rem;
+    border:2px solid green;
+
+}
+.waitingheader .timingoption{
+
+}
+.waitingheader{
+    width:100%;
+    height:100%;
+    border:2px solid red;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.plus::before{
+    content: "\0056";
+    font-family: Chess V3;
+    display: inline-block !important;
+}
+.plus{
+    display: inline-block !important;
+}
+.newGameinsearch:last-child{
+    display:inline-block !important;
+}
+.loadingdots::before{
+
+    /* animation:loaddots; */
+content: "...";
+animation-duration: 3s;
+/* animation-direction: nor; */
+animation-iteration-count: infinite;
+
+}
+@keyframes loaddots{
+    0%{
+        content:"";
+    };
+    60%{
+content:"."
+    }
+    80%{
+        content:"..";
+    }
+    90%{
+        content:"...";
+    }
+}
+.playAs .white{
+    background-color: white;
+}
+.playAs .black{
+    
+    background-color: rgba(0, 0, 0, 0);
+    
+}
+.playAs .white::before{
+    content:"\e904";
+    box-sizing: border-box;
+    font-size:3.5rem;
+    
+}
+.playAs .black::before{
+    content:"\e904";
+    color:white;
+    font-size:3.5rem;
+
+    
+
+}
+.oppInfo .profilepic{
+    width:10vw;
+    height:10vw;
+    border:2px solid green;
+}
+.oppInfo .name{
+    color:white;
+    font-size: medium;
+}
+.playvsheader{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto auto;
+    border:2px solid red;
+}
+.playvsheader span{
+display:inline-block !important;
+color:white;
+font-size: 1.5rem;
+}
+.playLogo{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/handshake.svg");
+    width: 2rem;
+    height:2rem;
+    background-size:contain;
+}
 a:link{
     color:#ffffffb8;
 }
-.newGameEx > a{
+.newGameEx > div:not(.custom){
     width:100%;
     height:4rem;
+    /* border:2px solid red; */
 }
 .timeOption{
     display:flex;
@@ -359,7 +570,7 @@ align-items: center;
 
 }
 .play::before{
-    content:"\2010";
+    content:"\1F1B";
     font-family: Chess V3;
     
 }

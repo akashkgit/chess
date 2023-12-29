@@ -1,7 +1,7 @@
 import {mapping} from "../specs/data"
 import { initCoinPos } from "./types";
 import {handlerMapping} from "./handlers";
-import { switchTurn } from "../reduxFiles/configs";
+import { switchTurn, updateMyMove } from "../reduxFiles/configs";
 import {handlerCheckMateMapping} from "./checkMateHandler";
 import {handlerKingMapping} from "./kingHandler"
 
@@ -210,6 +210,7 @@ export function putPiece(event:any,state:{[k:string]:any},position:initCoinPos,m
 if(state.click===true){
 
     let origin:HTMLDivElement=state.el;
+    console.log("error ",origin);
     let {top,left,right,bottom,width,height}=origin.getBoundingClientRect();
     let details=origin.dataset.coin.split("");
   // console.log("calling",details[1]);
@@ -225,6 +226,9 @@ if(state.click===true){
     // switch
     disp(switchTurn());
     let dataSend=JSON.stringify({action:"matchManager","type":"play","coinMoved":{coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]},"check":check},"dest":opp,"src":uname})
+    let dataToStore=JSON.stringify({coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]},"check":check});
+    disp(updateMyMove(dataToStore));
+    
     if(check)alert(" Check ");
 
     wsock.send(dataSend)

@@ -31,7 +31,6 @@ const loginSlice=createSlice({
         },
         wsChanger:(state,action)=>{
           //  console.log(" chaning ws in reduceer ", state,action.payload.ws);
-            
             //alert("removing the old ws from state");
             if(state.ws)
             state.ws.close();
@@ -65,11 +64,22 @@ const gameSession=createSlice({
     name:"gameSession",
     initialState:{
         myTurn:false,
-        move:null
-
-        
+        move:null,
+        myMove:null,
+        moveHistory:[],
+        myKilledCoins:[],
+        oppKilledCoins:[]
     },
     reducers:{
+        setMyKilledCoins(state,action){
+                state.myKilledCoins.push(action);
+                console.log("mykilledcoins",state.myKilledCoins)
+        },
+        setOppKilledCoins(state,action){
+            state.oppKilledCoins.push(action);
+            console.log("mykilledcoins",state.oppKilledCoins)
+        },
+        
         switchTurn:(state)=>{
           
 
@@ -80,7 +90,34 @@ const gameSession=createSlice({
         },
         setMove:(state,action)=>{
           //  alert(" setting move"+JSON.stringify(action))
-            return {...state,move:action.payload.move}
+          let history=[...state.moveHistory];
+          if(0 === history.length)history.push([action.payload.move]);
+          else {
+            if ( 1 == history[history.length-1].length) {
+                history[history.length-1]= [history[history.length-1][0],JSON.stringify(action.payload.move)];
+              }
+            else history.push([action.payload.move])
+          }
+          console.log("setmove state is",{...state,move:action.payload.move,moveHistory:history});
+            return {...state,move:action.payload.move,moveHistory:history};
+        },
+        updateMyMove:(state,action)=>{
+
+            if("undo" === action.type){
+
+            }
+            else{
+            let history=[...state.moveHistory];
+            if(0 === history.length)history.push([action.payload]);
+            else {
+              if ( 1 == history[history.length-1].length) {
+                history[history.length-1]= [history[history.length-1][0],action.payload.move];
+              }
+              else history.push([action.payload])
+            }
+            console.log("update state is",{...state,myMove:action.payload,moveHistory:history});
+                return {...state,myMove:action.payload,moveHistory:history};
+        }
         }
        
     }
@@ -95,7 +132,7 @@ export let globalState=configureStore({
 })
 export const {login,wsChanger}=loginSlice.actions
 export const {startGame}=gameSlice.actions
-export const {switchTurn,setMove}=gameSession.actions
+export const {switchTurn,setMove,updateMyMove}=gameSession.actions
 
 export function authCheck(){
    

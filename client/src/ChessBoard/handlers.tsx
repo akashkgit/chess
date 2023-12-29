@@ -1,7 +1,7 @@
 import { mapping } from "../specs/data";
 import { isAllowed } from "./helper";
 import { initCoinPos } from "./types";
-
+let disp;
 function king(state: { [k: string]: any }, position: initCoinPos, event: any,myCoin:string,dryRun:boolean,byPass?:HTMLDivElement) {
     // //console.log(" king ")
     let origin = state.el as HTMLDivElement;

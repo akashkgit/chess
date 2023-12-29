@@ -11,6 +11,41 @@ let state=drag;
 
 let position:initCoinPos={};
 
+export function moveACoin(move:any){
+    console.log(" move ",move);
+        let [x,y]=move.Pos;
+        let killed=move.kill.kill
+        let killedCoin=move.kill.dataPos
+    let boxId=move.coin.boxId
+    let type=move.coin.type;
+    let tarPos:string=boxId,killedPiece="";
+    
+    
+    
+    
+    if(boxId.split("")[0]==="8")killedPiece+='1'
+    else killedPiece='2';
+    
+    
+    
+    
+    
+    //alert("killing ?"+killed+" icon "+killedCoin)
+    // if(killed===true){
+    //     //console.log(" removing ",document.querySelector(`[data-pos="${killedCoin}"]`))
+    //     document.querySelector("#chessBoard").removeChild(document.querySelector(`[data-pos="${killedCoin}"]`));
+    // }
+    
+    let target:HTMLDivElement=document.querySelector(`[data-pos="${tarPos}"]`) 
+    //console.log(target,"is the target ");
+    //console.log(target.style.transform+" <= "+"before")
+    let futurePos = getComputedStyle(target).transform + `translateY(${y * -100}%) translateX(${x * -100}%)`
+    //console.log(target.style.transform+" <= "+"after")
+    target.style.transform = futurePos;
+    //console.log(target.style.transform)
+    
+    
+    }
 function moveOppCoin(move:any){
 console.log(" move ",move);
     let [x,y]=move.Pos;

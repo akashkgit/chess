@@ -7,11 +7,12 @@ import { App } from "./App/app";
 import { SignUp } from './signup/SignUp';
 import { DirectSignUp } from "./signup/DirectSignUp"
 import { LogIn } from './login/login';
+import {InPlay} from "./SideBar/InPlay";
 import { configureStore } from "@reduxjs/toolkit"
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { authCheck, globalState, login as log, login, startGame, wsChanger } from "./reduxFiles/configs";
 import { RightPane } from "./RightPane/RightPane";
-import { AtRest, FriendSelector, RandomGame, StartPlay } from "./SideBar/SideBar";
+import { AtRest, FriendSelector, RandomGame, PlayOptionsStateMachine,StartPlay } from "./SideBar/SideBar";
 import * as dummy from "./test"
 import { reqAck, wsHandler } from "./specs/data";
 import {ProtectedRoute, sessionValidator} from "./utils/protectedRoute"
@@ -53,11 +54,14 @@ const router = createHashRouter([
                 element: <ProtectedRoute><StartPlay /></ProtectedRoute>,
                 children: [{
                     index: true,
-                    element: <RandomGame />
+                    element: <PlayOptionsStateMachine />
 
                 }, {
                     path: "friend",
                     element: <FriendSelector />
+                },{
+                    path:"inplay",
+                    element:<InPlay />
                 }]
             }
             ]

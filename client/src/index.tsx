@@ -164,13 +164,13 @@ export function init(disp: any,nav:any) {
 }
 
 let rRoot = createRoot(document.querySelector("#reactRoot") as Element)
-rRoot.render(<Provider store={globalState} ><RouterProvider router={router} /><Notification /></Provider>);
+rRoot.render(<Provider store={globalState} ><RouterProvider router={router} /></Provider>);
 
 function App2() {
     return <><h2>app5</h2></>
 }
 
-function acceptRreject(event: any, ws: WebSocket, src: string, disp: any) {
+function acceptRreject(event: any, ws: WebSocket, src: string, disp: any,nav:any) {
     let choice = event.target.id;
     let parent = event.target.parentNode;
     (document.querySelector(".notification") as HTMLDivElement).style.display = "none";
@@ -178,9 +178,10 @@ function acceptRreject(event: any, ws: WebSocket, src: string, disp: any) {
     //alert(" sending the data"+JSON.stringify({action:"matchManager",type:"requestAck","choice":"accept","src":src,"dest":localStorage.getItem("username")}));
     ws.send(JSON.stringify({ action: "matchManager", type: "requestAck", "choice": "accept", "src": src, "dest": localStorage.getItem("username") }))
     disp(startGame({ start: true, myCoin: "black", opp: src }))
+    nav("/online/inplay");
 
 }
-function Notification() {
+export function Notification() {
 
 
 
@@ -192,7 +193,7 @@ function Notification() {
     let disp = useDispatch();
 
     let clearId = useRef(0)
-
+let nav=useNavigate();
     console.log("ws =>", ws);
     useEffect(() => {
         let handler = wsHandler(activate, clearId, setSrc, disp);
@@ -213,8 +214,8 @@ function Notification() {
             </div>
             <div className="notificationP2">
                 <div className="sentBy">{src}</div>
-                <span className="accept" onClick={(val) => acceptRreject(val, ws, src, disp)} id="accept"></span>
-                <span className="reject" onClick={(val) => acceptRreject(val, ws, src, disp)} id="reject"></span>
+                <span className="accept" onClick={(val) => acceptRreject(val, ws, src, disp,nav)} id="accept"></span>
+                <span className="reject" onClick={(val) => acceptRreject(val, ws, src, disp,nav)} id="reject"></span>
             </div>
         </div>
     </>

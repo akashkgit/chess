@@ -121,6 +121,36 @@ app.post("/token/:type", function (req, res) { return __awaiter(void 0, void 0, 
         }
     });
 }); });
+app.get("/dummy", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var token, OAuth2Client, client, verify, result;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxNDEzY2Y0ZmEwY2I5Mm…0h5qvAN7RdszCL2BO21NJODu01ZFbci07k0WoqMlHErCKubEw";
+                OAuth2Client = require('google-auth-library').OAuth2Client;
+                client = new OAuth2Client();
+                verify = function (client) { return __awaiter(void 0, void 0, void 0, function () {
+                    var ticket;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, client.verifyIdToken({
+                                    idToken: token,
+                                    audience: "409051565209-nd3hjg4eqsq0hljd8ko9a7tiv0f7orkm.apps.googleusercontent.com"
+                                })];
+                            case 1:
+                                ticket = _a.sent();
+                                return [2 /*return*/];
+                        }
+                    });
+                }); };
+                return [4 /*yield*/, verify(client).then(function (res) { return "verified"; }).catch(function (res) { return " unverfied "; })];
+            case 1:
+                result = _a.sent();
+                res.json({ res: result });
+                return [2 /*return*/];
+        }
+    });
+}); });
 app.listen(3000, function () {
     console.log(" listening server..");
 });

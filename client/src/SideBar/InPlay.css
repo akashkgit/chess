@@ -85,3 +85,55 @@
     background: url("../assets/pause.png");
     background-size: contain;   
 }
+
+.undoRequest{
+    border:2px solid red;
+    width:80%;
+    margin:auto auto;
+    gap:1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:white !important;
+
+}
+.rejectDraw{
+    background-color: #ffffff14;
+    padding:0.25rem;
+    width:40%;
+    border-radius: 0.25rem;
+    border:none !important;
+ 
+}
+.drawButtons{
+    display:flex;
+    border:none !important;
+    
+    border:2px solid red;
+    width:100%;
+    gap:1rem;
+    box-sizing: border-box;
+    justify-content: center;
+}
+.acceptDraw{
+    background-color: #a3d160;
+    padding: 0.25rem;
+    width:40%;
+    border-radius: 0.25rem;
+    border:none !important;
+}
+.rejectDraw span::before{
+    content:"\1F3F";
+    font-family: Chess V3;
+    
+    font-size: xx-large;
+    color:white !important;
+}
+
+.acceptDraw span::before{
+    content: "\1F30";
+    font-size: xx-large;
+    font-family: Chess V3;
+    color:white !important;
+}

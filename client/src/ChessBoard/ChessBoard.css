@@ -8,7 +8,21 @@
 height:90%;
 width:100%;
 }
+.resultPopup{
+    padding:0.25rem;
+    border-radius: 0.25rem;
+    box-shadow: 1px 1px 5px 1px  black;
+    
+    
+    background-color: #403f3c;
+    font-size: x-large;
+    width:100%;
+    box-sizing: border-box;
+    
+    color:rgb(218, 212, 212);
+    position:relative;
 
+}
 .chessBox{
  padding:10%;   
  box-sizing: content-box;
@@ -18,8 +32,119 @@ width:100%;
  left:0;
  right:0;
  /* border:2px solid red; */
+}
 
- 
+.over{
+    display:flex;
+}
+
+.chat{
+    border:2px solid red;
+    width:100%;
+    height:70%;
+    
+    margin-bottom: auto;
+    flex: 1;
+    padding:0.25rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+}
+.err{
+    width:90%;
+    height:30%;
+    box-sizing: border-box;
+    color:grey; 
+}
+
+.typingArea{
+    width:100%;
+    background-color:#42403e;
+    color:rgb(127, 118, 69);
+    
+    outline: none;
+    border:none;
+    height:2rem;
+    padding:0.25rem;
+    
+}
+.msgs{
+    width:100%;
+    height:5rem;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+
+.resultWrapper{
+    pointer-events: all !important;
+    
+    
+    width:30%;
+    height:100%;
+    border: 2px solid red;
+    margin:auto auto;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    transition:all;
+    transition-duration: 5s;
+    transition-timing-function: ease-in;
+}
+.resultPopup{
+    border:2px solid black;
+    
+
+
+}
+.rightBubble{
+    color:white;
+    border-radius: 0.25rem;
+    padding:1rem;
+    Max-width:40%;
+    margin-top:0.5rem;
+    margin-right:1px;
+    box-sizing: border-box;
+    background-color:#42403e;
+    word-break: break-all;
+
+}
+.leftBubbleWrap{
+    display: flex;
+    justify-content: flex-start;
+}
+.rightBubbleWrap{
+    display: flex;
+    justify-content: flex-end;
+}
+.leftBubble{
+    color:grey;
+    border-radius: 0.25rem;
+    padding:1rem;
+    Max-width:40%;
+    margin-top:0.5rem;
+    margin-right:1px;
+    box-sizing: border-box;
+    background-color:#42403e;
+    word-break: break-all;
+}
+.result{
+    display:inline;
+}
+.close{
+    position:absolute;
+    right:1%;
+    
+    top:5%;
+    display:inline-block;
+}
+.close::before{
+    content:"\0042";
+    font-family: Chess V3;
+    font-size: large;
+    
 }
 .box_{
     cursor:auto;

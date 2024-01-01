@@ -1,4 +1,4 @@
-import { setMove, startGame, switchTurn } from "../reduxFiles/configs";
+import { setMove, setUndo, startGame, switchTurn,setDraw, endGame, drawGame} from "../reduxFiles/configs";
 
 export let boardMode={
     defaultMode:[
@@ -135,7 +135,7 @@ export let url={
 //------------------- Handlers ----------------------------------
 export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
     return (msg:any)=>{
-        
+        console.log("incoming msg",msg);
         msg=JSON.parse(msg.data);
       //  alert("called"+JSON.stringify(msg));
         if(msg && msg.type && msg.type==="requestInit"){
@@ -169,6 +169,33 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
             disp(setMove({move:msg.coinMoved}))
             disp(switchTurn());
         }
+        else if (msg && msg.type && msg.type==="undo"){
+            //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
+            console.log("undo ",msg);
+              disp(setUndo(true));
+              // yield control to the opponent....
+              disp(switchTurn());
+          }
+          else if (msg && msg.type && msg.type==="draw"){
+            //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
+            console.log("draw ",msg);
+              disp(setDraw(true));
+              
+              // yield control to the opponent....
+            //   disp(switchTurn());
+            // End match 
+          }
+          else if (msg && msg.type && msg.type==="resign"){
+            //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
+            console.log("draw ",msg);
+              disp(endGame(true)); //true optional
+            //   disp(resignedGame());
+              alert(" ending game ....");
+              
+              // yield control to the opponent....
+            //   disp(switchTurn());
+            // End match 
+          }
     }
 }
     

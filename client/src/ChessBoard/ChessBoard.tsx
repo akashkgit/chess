@@ -1,10 +1,11 @@
-import {moveCoin,mouseDown,putPiece} from "./helper";
+import {moveCoin,mouseDown,putPiece, extractProps} from "./helper";
 import { initCoinPos } from "./types";
 import "./ChessBoard.css"
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {boardMode,boxMap, mapping} from "../specs/data"
 import { useDispatch, useSelector } from "react-redux";
 import { check } from "./handlers";
+import { setMyKilledCoins } from "../reduxFiles/configs";
 let el:HTMLDivElement;
 let drag={dragging:false,click:false,el};
 let state=drag;
@@ -46,7 +47,7 @@ export function moveACoin(move:any){
     
     
     }
-function moveOppCoin(move:any){
+function moveOppCoin(move:any,disp:any){
 console.log(" move ",move);
     let [x,y]=move.Pos;
     let killed=move.kill.kill
@@ -68,6 +69,7 @@ else killedPiece='2';
 //alert("killing ?"+killed+" icon "+killedCoin)
 if(killed===true){
     //console.log(" removing ",document.querySelector(`[data-pos="${killedCoin}"]`))
+    disp(setMyKilledCoins(extractProps(document.querySelector(`[data-pos="${killedCoin}"]`))));
     document.querySelector("#chessBoard").removeChild(document.querySelector(`[data-pos="${killedCoin}"]`));
 }
 
@@ -96,22 +98,29 @@ export function ChessBoard(){
     let myCoin=useSelector((state:any)=>state.game.myCoin )
     let start=useSelector((state:any)=>state.game.start )
     let myTurn=useSelector((state:any)=>state.gameSession.myTurn )
+    let gameDrawn=useSelector((state:any)=>state.gameSession.gameDrawn )
     let move=useSelector((state:any)=>state.gameSession.move )
     let disp=useDispatch()
     let wsock=useSelector((state:any)=>state.loginRed.ws)
     let opp=useSelector((state:any)=>state.game.opp)
     let uname=useSelector((state:any)=>state.loginRed.uname)
-    
-
+    let [closed,setclosed] = useState(false);
+// alert(gameDrawn && !closed);
     
 
     useEffect(()=>{
    // alert(move);
     console.log(move);
-        if(move)moveOppCoin(move)
+        if(move)moveOppCoin(move,disp)
     },[move])
 
     return <div className="ChessBoard" id="chessBoard"  onClick={(event)=>putPiece(event,state,position,myCoin,disp,wsock,uname,opp)} >
+        <div className={"resultWrapper "+((gameDrawn && !closed )?"over":"hidden")}  >
+        <div className={"resultPopup "}>
+            <div className="close" onClick={()=>{setclosed(true);alert("closing popip");}}></div>
+            <div className="result">Match Aborted</div>
+        </div>
+        </div>
    {
     
 //    Array.from({length:8}).map((val,i)=>{

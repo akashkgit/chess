@@ -76,6 +76,7 @@ export async function sessionValidator(){
             console.log(" moving to login page ")
             // nav("/login") --- did not work
             // previously wrriten as avbove
+            console.log("auth: No JWT FOUND ");
             return false;
             }
             else{
@@ -93,6 +94,7 @@ export async function sessionValidator(){
                     let response=await succ.json()
                     console.log(response);
                     if(false === response.authorized){
+                        console.log("auth: JWT NOT VALID");
                         return false;
                         
                     }

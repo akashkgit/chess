@@ -58,7 +58,7 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any,m
             while(tempX<=cBox.right && tempY>=cBox.top){
                 // //console.log("traversing")
                 let res= check(tempY, tempX, state, position, event, width, height, top, left, i, -i ,false,myCoin,dryRun,byPass)
-               if(res[0]){return [true,i,-i,res[1],res[2]]}
+               if(res[0]){return [true,i,-i,res[1],res[2],res[3]]}
                 tempX=tempX+width;
                 tempY=tempY-height;
                 i++;
@@ -75,7 +75,7 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any,m
                 // //console.log("traversing")
                 let res=check(tempY, tempX, state, position, event, width, height, top, left, -i, -i ,false,myCoin,dryRun,byPass)
                
-               if(res[0]){return [true,-i,-i,res[1],res[2]]}
+               if(res[0]){return [true,-i,-i,res[1],res[2],res[3]]}
                else if (res[2]==="interrupted")break;
                 tempX=tempX-width;
                 tempY=tempY-height;
@@ -92,7 +92,7 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any,m
             while(tempX<=cBox.right && tempY>=cBox.top){
                 // //console.log("traversing")
                 let res=check(tempY, tempX, state, position, event, width, height, top, left, i, i ,false,myCoin,dryRun,byPass)
-                if(res[0] ){return [true,i,i,res[1],res[2]]}
+                if(res[0] ){return [true,i,i,res[1],res[2],res[3]]}
                 else if (res[2]==="interrupted")break;
                 tempX=tempX+width;
                 tempY=tempY+height;
@@ -110,7 +110,7 @@ function bishop(state: { [k: string]: any }, position: initCoinPos, event: any,m
                 // //console.log("traversing")
                let res=check(tempY, tempX, state, position, event, width, height, top, left, -i, i ,false,myCoin,dryRun,byPass);
                 
-               if(res[0] ){return [true,-i,i,res[1],res[2]]}
+               if(res[0] ){return [true,-i,i,res[1],res[2],res[3]]}
                else if (res[2]==="interrupted")break; 
                tempX=tempX-width;
                 tempY=tempY+height;
@@ -129,21 +129,21 @@ function horse(state: { [k: string]: any }, position: initCoinPos, event: any,my
     let cBox=document.querySelector("#chessBoard").getBoundingClientRect();
 
     let res=check(top-height, left+ 2 * width, state, position, event, width, height, top, left, 2, -1 ,false,myCoin,dryRun,byPass)
-    if(res[0]){return [true,2,-1,res[1],res[2]]}
+    if(res[0]){return [true,2,-1,res[1],res[2],res[3]]}
     res=check(top-2 * height, left+ 1 * width, state, position, event, width, height, top, left, 1, -2 ,false,myCoin,dryRun,byPass)
-    if(res[0]){return [true,1,-2,res[1],res[2]]}
+    if(res[0]){return [true,1,-2,res[1],res[2],res[3]]}
     res=check(top-height, left- 2 * width, state, position, event, width, height, top, left, -2, -1 ,false,myCoin,dryRun,byPass)
-    if(res[0]){return [true,-2,-1,res[1],res[2]]}
+    if(res[0]){return [true,-2,-1,res[1],res[2],res[3]]}
     res=check(top-2 * height, left- 1 * width, state, position, event, width, height, top, left, -1, -2 ,false,myCoin,dryRun,byPass)
-    if(res[0]){return [true,-1,-2,res[1],res[2]]}
+    if(res[0]){return [true,-1,-2,res[1],res[2],res[3]]}
     res=check(top+height, left+ 2 * width, state, position, event, width, height, top, left, 2, 1 ,false,myCoin,dryRun,byPass)
-    if(res[0]){return [true,2,1,res[1],res[2]]}
+    if(res[0]){return [true,2,1,res[1],res[2],res[3]]}
     res=check(top+2 * height, left+ 1 * width, state, position, event, width, height, top, left, 1, 2 ,false,myCoin,dryRun,byPass)
-    if(res[0]){return [true,1,2,res[1],res[2]]}
+    if(res[0]){return [true,1,2,res[1],res[2],res[3]]}
     res=check(top+height, left- 2 * width, state, position, event, width, height, top, left, -2, 1 ,false,myCoin,dryRun,byPass)
-    if(res[0]){return [true,-2,1,res[1],res[2]]}
+    if(res[0]){return [true,-2,1,res[1],res[2],res[3]]}
     res=check(top+2 * height, left- 1 * width, state, position, event, width, height, top, left, -1, 2 ,false,myCoin,dryRun,byPass)
-    if(res[0]){return [true,-1,2,res[1],res[2]]}
+    if(res[0]){return [true,-1,2,res[1],res[2],res[3]]}
     else return [false]
 
 
@@ -164,7 +164,7 @@ function rook(state: { [k: string]: any }, position: initCoinPos, event: any,myC
 
         let res=check(temp, left, state, position, event, width, height, top, left, 0, -1 * i,false,myCoin,dryRun,byPass);
        
-       if(res[0]){return [true,0,-1* i,res[1],res[2]]}
+       if(res[0]){return [true,0,-1* i,res[1],res[2],res[3]]}
         i++;
         temp=temp-height;
     }
@@ -176,7 +176,7 @@ if(event.clientY>=bottom|| byPass!==undefined ){
 
         let res=check(temp, left, state, position, event, width, height, top, left, 0, +1 * i,false,myCoin,dryRun,byPass)
        
-       if(res[0]){return [true,0,i,res[1],res[2]]}
+       if(res[0]){return [true,0,i,res[1],res[2],res[3]]}
        else if (res[2]==="interrupted")break; 
         i++;
         temp=temp+height;
@@ -188,7 +188,7 @@ if(event.clientY>=bottom|| byPass!==undefined ){
     while(temp>=cBox.left && temp<=cBox.right){
 
         let res=check(top, temp, state, position, event, width, height, top, left, i , 0,false,myCoin,dryRun,byPass)
-       if(res[0]){return [true,i,0,res[1],res[2]]}
+       if(res[0]){return [true,i,0,res[1],res[2],res[3]]}
        else if (res[2]==="interrupted")break; 
         i++;
         temp=temp+width;
@@ -201,7 +201,7 @@ if(event.clientX<=left || byPass!==undefined){
 
         
         let res=check(top, temp, state, position, event, width, height, top, left, i* -1 , 0,false,myCoin,dryRun,byPass)
-       if(res[0]){return [true,-1 * i ,0,res[1],res[2]]}
+       if(res[0]){return [true,-1 * i ,0,res[1],res[2],res[3]]}
        else if (res[2]==="interrupted")break; 
         i++;
         temp=temp-width;
@@ -223,8 +223,8 @@ function pawn(state: { [k: string]: any }, position: initCoinPos, event: any,myC
     let k1= check(top - (1 * height), left+width, state, position, event, width, height, top, left, 1,-1,true,myCoin,dryRun,byPass) 
     let k2= check(top - (1 * height), left-width, state, position, event, width, height, top, left, -1,-1,true,myCoin,dryRun,byPass)
    //  //console.log("k1,k2",k1,k2)
-    if(k1[0])return [true,1,-1,true,k1[2]]
-    else if(k2[0]) return [true,-1,-1,true,k2[2]]
+    if(k1[0])return [true,1,-1,true,k1[2],k1[3]]
+    else if(k2[0]) return [true,-1,-1,true,k2[2],k2[3]]
     
     return false;
 
@@ -272,7 +272,7 @@ export function check(y: number, x: number, state: { [k: string]: any }, positio
         // }
         
          //console.log("Yes vetting " + state.dest.id)
-        return [true,true,state.dest.dataset.pos];
+        return [true,true,state.dest.dataset.pos,state.dest];
     }
     else if (event.clientX >= x && event.clientX <= x + width && event.clientY >= y && event.clientY <= y + width && !killOnly) {
          //console.log("moving to clicked destinationless box")

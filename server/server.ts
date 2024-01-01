@@ -77,6 +77,22 @@ app.post("/token/:type", async (req, res) => {
 
 
 })
+
+app.get("/dummy",async (req,res)=>{
+
+    let token ="eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxNDEzY2Y0ZmEwY2I5Mm…0h5qvAN7RdszCL2BO21NJODu01ZFbci07k0WoqMlHErCKubEw";
+    const { OAuth2Client } = require('google-auth-library')
+        const client = new OAuth2Client();
+        let verify = async (client) => {
+            const ticket = await client.verifyIdToken({
+                idToken:token,
+                audience: "409051565209-nd3hjg4eqsq0hljd8ko9a7tiv0f7orkm.apps.googleusercontent.com"
+            })
+        }
+
+        let result = await verify(client).then((res) => "verified").catch((res) => " unverfied ");
+ res.json({res: result})
+})
 app.listen(3000, () => {
     console.log(" listening server..");
 })

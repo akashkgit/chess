@@ -1,7 +1,7 @@
 import {mapping} from "../specs/data"
 import { initCoinPos } from "./types";
 import {handlerMapping} from "./handlers";
-import { switchTurn, updateMyMove } from "../reduxFiles/configs";
+import { switchTurn, updateMyMove,setMyKilledCoins,setOppKilledCoins } from "../reduxFiles/configs";
 import {handlerCheckMateMapping} from "./checkMateHandler";
 import {handlerKingMapping} from "./kingHandler"
 
@@ -224,6 +224,13 @@ if(state.click===true){
    // console.log("!!switching"+switching)
     // freeze the clock
     // switch
+
+    console.log("killedcoin ",switching[5]);
+    if(switching[5]){
+    console.log("killedcoinprops ",extractProps(switching[5]))
+    disp(setOppKilledCoins(extractProps(switching[5])));
+    }
+
     disp(switchTurn());
     let dataSend=JSON.stringify({action:"matchManager","type":"play","coinMoved":{coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]},"check":check},"dest":opp,"src":uname})
     let dataToStore=JSON.stringify({coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]},"check":check});
@@ -439,3 +446,7 @@ export function mouseDown(event:any,drag:{[k:string]:any},position:initCoinPos){
 }
 
 
+export function extractProps(el:HTMLDivElement){
+
+    return {mycoin:el.dataset.mycoin,pos:el.dataset.pos,coin:el.dataset.coin,id:el.id,class:el.className,style:el.style}
+}

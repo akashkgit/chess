@@ -119,9 +119,10 @@ export function init(disp: any,nav:any) {
     sessionValidator().then((val:boolean)=>{
         // alert(val)
         disp(log({login:val}))
+        return val;
         
-    }).then(()=>{ 
-    if (jwt) { 
+    }).then((val:boolean)=>{ 
+    if (val) { 
         wsock = new WebSocket(authUrl);
         wsock.onopen = () => {
             //console.log({"action":"auth","jwt":localStorage.getItem("jwt")});

@@ -121,6 +121,22 @@ app.post("/token/:type", function (req, res) { return __awaiter(void 0, void 0, 
         }
     });
 }); });
+app.get("/acf", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var google, gClient, tokens;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                google = require("googleapis").google;
+                gClient = new google.auth.OAuth2("409051565209-nd3hjg4eqsq0hljd8ko9a7tiv0f7orkm.apps.googleusercontent.com", "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", "http://localhost:3000/acf");
+                console.log(" ##### client code ", req.query.code);
+                return [4 /*yield*/, gClient.getToken(req.query.code)];
+            case 1:
+                tokens = (_a.sent()).tokens;
+                res.json(tokens);
+                return [2 /*return*/];
+        }
+    });
+}); });
 app.get("/dummy", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var token, OAuth2Client, client, verify, result;
     return __generator(this, function (_a) {
@@ -135,7 +151,7 @@ app.get("/dummy", function (req, res) { return __awaiter(void 0, void 0, void 0,
                         switch (_a.label) {
                             case 0: return [4 /*yield*/, client.verifyIdToken({
                                     idToken: token,
-                                    audience: "409051565209-nd3hjg4eqsq0hljd8ko9a7tiv0f7orkm.apps.googleusercontent.com"
+                                    audience: "409051565209-nd3hjg4eqsq0hljd8ko9a7tiv0f7orkm.apps.googleusercontent.com",
                                 })];
                             case 1:
                                 ticket = _a.sent();

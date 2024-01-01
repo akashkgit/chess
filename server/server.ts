@@ -77,7 +77,14 @@ app.post("/token/:type", async (req, res) => {
 
 
 })
+app.get("/acf", async(req,res)=>{
+const {google} = require("googleapis");
+const gClient = new google.auth.OAuth2("409051565209-nd3hjg4eqsq0hljd8ko9a7tiv0f7orkm.apps.googleusercontent.com","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","http://localhost:3000/acf")
+console.log(" ##### client code ",req.query.code);
+let { tokens } = await gClient.getToken(req.query.code);
+res.json(tokens);
 
+})
 app.get("/dummy",async (req,res)=>{
 
     let token ="eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxNDEzY2Y0ZmEwY2I5Mm…0h5qvAN7RdszCL2BO21NJODu01ZFbci07k0WoqMlHErCKubEw";
@@ -86,7 +93,7 @@ app.get("/dummy",async (req,res)=>{
         let verify = async (client) => {
             const ticket = await client.verifyIdToken({
                 idToken:token,
-                audience: "409051565209-nd3hjg4eqsq0hljd8ko9a7tiv0f7orkm.apps.googleusercontent.com"
+                audience: "409051565209-nd3hjg4eqsq0hljd8ko9a7tiv0f7orkm.apps.googleusercontent.com",
             })
         }
 

@@ -10,7 +10,10 @@
     max-width: 90rem;
     margin:0 auto;
     height:100dvh;
-    border: 2px solid red;
+    /* border: 2px solid red; */
+    font-family: "Montserrat",sans-serif;
+}
+*{
     font-family: "Montserrat",sans-serif;
 }
 .signupLogin.signupLogin,.signupLogin:active,.signupLogin:visited{
@@ -20,7 +23,7 @@
     /* width:10rem; */
     
     right:1rem;
-    border:2px solid blue;
+    /* border:2px solid blue; */
 }
 
 .oAuth a {
@@ -117,6 +120,14 @@ a:link{
     align-self: center;
 
 }
+.username .directRemComp h1{
+   
+    font-size: large;
+   
+}
+.username .directRemComp h4{
+font-size: medium;
+}
 img{
     margin:auto auto;
     display:block;
@@ -125,9 +136,9 @@ img{
 }
 .chessLabel3{
     display:flex;
-    width:50%;
+    width:10rem;
     
-    height:5%;
+    height:6rem;
     
     align-items: center;
     justify-content: center;

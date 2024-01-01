@@ -7,7 +7,8 @@ export function logout(disp:any,ws:any,nav:any){
     ws.close();
     nav("/");
     disp(wsChanger({ws:null}));
-    disp(login({login:false}));
+    disp(login({login:false,uname:""}));
+    
     
 
 }

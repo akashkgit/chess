@@ -10,7 +10,7 @@ export function OppComp(props:any){
     let nationality=props.nationality;
     return <div id="OppComp" className={start?"OppComp":"OppComp"}>
     <div className="playerIcon"></div>
-    <div className="OppDetails"> {uname}-{nationality}</div>
+    <div className="OppDetails"> {uname}</div>
     <Clock clockId={props.clockId} tick={props.tick}/>
     
          

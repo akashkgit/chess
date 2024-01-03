@@ -174,7 +174,7 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
             console.log("undo ",msg);
               disp(setUndo(true));
               // yield control to the opponent....
-              disp(switchTurn());
+              // disp(switchTurn());
           }
           else if (msg && msg.type && msg.type==="draw"){
             //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
@@ -185,6 +185,7 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
             //   disp(switchTurn());
             // End match 
           }
+         
           else if (msg && msg.type && msg.type==="resign"){
             //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
             console.log("draw ",msg);

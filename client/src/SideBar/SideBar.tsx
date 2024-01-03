@@ -30,16 +30,16 @@ export function StartPlay() {
     const [started, setStarted] = useState(false);
     const [option, setOption] = useState("newGame");
 
-    let gameStarted = useSelector((state:any)=> state.game.start);
-    useEffect(()=>{
-        if(gameStarted)setOption("inGame");
-    },[gameStarted])
+    let gameStarted = useSelector((state: any) => state.game.start);
+    useEffect(() => {
+        if (gameStarted) setOption("inGame");
+    }, [gameStarted])
     let { playState, setPlayState } = useContext(PlayCntxt);
     let nav = useNavigate();
     return <>
         <div className="topSideBar ">
-            
-            <div className="play flexy" style={{ display: true? "flex" : "none", backgroundColor: option === 'inGame' ? "rgba(65,64,62,1)" : "" }}><span className="label1"></span></div>
+
+            <div className="play flexy" style={{ display: option === "inGame" ? "flex" : "none", backgroundColor: option === 'inGame' ? "rgba(65,64,62,1)" : "" }}><span className="label1"></span></div>
             <div className="newGame flexy" style={{ backgroundColor: option === 'newGame' ? "rgba(65,64,62,1)" : "" }}><span className="label2"></span></div>
             <div className="games flexy"><span className="label3"></span></div>
             <div className="players flexy"><span className="label4"></span></div>
@@ -59,7 +59,7 @@ function SubmitPlayRequest(props: any) {
 
         <div className="playvsheader"><span className="playLogo"></span><span>Play Vs</span></div>
         <div className="oppInfo">
-            <div className="profilepic"></div>
+            <img className="profilepic" src={"https://www.chess.com/bundles/web/images/user-image.svg"} alt="error fetching src" />
             <span className="name">{props.opp}</span><span className="nationality"></span>
 
         </div>
@@ -93,10 +93,20 @@ function SubmitPlayRequest(props: any) {
         <div className="rated"><span className="rated">Rated</span><div className={"ratedselector " + (!rated ? "off" : "")}><div className={"roundbutton " + (!rated ? "buttonoff" : "")} onClick={() => {
             setRated((rated: boolean) => !rated)
         }}></div></div></div>
-        <div className="playAs"><div className="txt">I play as</div> <div className={"white " + (myCoin === "white" ? "selectedGreen" : "")} onClick={() => setMyCoin("white")}></div> <div onClick={() => setMyCoin("black")} className={"black " + (myCoin === "black" ? "selectedGreen" : "")}></div></div>
-        <button className="playButton" onClick={()=>{
-            props.setState((state:string[])=>{
-                return [...state,"Searching"]
+        <div className="playAs">
+            <div className="txt">I play as</div>
+            <div className={"white " + (myCoin === "white" ? "selectedGreen" : "")}
+                onClick={() => setMyCoin("white")}>
+            <div className="whiteCoin"></div>
+            </div>
+            <div onClick={() => setMyCoin("black")}
+                className={"black " + (myCoin === "black" ? "selectedGreen" : "")}>
+                <div className="blackCoin"></div>
+            </div>
+        </div>
+        <button className="playButton" onClick={() => {
+            props.setState((state: string[]) => {
+                return [...state, "Searching"]
             })
         }}>Play</button>
         <button className="inviteLink">Invite Link</button>
@@ -105,59 +115,60 @@ function SubmitPlayRequest(props: any) {
 }
 export function Searching(props: any) {
     let {
-        timingOption,opponent, setTimingOption, optionDD,state,setState, setOptionDD, rated, setRated, setMyCoin, myCoin
+        timingOption, opponent, setTimingOption, optionDD, state, setState, setOptionDD, rated, setRated, setMyCoin, myCoin
     } = props;
-    let nav=useNavigate();
-    let ws= useSelector((state:any)=>state.loginRed.ws);
-    let uname = useSelector((state:any)=>state.loginRed.uname);
-    let dest=opponent;
+    let nav = useNavigate();
+    let ws = useSelector((state: any) => state.loginRed.ws);
+    let uname = useSelector((state: any) => state.loginRed.uname);
+    let dest = opponent;
 
-    useEffect(()=>{
-        ping(nav,ws,uname,dest,timingOption,myCoin,rated,setState);
+    useEffect(() => {
+        ping(nav, ws, uname, dest, timingOption, myCoin, rated, setState);
     })
     return <div className="searchingforplayer">
         <div className="searchingheader">
             <span className="loadsearching">Searching<span className="loadingdots"></span></span>
-            <span className="newGameinsearch" onClick={()=>{
-                
-                setState((state:string[])=>{
-                    return [...state,"randomGame"];
+            <span className="newGameinsearch" onClick={() => {
+
+                setState((state: string[]) => {
+                    return [...state, "randomGame"];
                 })
             }}><span className="plus"></span><span className="inlineblock">New Game</span></span>
         </div>
         <div className="waitingheader">
             <div className="waitingwrapper">
-            <div className="profilepic"></div>
-            <div className="timingoption">2|1</div>
-            <div className="status">Waiting for Opponent <span className="loadingdots"></span></div>
-            <div className="cancel" onClick={()=>{
-                
-                setState((state:string[])=>{
-                    return [...state,"randomGame"];
-                })
-            }}>Cancel</div>
+                <div className="profilepic"></div>
+                <div className="timingoption">2|1</div>
+                <div className="status">Waiting for Opponent <span className="loadingdots"></span></div>
+                <br />
+                <div className="cancel" onClick={() => {
+
+                    setState((state: string[]) => {
+                        return [...state, "randomGame"];
+                    })
+                }}>Cancel</div>
             </div>
         </div>
 
     </div>
 }
 export function PlayOptionsStateMachine() {
-    let [state, setState] = useState(["randomGame"]);
+    let [state, setState] = useState(["Searching"]);
     let [opponent, setOpponent] = useState("");
     let curState = state[state.length - 1];
     let [timingOption, setTimingOption] = useState({ type: "Bullet", option: "1 min" });
     let [optionDD, setOptionDD] = useState(false);
     let [myCoin, setMyCoin] = useState("white");
-    let nav=useNavigate();
+    let nav = useNavigate();
     const [rated, setRated] = useState(true);
     let SubmitPlayRequestProps = {
         timingOption, setTimingOption, optionDD, setOptionDD, rated, setRated, setMyCoin, myCoin
     }
 
-    let searchingProps = { SubmitPlayRequest, state,opponent, setState }
+    let searchingProps = { SubmitPlayRequest, state, opponent, setState }
     console.log(" cur state ", curState, state)
 
-    
+
     if ("randomGame" === curState) {
 
         let res = <RandomGame state={state} setState={setState} />
@@ -172,8 +183,8 @@ export function PlayOptionsStateMachine() {
     else if ("Searching" === curState) {
         return <Searching  {...searchingProps} />
     }
-    else if ("end" === curState){
-    // alert(" ending ")
+    else if ("end" === curState) {
+        // alert(" ending ")
         nav("inplay");
     }
 
@@ -263,7 +274,7 @@ export function AtRest() {
                 <div className="playIconSideBar"></div>
             </div>
             <div className="AtRestOptions">
-                <Link to="online" >
+                <Link to="online" className="playOnline">
                     <div id="playOnline" className="playOnline">
                         <div className="icon"></div>
                         <div>
@@ -367,30 +378,30 @@ export function FriendSelector(props: any) {
     </>
 }
 
-function ping(nav: any, ws: WebSocket, uname: string, dest: string,timingOption:string,mycoin:string,rated:boolean,setState:any) {
+function ping(nav: any, ws: WebSocket, uname: string, dest: string, timingOption: string, mycoin: string, rated: boolean, setState: any) {
     // alert("sending request to " + dest);
-    
+
     let toBSent = JSON.stringify({
         "action": "matchManager",
         "type": "requestInit",
         "dest": dest,
         "src": uname,
-        "myCoin":mycoin,
-        "timingOption":timingOption,
-        "rated":rated
+        "myCoin": mycoin,
+        "timingOption": timingOption,
+        "rated": rated
     });
     // alert(toBSent);
 
     ws.send(toBSent)
-    ws.addEventListener("message",(message)=>{
-    //   alert(message);
-    //   console.log("message ",JSON.parse(message.data));
-        if(JSON.parse(message.data)?.type === "requestAck"){
-         
-            setState((state:string[])=>[...state,"end"]);
+    ws.addEventListener("message", (message) => {
+        //   alert(message);
+        //   console.log("message ",JSON.parse(message.data));
+        if (JSON.parse(message.data)?.type === "requestAck") {
+
+            setState((state: string[]) => [...state, "end"]);
         }
     })
-    
+
 
 }
 function checkFriends(event: any, setFName: any, fname: any, setFriendList: any, ws: WebSocket) {

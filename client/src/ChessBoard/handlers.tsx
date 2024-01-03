@@ -259,7 +259,7 @@ export function check(y: number, x: number, state: { [k: string]: any }, positio
 
         // }
         // else{
-            state.el.style.transform = futurePos;
+            state.el.style.transform = futurePos;  
             let allowed=isAllowed(myCoin,undefined);
             //alert("allowed"+allowed);
             if(!allowed){
@@ -278,9 +278,9 @@ export function check(y: number, x: number, state: { [k: string]: any }, positio
          //console.log("moving to clicked destinationless box")
     // //console.log("ytrans ",yTrans)
         let temp=getComputedStyle(state.el).transform ;
-        let futurePos = getComputedStyle(state.el).transform + `translateY(${yTrans * 100}%) translateX(${xTrans * 100}%)`
+        let futurePos = getComputedStyle(state.el).transform + `translateY(${yTrans * 100}%) translateX(${xTrans * 100}%)`;
         
-        state.el.style.transform = futurePos;
+        (document.querySelector(`[data-pos="${state.el.dataset.pos}"]`) as HTMLElement).style.transform = futurePos;
         let allowed=isAllowed(myCoin,undefined);
        // alert("allowed"+allowed);
         if(!allowed){

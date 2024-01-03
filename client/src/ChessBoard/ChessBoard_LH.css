@@ -1,0 +1,484 @@
+
+@media (max-height:800px){
+.ChessBoard{
+    background-image:url('https://images.chesscomfiles.com/chess-themes/boards/green/200.png');
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    /* border:2px solid blue; */
+    position:relative;
+height:660px;
+width:100%;
+}
+.resultPopup{
+    padding:0.25rem;
+    border-radius: 0.25rem;
+    box-shadow: 1px 1px 5px 1px  black;
+    
+    
+    background-color: #403f3c;
+    font-size: x-large;
+    width:100%;
+    box-sizing: border-box;
+    
+    color:rgb(218, 212, 212);
+    position:relative;
+
+}
+.chessBox{
+ padding:10%;   
+ box-sizing: border-box;
+ position:absolute;
+ top:0;
+ bottom:0;
+ left:0;
+ right:0;
+ /* border:2px solid red; */
+}
+
+.over{
+    display:flex;
+}
+
+.chat{
+    border:2px solid green;
+    width:100%;
+    margin-bottom:auto;
+    height:calc(40% - 4rem);
+    position:absolute;
+    bottom:0;
+    margin-bottom: auto;
+    flex: 1;
+    border-top:1px solid rgb(170, 168, 140);
+    padding:0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+}
+.err{
+    width:90%;
+    height:30%;
+    box-sizing: border-box;
+    color:grey; 
+}
+
+.typingArea{
+    width:100%;
+    background-color:#42403e;
+    color:rgb(127, 118, 69);
+    border-radius:0.25rem;
+    outline: none;
+    border:none;
+    height:2rem;
+    padding:0.25rem;
+    
+}
+.msgs{
+    width:100%;
+    height:5rem;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+
+.resultWrapper{
+    pointer-events: all !important;
+    
+    
+    width:30%;
+    height:100%;
+    border: 2px solid red;
+    margin:auto auto;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    transition:all;
+    transition-duration: 5s;
+    transition-timing-function: ease-in;
+}
+.resultPopup{
+    border:2px solid black;
+    
+
+
+}
+.rightBubble{
+    color:white;
+    border-radius: 0.25rem;
+    padding:1rem;
+    Max-width:40%;
+    margin-top:0.5rem;
+    margin-right:1px;
+    box-sizing: border-box;
+    background-color:#42403e;
+    word-break: break-all;
+
+}
+.leftBubbleWrap{
+    display: flex;
+    justify-content: flex-start;
+}
+.rightBubbleWrap{
+    display: flex;
+    justify-content: flex-end;
+}
+.leftBubble{
+    color:grey;
+    border-radius: 0.25rem;
+    padding:1rem;
+    Max-width:40%;
+    margin-top:0.5rem;
+    margin-right:1px;
+    box-sizing: border-box;
+    background-color:#42403e;
+    word-break: break-all;
+}
+.result{
+    display:inline;
+}
+.close{
+    position:absolute;
+    right:1%;
+    
+    top:5%;
+    display:inline-block;
+}
+.close::before{
+    content:"\0042";
+    font-family: Chess V3;
+    font-size: large;
+    
+}
+.box_{
+    cursor:auto;
+}
+.box_hidden.box_hidden{
+    display:none;
+    background-color: yellow;
+}
+.box_wr{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wr.png");
+    background-size:cover;
+    
+    
+}
+.sq_2aW{
+    transform: translateX(0%) translateY(600%) ;
+}
+.sq_2bW{
+    transform: translateX(100%) translateY(600%) ;
+}
+.sq_2cW{
+    transform: translateX(200%) translateY(600%) ;
+}
+.sq_2dW{
+    transform: translateX(300%) translateY(600%) ;
+}
+.sq_2eW{
+    transform: translateX(400%) translateY(600%) ;
+}
+.sq_2fW{
+    transform: translateX(500%) translateY(600%) ;
+}
+.sq_2gW{
+    transform: translateX(600%) translateY(600%) ;
+}
+.sq_2hW{
+    transform: translateX(700%) translateY(600%) ;
+}
+.sq_1aW{
+    transform: translateX(0%) translateY(700%) ;
+}
+.sq_1bW{
+    transform: translateX(100%) translateY(700%) ;
+}
+.sq_1cW{
+    transform: translateX(200%) translateY(700%) ;
+}
+.sq_1dW{
+    transform: translateX(300%) translateY(700%) ;
+}
+.sq_1eW{
+    transform: translateX(400%) translateY(700%) ;
+}
+.sq_1fW{
+    transform: translateX(500%) translateY(700%) ;
+}
+
+.sq_1gW{
+    transform: translateX(600%) translateY(700%) ;
+}
+.sq_1hW{
+    transform: translateX(700%) translateY(700%) ;
+}
+
+.sq_8aW{
+    transform: translateX(0%);
+}
+.sq_8bW{
+    transform: translateX(100%);
+}
+.sq_8cW{
+    transform: translateX(200%);
+}
+.sq_8dW{
+    transform: translateX(300%);
+}
+.sq_8eW{
+    transform: translateX(400%);
+}
+.sq_8fW{
+    transform: translateX(500%);
+}
+.sq_8gW{
+    transform: translateX(600%);
+}
+.sq_8hW{
+    transform: translateX(700%);
+}
+
+
+.sq_7aW{
+    transform: translateX(0%) translateY(100%);
+}
+.sq_7bW{
+    transform: translateX(100%) translateY(100%);
+}
+.sq_7cW{
+    transform: translateX(200%) translateY(100%);
+}
+.sq_7dW{
+    transform: translateX(300%) translateY(100%);
+}
+.sq_7eW{
+    transform: translateX(400%) translateY(100%);
+}
+.sq_7fW{
+    transform: translateX(500%) translateY(100%);
+}
+.sq_7gW{
+    transform: translateX(600%) translateY(100%);
+}
+.sq_7hW{
+    transform: translateX(700%) translateY(100%);
+}
+.sq_7aB{
+  
+  transform: translateX(700%) translateY(600%) ;
+  
+}
+.sq_7bB{
+    transform: translateX(600%) translateY(600%) ;
+   
+}
+.sq_7cB{
+    transform: translateX(500%) translateY(600%) ;
+}
+.sq_7dB{
+    
+    transform: translateX(400%) translateY(600%) ;
+}
+.sq_7eB{
+    transform: translateX(300%) translateY(600%) ;
+}
+.sq_7fB{
+
+}
+.sq_7gB{
+    transform: translateX(200%) translateY(600%) ;
+}
+.sq_7hB{
+
+}
+
+.sq_2aB{
+    transform: translateX(700%) translateY(100%) ;
+}
+.sq_2bB{
+    
+    transform: translateX(600%)translateY(100%);
+}
+.sq_2cB{
+    transform: translateX(500%)translateY(100%);
+}
+
+.sq_2dB{
+    
+    transform: translateX(400%)translateY(100%);
+}
+.sq_2eB{
+    
+    transform: translateX(300%)translateY(100%);
+}
+.sq_2fB{
+    
+    transform: translateX(200%)translateY(100%);
+}
+.sq_2gB{
+    
+    transform: translateX(100%) translateY(100%);
+}
+.sq_2hB{
+    transform: translateX(0%) translateY(100%);
+    
+}
+.sq_1aB{
+    transform: translateX(700%);
+}
+.sq_1bB{
+    transform: translateX(600%);
+}
+.sq_1cB{
+    transform: translateX(500%);   
+}
+.sq_1dB{
+    transform: translateX(400%);
+}
+.sq_1eB{
+    transform: translateX(300%)  ;
+}
+.sq_1fB{
+   transform: translateX(200%);
+}
+
+.sq_1gB{
+    transform: translateX(100%)  ;
+}
+.sq_1hB{
+    transform: translateX(0%);
+}
+
+.sq_8aB{
+    
+    transform: translateX(700%) translateY(700%) ;
+}
+.sq_8bB{
+    transform: translateX(600%) translateY(700%);
+}
+.sq_8cB{
+    transform: translateX(500%) translateY(700%) ;
+    
+}
+.sq_8dB{
+    transform: translateX(400%) translateY(700%) ;
+}
+.sq_8eB{
+    
+    transform: translateX(300%) translateY(700%) ;
+}
+.sq_8fB{
+    transform: translateX(200%) translateY(700%) ;
+    
+}
+.sq_8gB{
+    
+    transform: translateX(100%) translateY(700%) ;
+}
+.sq_8hB{
+    
+    transform: translateX(0%) translateY(700%) ;
+}
+
+.sq_7aB{
+    transform: translateX(700%) translateY(600%);
+}
+.sq_7bB{
+    transform: translateX(600%) translateY(600%);
+}
+.sq_7cB{
+    transform: translateX(500%)translateY(600%);
+}
+.sq_7dB{
+    transform: translateX(400%)translateY(600%);
+}
+.sq_7eB{
+    transform: translateX(300%)translateY(600%);
+}
+.sq_7fB{
+    transform: translateX(200%)translateY(600%);
+}
+.sq_7gB{
+    transform: translateX(100%)translateY(600%);
+}
+.sq_7hB{
+    transform:translateX(0%)translateY(600%);
+}
+
+.box_wq{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wq.png");
+    background-size:cover;
+}
+.box_wk{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wk.png");
+    background-size:cover;
+}
+.box_wb{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wb.png");
+    background-size:cover;
+}
+.box_wh{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wn.png");
+    background-size:cover;
+}
+.box_wp{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wp.png");
+    background-size:cover;
+    
+    
+    
+}
+.box_br{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/br.png");
+    background-size:cover;
+}
+.box_br{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/br.png");
+    background-size:cover;
+}
+.box_bq{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bq.png");
+    background-size:cover;
+}
+.box_bk{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bk.png");
+    background-size:cover;
+    
+}
+.box_bb{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bb.png");
+    background-size:cover;
+}
+.box_bh{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bn.png");
+    background-size:cover;
+}
+.box_bp{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bp.png");
+    background-size:cover;
+}
+.box_br{
+    background-image:url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/br.png");
+    background-size:cover;
+}
+.chessBox{
+    padding:1%;
+    background-origin: content-box;
+    width:calc(100%/8);
+    box-sizing: border-box;
+    cursor:grab;
+    filter:brightness(100%);
+    height:calc(100%/8);
+    /* border:2px solid red; */
+    display:inline-block;
+    
+ 
+}
+
+.dragging.grabbing{
+    background-color: rgba(244,247,135,1);
+    cursor:grabbing;
+    
+}
+}

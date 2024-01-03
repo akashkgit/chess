@@ -204,12 +204,18 @@ function checkIfPossible(futurePos:String, coin:HTMLDivElement){
 
 }
 
-
+export function safeConsole(...args:any[]){
+    
+    args.forEach((val)=>{
+    console.log(JSON.parse(JSON.stringify(val)))    
+    })
+}
 export function putPiece(event:any,state:{[k:string]:any},position:initCoinPos,myCoin:string,disp:any,wsock:WebSocket,uname:any,opp:any){
 //alert(" putting piece ");
 if(state.click===true){
 
     let origin:HTMLDivElement=state.el;
+    console.log("moveB: ",window.getComputedStyle(document.querySelector(`[data-pos="${state.el.id}"]`)).transform)
     console.log("error ",origin);
     let {top,left,right,bottom,width,height}=origin.getBoundingClientRect();
     let details=origin.dataset.coin.split("");
@@ -224,7 +230,7 @@ if(state.click===true){
    // console.log("!!switching"+switching)
     // freeze the clock
     // switch
-
+    console.log("moveA: ",window.getComputedStyle(document.querySelector(`[data-pos="${state.el.id}"]`)).transform)
     console.log("killedcoin ",switching[5]);
     if(switching[5]){
     console.log("killedcoinprops ",extractProps(switching[5]))

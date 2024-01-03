@@ -7,8 +7,29 @@ body{--topMargin:1.5dvh}
     grid-column-start: 2;
     grid-column-end: 3;
     display:flex;
-    margin-top:var(--topMargin);
+    
+    justify-content: center;
+    padding:0.25rem;
+    /* border:2px solid red; */
     gap:1%;
     flex-direction:column;
     
+}
+
+@media (max-height:999px){
+
+  body{--topMargin:1.5dvh}
+.playArea{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display:flex;
+    
+    justify-content: center;
+    padding:0.25rem;
+    /* border:2px solid red; */
+    gap:1%;
+    flex-direction:column;
+    
+}
+
 }

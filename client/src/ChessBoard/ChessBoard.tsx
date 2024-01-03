@@ -20,7 +20,7 @@ export function moveACoin(move:any){
     let boxId=move.coin.boxId
     let type=move.coin.type;
     let tarPos:string=boxId,killedPiece="";
-    
+
     
     
     
@@ -37,14 +37,17 @@ export function moveACoin(move:any){
     //     document.querySelector("#chessBoard").removeChild(document.querySelector(`[data-pos="${killedCoin}"]`));
     // }
     
-    let target:HTMLDivElement=document.querySelector(`[data-pos="${tarPos}"]`) 
+    let target:HTMLElement=document.querySelector(`[data-pos="${tarPos}"]`) 
     //console.log(target,"is the target ");
     //console.log(target.style.transform+" <= "+"before")
-    let futurePos = getComputedStyle(target).transform + `translateY(${y * -100}%) translateX(${x * -100}%)`
-    //console.log(target.style.transform+" <= "+"after")
-    target.style.transform = futurePos;
-    //console.log(target.style.transform)
     
+    
+    console.log("undo pos B: ",getComputedStyle(target).transform)
+    //console.log(target.style.transform+" <= "+"after"
+    target.style.transform =getComputedStyle(target).transform + `translateY(${y * -100}%) translateX(${x * -100}%)`
+    console.log("undo pos A: ",getComputedStyle(target).transform)
+    //console.log(target.style.transform)
+
     
     }
 function moveOppCoin(move:any,disp:any){

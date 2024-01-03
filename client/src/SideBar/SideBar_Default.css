@@ -1,0 +1,735 @@
+
+
+.SideBar{
+    
+    background-color:rgba(38,37,34,1);
+    width:100%;
+    position:relative;
+    margin-top:var(--topMargin);
+    margin-left:7%;
+    border-radius:1rem;
+    height:90dvh;
+    min-height: 700px;
+    margin-top:2rem;
+    font-family: var(--PrimFont);
+}
+
+
+.AtRestOptions a:not(.playOnline){
+    
+    pointer-events: none;
+    opacity:0.5;
+    
+}
+.disabled{
+    pointer-events: none;
+    
+}
+.flexy{
+    
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color:#ffffffb8;
+     padding:0.5rem !important;
+    width:100%;
+    font-size: 1.5rem;
+}
+.AtRestHeader > h2{
+    
+    color:#ffffffb8;
+    margin:0rem auto;
+    width:40%;
+    display:block;
+}
+.AtRestHeader{
+    /* border:2px solid Red; */
+    margin-bottom:0rem;
+    width:100%;
+    padding-top:1rem;
+    
+    
+    
+
+}
+.SubmitPlayRequestCont{
+    display:flex;
+    flex-direction: column;
+    gap:2rem;
+    padding:0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+.subtitle{
+    font-size: 0.75rem;
+}
+a:link{
+    text-decoration: none;
+}
+.title{
+    font-size: 1.23rem;
+}
+#playOnline > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/blitz.41349956.svg") no-repeat;
+    background-size:contain;
+    box-sizing: border-box;
+    background-position: center;
+   width:17.5%;
+}
+.rated{
+    display:flex;
+    justify-content: space-between;
+    color:white;
+    /* border:2px solid blue; */
+    transition: all .3s ease-in;
+    width:100%;
+}
+.ratedselector{
+    width:3rem;
+    position: relative;
+    border-radius: 0.75rem;
+    display: flex;
+
+    align-items: center;
+    background-color: #5d9948;
+}
+.inviteLink{
+    width:90%;
+    color:white;
+    border:none !important;
+    height:3rem;
+    border-radius: 0.25rem;
+    background: hsla(0,0%,46%,.4) ;
+}
+.off{
+    background-color: hsla(0,0%,46%,.4) !important;
+}
+.buttonoff{
+left:0 !important;
+}
+.roundbutton{
+    width:1.5rem;
+    position: absolute;
+    height:1.5rem;
+    top:-10%;
+    right:0;
+    background-color: white;
+    border-radius: 2rem;
+}
+.oppInfo{
+    display:flex;
+    flex-direction: column;
+    gap:0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+.playAs{
+    width:90%;
+    height:33%;
+    box-sizing: border-box;
+    /* border:2px solid pink; */
+    display: flex;
+    justify-content: space-between;
+
+align-items: center;
+
+}
+.playAs .txt{
+    color:grey;
+    font-size: 1.5rem;
+    
+}
+
+
+
+.searchingforplayers{
+    display:flex;
+
+    flex-direction: column;
+}
+.searchingheader{
+    display:flex;
+    padding:1.25rem;
+    color:white;
+    /* border:2px solid red; */
+    box-sizing: border-box;
+    width:100%;
+    justify-content: space-between;
+}
+.loadingdots{
+    display: inline-block !important;
+}
+.loadsearching{
+    display:inline-block !important;
+}
+.inlineblock{
+    display: inline-block !important;
+}
+.newGameinsearch{
+display:flex;
+
+flex-direction: row;
+}
+.waitingwrapper{
+    /* border:2px solid pink; */
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+}
+.cancel:hover{
+    color:grey;
+}
+.profilepic{
+    width:4rem;
+    height:4rem;
+    /* border:2px solid green; */
+
+}
+.waitingheader .timingoption{
+
+}
+.waitingheader{
+    width:100%;
+    
+    /* border:2px solid pink; */
+    display:flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+.plus::before{
+    content: "\0056";
+    font-family: Chess V3;
+    display: inline-block !important;
+}
+.plus{
+    display: inline-block !important;
+}
+.newGameinsearch:last-child{
+    display:inline-block !important;
+}
+.loadingdots::before{
+
+    /* animation:loaddots; */
+content: "...";
+animation-duration: 3s;
+/* animation-direction: nor; */
+animation-iteration-count: infinite;
+
+}
+@keyframes loaddots{
+    0%{
+        content:"";
+    };
+    60%{
+content:"."
+    }
+    80%{
+        content:"..";
+    }
+    90%{
+        content:"...";
+    }
+}
+
+.playAs .whiteCoin::before{
+    content:"\e904";
+    box-sizing: border-box;
+    font-family: Chess V3;
+    font-size: xx-large;
+    
+}
+.playAs .blackCoin::before{
+    content:"\e904";
+    box-sizing: border-box;
+    font-family: Chess V3;
+    font-size: xx-large;
+    color:white;
+    
+}
+
+
+.white{
+    background-color: white;
+}
+.white, .black{
+width:3rem;height:3rem;
+display: flex;
+
+border-radius: 0.25rem;
+justify-content: center;
+align-items: center;
+}
+
+.oppInfo .profilepic{
+    width:10vw;
+    height:10vw;
+    /* border:2px solid green; */
+}
+.oppInfo .name{
+    color:white;
+    font-size: medium;
+}
+.playvsheader{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto auto;
+    /* border:2px solid red; */
+}
+.playvsheader span{
+display:inline-block !important;
+color:white;
+font-size: 1.5rem;
+}
+.playLogo{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/handshake.svg");
+    width: 2rem;
+    height:2rem;
+    background-size:contain;
+}
+a:link{
+    color:#ffffffb8;
+}
+.newGameEx > div:not(.custom){
+    width:100%;
+    height:4rem;
+    /* border:2px solid red; */
+}
+.timeOption{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:0.5rem;
+}
+.timeOption span::before{
+    content:"\1F1B";
+    color:#81b64c;
+    font-family: Chess V3;
+    
+}
+.TOPlayAFriend .TOIcon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/handshake.8c90be47.svg");
+    background-size: contain;
+}
+.TOTournaments .TOIcon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/tournaments.d5eac419.svg");
+    background-size: contain;
+
+}
+.playIconSideBar{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/playwhite.cea685ba.svg")
+}
+.TOPlayAFriend,.TOTournaments{
+    color:#ffffffb8;
+    border-radius:0.5rem;
+    margin:auto auto;
+    width:95%;
+    height:100%;
+    display:flex;
+    gap:0.5rem;
+    align-items: center;
+    justify-content: center;
+    background-color:#343331 ;
+}
+.dropDownFList,.listFriends{
+    display:flex;
+    flex-direction: column;
+    color:grey;
+    font-size:0.75rem;
+    width:100%;
+    
+
+    justify-content: flex-start;
+}
+
+.dropDownFList div,.listFriends div{
+    height:1.5rem;
+    
+}
+.TOIcon{
+    width:1.5rem;
+    height:40%;
+    
+}
+.computer > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/computer.f36f0d84.svg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 12px;
+}
+.playAFriend > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/handshake.8c90be47.svg");
+    background-size:contain;
+    
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.tournaments > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/tournaments.d5eac419.svg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position-y: 10px;
+}
+.chessVariants > .icon{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/variants.5d7a34d9.svg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+.searchInput{
+    width:100%;
+    align-items: center;
+    background-color:#ffffff14;
+    display:flex;
+    padding:0.5rem;
+    border-radius:0.25rem;
+    color:grey;
+    font-family: var(--PrimtFont);
+}
+.searchLabel{
+    height:2.5rem;
+    display:flex;
+    align-items: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+
+
+}
+.searchLabel::before{
+    content:"\2013";
+    font-family: Chess V3;
+    
+    font-weight: 400;
+    color:grey;
+    
+}
+.listFriends {
+ color:grey;
+ display:flex;
+ justify-content: flex-start;
+ flex-direction: column;
+
+ width:100%;
+
+}
+.listFriends h5{
+    
+}
+
+.friendSelector input{
+    width:100%;
+    color:grey;
+    height:2.5rem;
+    background-color: rgba(0,0,0,0);
+    outline:none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border:none;
+}
+.friendSelector input::before{
+    
+    background-color: red;
+}
+.friendSelector{
+     /* border:2px solid green; */
+    width:100%;
+    height:180%;
+    display:flex;
+    padding:1rem;
+    gap:2rem;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+}
+.friendLabel{
+    display:flex;
+    width:70%;
+    align-items: center;
+    gap:0.25rem;
+    
+    color:White;
+    justify-content: center;
+}
+.friendLabel h4{
+    margin:0;
+    color:White;
+    
+}
+.friendLabel .TOIcon{
+    
+    height:1.5rem;
+    width:1.5rem;
+    background: url("https://www.chess.com/bundles/web/images/color-icons/handshake.svg");
+    background-size: contain;
+
+}
+.optionExpander{
+    background-color:rgba(38,37,34,1);
+    /* height:100%; */
+}
+.icon{
+    box-sizing: border-box;
+    height:70%;
+    width:20%;
+    
+    
+    margin-right:0rem;
+    
+    
+}
+.AtRestOptions{
+    margin-top:2rem;
+    margin:1rem auto;
+    width:80%;
+
+    display:flex;
+    flex-direction: column;
+    gap:2rem;
+    height:80%;
+
+}
+.AtRestOptions > a {
+    height:15%;
+}
+.AtRestOptions > a:active{
+    text-decoration:dashed;
+    color:red;
+    
+}
+.AtRestOptions >a:visited{
+    text-decoration:dashed;
+    
+    
+}
+.AtRestOptions > a > div{
+    display:flex;
+    text-decoration: none;
+align-items: center;
+    padding-top:0.5rem;
+    padding-bottom:0.5rem;
+    padding-left:1rem;
+    padding-right:1rem;
+
+    display:bock;
+    background-color: rgba(0,0,0,0.4);
+    color:#ffffffb8;
+    height:100%;
+    gap:1rem;
+    border-radius:0.25rem;
+
+}
+
+.AtRestHeader > div{
+    background:url("https://www.chess.com/bundles/web/images/color-icons/playwhite.cea685ba.svg");
+    width:4rem;
+    background-size:contain;
+    height:4rem;
+    margin:0rem auto;
+}
+.label1::before{
+    content:"play"
+}
+.label2::before{
+    content:"New Game"
+}
+.label3::before{
+    content:"Game"
+}
+.label4::before{
+    content:"Players"
+}
+
+.topSideBar{
+    display:flex;
+    width:100%;
+    
+    box-sizing: border-box;
+    height:4rem;
+    
+
+}
+
+.newGameEx{
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+    
+    align-items: center;
+    padding:1rem;
+ 
+}
+.timeOption,.playButton{
+    width:95%;
+    border-radius:0.5rem;
+    border:none;
+    font-family:var(--PrimFont);
+    color:#ffffffb8;
+    height:3rem;
+    background-color: #4c4b49;
+    
+}
+.playButton{
+    background-color: #81b64c;
+}
+.custom{
+    color:#ffffffb8;
+    font-size:0.75rem;
+}
+.topSideBar > div{
+    width:33.33%;
+}
+.options1{
+    height:7%;
+
+}
+.play::before{
+    content:"\1F1B";
+    font-family: Chess V3;
+    
+}
+
+.newGame::before{
+    content:"\1F01";
+    /* border: 2px solid pink; */
+    
+    font-family: Chess V3;
+    
+}
+.games::before{
+    content:"\2019" ;
+    font-family: Chess V3;
+}
+.players::before{
+    content:"\006E";
+    font-family:Chess V3;
+}
+@font-face {
+    font-display: block;
+    font-family: Chess V3;
+    font-weight: 400;
+    src: url("https://www.chess.com/bundles/web/fonts/chessglyph-v3/chessglyph-v3.cece6a99.woff2") format("woff")
+}
+.options2{
+    height:93%;
+}
+.options4{
+    flex:1 1 0;
+}
+
+
+.timingOptions{
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+    width:100%;
+    
+}
+.selectedGreen{
+    border:2px solid #81b64c;
+    box-sizing: border-box;
+}
+.timeOption{
+    position:relative;
+}
+.hidden{
+    display:none;
+}
+.dropDown{
+    position:absolute;
+    right:5%;
+
+}
+.dropDown::before{
+    content: "\003C" !important;
+    color:grey !important;
+    font-size: medium;
+    display:inline !important;
+    /* font-family: Chess V3; */
+}
+.catIcon{
+    
+    
+    
+    font-size: x-large!important;
+    color:white;
+    font-family: Chess V3;
+}
+.timingCat{
+    display:flex;
+    width:100%;
+    gap:0.75rem;
+    flex-direction: column;
+}
+.timingCat .header{
+    display:flex;
+    align-items: center;
+    font-family: x-large;
+}
+.suboptions{
+    display:flex;
+    gap:1rem;
+    width:100%;
+    /* border:2px solid red; */
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.cat{
+    color:white;
+    font-size: large !important;
+    display:inline-block;
+    
+}
+.suboptionitem{
+    background-color: #ffffff1a;
+    padding:0.25rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width:5rem;
+    border-radius: 0.25rem;
+    color:white;
+    height:2rem;
+    
+}
+
+
+
+
+.Bullet::before{
+    
+    content:"\1F1D";
+    color:gold;
+    
+    
+}
+.Blitz::before{
+    content:"\1F1C";
+    color:yellow;
+    
+}
+.Rapid::before{
+    content:"\1F1B";
+    color:green;
+}
+.Daily::before{
+    content:"\1F1A";
+    color:orange;
+}
+.friendsListCount{
+    color:White;
+    display:inline !important;
+    padding:0.5rem;
+    padding-left:0.3rem;
+    display:flex;
+    margin-left:0.5rem;
+    justify-content: center;
+    font-size:medium;
+    background-color: grey;
+}

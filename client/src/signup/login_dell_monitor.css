@@ -223,10 +223,10 @@ img{
 
 .chessLabel{
 display:flex;
-width:30%;
+width:50%;
+min-width:40px;
+min-height:20px;
 height:5%;
-
-
 align-items: center;
 justify-content: center;
 margin: 5% auto;

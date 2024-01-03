@@ -79,6 +79,21 @@ const gameSession = createSlice({
     },
     reducers: {
 
+        popHistory(state){
+
+            let lastPair = state.moveHistory[state.moveHistory.length -1 ];
+            let moveHist =[...state.moveHistory];
+            if(1 === lastPair.length){
+                    moveHist.pop();
+                    return {...state, moveHistory:moveHist};
+            }
+            else if ( 0 === lastPair.length){
+                moveHist[moveHist.length -1].pop();
+                return {...state, moveHistory:moveHist};
+            }
+
+        },
+
         setUndo(state, action) {
             return { ...state, undo: action.payload }
         },
@@ -153,7 +168,7 @@ export let globalState = configureStore({
 })
 export const { login, wsChanger } = loginSlice.actions
 export const { startGame, endGame } = gameSlice.actions
-export const { switchTurn, drawGame,setDraw, setMove, setUndo, setMyKilledCoins, setOppKilledCoins, updateMyMove } = gameSession.actions
+export const { switchTurn, drawGame,setDraw, popHistory,setMove, setUndo, setMyKilledCoins, setOppKilledCoins, updateMyMove } = gameSession.actions
 
 export function authCheck() {
 

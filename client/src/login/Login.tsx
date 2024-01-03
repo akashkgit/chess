@@ -28,7 +28,7 @@ async function logIn(event:any,setErr:(fn: (l:boolean)=>boolean| boolean)=>void,
             localStorage.setItem("username",emailId.value);
             localStorage.setItem("jwt",jwt)
 
-
+            // alert(" moving ");
             
             nav("/play",{replace:true})
         }

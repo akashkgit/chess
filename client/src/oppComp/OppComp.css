@@ -1,3 +1,4 @@
+
 .OppComp{
     height:5%;
     display:flex;
@@ -19,4 +20,35 @@ background-size:cover;
     background-color: lightblue;
     height:100%;
     width:10%;
+}
+
+
+
+@media (max-height:800px){
+    .OppComp{
+        height:4%;
+        border:2px solid yellow !important;
+        display:flex;
+        width:100%;
+        box-sizing: border-box;
+        justify-content: center;
+        gap:1rem;
+    }
+    .playerIcon{
+    background-image:url("https://www.chess.com/bundles/web/images/black_400.png");
+    width:2.5rem;
+    height:100%;
+    background-size:cover;
+    }
+    .oppDetails{
+        
+        color:white;
+        margin-left:1%;
+    
+    }
+    .clock{
+        background-color: lightblue;
+        height:100%;
+        width:10%;
+    }
 }

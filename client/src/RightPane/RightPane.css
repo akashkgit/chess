@@ -8,5 +8,22 @@ body,.RightPane{
 .RightPane{
     display:grid;
 
-    grid-template: 1fr/var(--optionsPane) calc(0.60*(var(--totalWidth))) 25% auto;
+    grid-template: 1fr/var(--optionsPane) calc(0.70*(var(--totalWidth))) 25% auto;
 }
+@media (max-height:800px){
+
+ 
+*{
+    --bgcolor:#302e2b;
+    }
+    body,.RightPane{
+        background-color: var(--bgcolor);
+    }
+    .RightPane{
+        display:grid;
+        height:100%;
+        box-sizing: border-box;
+        grid-template: 1fr/var(--optionsPane) calc(0.550*(var(--totalWidth))) 25% auto;
+    }
+  
+  }

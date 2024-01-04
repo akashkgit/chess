@@ -10,7 +10,7 @@ import { LogIn } from './login/login';
 import {InPlay} from "./SideBar/InPlay";
 import { configureStore } from "@reduxjs/toolkit"
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { authCheck, globalState, login as log, login, startGame, wsChanger } from "./reduxFiles/configs";
+import { authCheck, globalState, login as log, login, reset, setTimingOption, startGame, wsChanger } from "./reduxFiles/configs";
 import { RightPane } from "./RightPane/RightPane";
 import { AtRest, FriendSelector, RandomGame, PlayOptionsStateMachine,StartPlay } from "./SideBar/SideBar";
 import * as dummy from "./test"
@@ -171,14 +171,19 @@ function App2() {
     return <><h2>app5</h2></>
 }
 
-function acceptRreject(event: any, ws: WebSocket, src: string, disp: any,nav:any) {
-    let choice = event.target.id;
-    let parent = event.target.parentNode;
+function acceptRreject(event: any, ws: WebSocket, src: string, disp: any,nav:any,timingOption:string,start:boolean,acceptance:boolean) {
+    
+    
     (document.querySelector(".notification") as HTMLDivElement).style.display = "none";
+    if(false === acceptance) return;
     //parent.style.display="none";
     //alert(" sending the data"+JSON.stringify({action:"matchManager",type:"requestAck","choice":"accept","src":src,"dest":localStorage.getItem("username")}));
+    let choice = event.target.id;
+    let parent = event.target.parentNode;
     ws.send(JSON.stringify({ action: "matchManager", type: "requestAck", "choice": "accept", "src": src, "dest": localStorage.getItem("username") }))
     disp(startGame({ start: true, myCoin: "black", opp: src }))
+    disp(setTimingOption(timingOption));
+    if(start)disp(reset(true));
     nav("/online/inplay");
 
 }
@@ -188,6 +193,7 @@ export function Notification() {
 
     let [active, activate] = useState(false);
     let [src, setSrc] = useState("");
+    let [timingOption, setTimingOption] = useState("");
     let ws = useSelector((state: any) => state.loginRed.ws);
     let start = useSelector((state: any) => state.game.start);
     
@@ -197,7 +203,7 @@ export function Notification() {
 let nav=useNavigate();
     console.log("ws =>", ws);
     useEffect(() => {
-        let handler = wsHandler(activate, clearId, setSrc, disp);
+        let handler = wsHandler(activate, clearId, setSrc, disp,setTimingOption,start);
         if (ws)
             ws.addEventListener("message", handler)
     }, [ws])
@@ -215,8 +221,8 @@ let nav=useNavigate();
             </div>
             <div className="notificationP2">
                 <div className="sentBy">{src}</div>
-                <span className="accept" onClick={(val) => acceptRreject(val, ws, src, disp,nav)} id="accept"></span>
-                <span className="reject" onClick={(val) => acceptRreject(val, ws, src, disp,nav)} id="reject"></span>
+                <span className="accept" onClick={(val) => acceptRreject(val, ws, src, disp,nav,timingOption,start,true)} id="accept"></span>
+                <span className="reject" onClick={(val) => acceptRreject(val, ws, src, disp,nav,timingOption,start,false)} id="reject"></span>
             </div>
         </div>
     </>

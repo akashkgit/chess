@@ -3,7 +3,7 @@ import React, { useDebugValue, useEffect, useState } from 'react';
 import "./InPlay.css";
 import { raiseDraw, undoHandler, resign, acceptDraw, rejectDraw, acceptUndo, rejectUndo } from "./handlers"
 import { useDispatch, useSelector } from 'react-redux';
-import { drawGame, endGame, popHistory, setDraw, setUndo, switchTurn } from '../reduxFiles/configs';
+import { drawGame, endGame, popHistory, reset, setDraw, setUndo, switchTurn } from '../reduxFiles/configs';
 import { moveACoin } from '../ChessBoard/ChessBoard';
 export function InPlay() {
 
@@ -30,8 +30,9 @@ export function InPlay() {
     })
     let wsHandler = function (message:any){
         let data=JSON.parse(message.data);
+        console.log("oncoming message ",data);
      if("undoACK" === data.type) {
-        alert(" undoing ack ");
+        // alert(" undoing ack ");
         disp(popHistory());
         let lastPair = mappedMoves[mappedMoves.length-1];
      let lastMove = 1 === lastPair.length  ? lastPair[0]: lastPair[1];
@@ -44,15 +45,17 @@ export function InPlay() {
      if(replayMove.kill.kill){
         console.log("restoring from",oppKilledCoins);
         let killedCoin =oppKilledCoins[oppKilledCoins.length-1];
-        let cBoard=document.querySelector("#chessBoard");
-        let divElement:HTMLDivElement=document.createElement("div");
-        divElement.dataset.mycoin=killedCoin.mycoin
-        divElement.dataset.coin=killedCoin.coin
-        divElement.dataset.pos=killedCoin.pos
-        divElement.id=killedCoin.id
-        divElement.className=(killedCoin.class)
-        divElement.style.transform=killedCoin.style.transform;
-        cBoard.appendChild(divElement);
+        (document.querySelector(`[data-pos="${killedCoin.pos}"]`) as HTMLDivElement).style.display="block";
+        // let cBoard=document.querySelector("#chessBoard");
+        // let divElement:HTMLDivElement=document.createElement("div");
+        // divElement.dataset.mycoin=killedCoin.mycoin
+        // divElement.dataset.coin=killedCoin.coin
+        // divElement.dataset.pos=killedCoin.pos
+        // divElement.id=killedCoin.id
+        // divElement.className=(killedCoin.class)
+        // divElement.style.transform=killedCoin.style.transform;
+        // cBoard.appendChild(divElement);
+
         console.log("restoring ",killedCoin);
      }
     //  disp(updateMyMove(replayMove));
@@ -65,6 +68,7 @@ export function InPlay() {
         alert(" draw accepted..will end the match");
         disp(endGame(true));// true is optional 
         disp(drawGame());
+        disp(reset(true));
 
 disp(setDraw(false));
 // should navigate to homepage ....

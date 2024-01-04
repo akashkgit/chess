@@ -22,6 +22,10 @@ const loginSlice = createSlice({
     name: "login",
     initialState: loginInitData,
     reducers: {
+
+        setLoginProps(state,action){
+            return {...state, ...action.payload};
+        },
         login: (state, action) => {
 
 
@@ -46,8 +50,18 @@ const gameSlice = createSlice({
         start: false,
         myCoin: "black",
         opp: "",
+        reset:false,
     },
     reducers: {
+
+        setGameProps(state,action){
+            return {...state, ...action.payload};
+        },
+
+        reset(state,action){
+                 return {...state,reset:action.payload};
+
+        },
         startGame: (state, action) => {
 
 
@@ -72,28 +86,42 @@ const gameSession = createSlice({
         myMove: null,
         moveHistory: [],
         myKilledCoins: [],
+        gameWon:false,
+        wonBy:"",
         oppKilledCoins: [],
         undo: false,
+        timingOption:"",
         gameDrawn: false,
+        resign:false,
         draw: false
     },
     reducers: {
-
-        popHistory(state){
-
-            let lastPair = state.moveHistory[state.moveHistory.length -1 ];
-            let moveHist =[...state.moveHistory];
-            if(1 === lastPair.length){
-                    moveHist.pop();
-                    return {...state, moveHistory:moveHist};
-            }
-            else if ( 0 === lastPair.length){
-                moveHist[moveHist.length -1].pop();
-                return {...state, moveHistory:moveHist};
-            }
-
+        setGameSessionProps(state,action){
+                return {...state, ...action.payload}
         },
 
+        setWin(state,action){
+                return {...state,gameWon:true, wonBy:action.payload};
+        },
+        setTimingOption(state,action){
+            return {...state,timingOption:action.payload}
+        },
+        popHistory(state){
+
+            let lastPair = [...state.moveHistory[state.moveHistory.length -1 ]];
+            let moveHist =[...state.moveHistory];
+            moveHist.pop();
+            if ( 2 === lastPair.length){
+                lastPair.pop();
+                moveHist.push(lastPair);
+            }
+            return {...state, moveHistory:moveHist};
+
+        },
+        setResign(state,action){
+            return {...state, resign:action.payload};
+        }
+        ,
         setUndo(state, action) {
             return { ...state, undo: action.payload }
         },
@@ -124,6 +152,10 @@ const gameSession = createSlice({
 
 
         },
+        setTurn(state,action){
+            return {...state,myTurn:action.payload};
+        }
+        ,
         setMove: (state, action) => {
             //  alert(" setting move"+JSON.stringify(action))
             let history = [...state.moveHistory];
@@ -166,9 +198,9 @@ export let globalState = configureStore({
         "gameSession": gameSession.reducer
     }
 })
-export const { login, wsChanger } = loginSlice.actions
-export const { startGame, endGame } = gameSlice.actions
-export const { switchTurn, drawGame,setDraw, popHistory,setMove, setUndo, setMyKilledCoins, setOppKilledCoins, updateMyMove } = gameSession.actions
+export const { login, wsChanger,setLoginProps} = loginSlice.actions
+export const { startGame, endGame , setGameProps,reset} = gameSlice.actions
+export const { switchTurn, drawGame, setGameSessionProps,setTurn,setResign, setWin,setTimingOption,setDraw, popHistory,setMove, setUndo, setMyKilledCoins, setOppKilledCoins, updateMyMove } = gameSession.actions
 
 export function authCheck() {
 

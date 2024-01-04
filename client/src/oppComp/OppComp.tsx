@@ -11,7 +11,7 @@ export function OppComp(props:any){
     return <div id="OppComp" className={start?"OppComp":"OppComp"}>
     <div className="playerIcon"></div>
     <div className="OppDetails"> {uname}</div>
-    <Clock clockId={props.clockId} tick={props.tick}/>
+    <Clock clockId={props.clockId} tick={props.tick} uname={props.uname}/>
     
          
     {/* <Clock /> */}

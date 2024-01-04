@@ -1,5 +1,5 @@
 import React, { createElement } from 'react';
-import { switchTurn,updateMyMove,setMove, setUndo, endGame, setDraw, drawGame, popHistory } from '../reduxFiles/configs';
+import { switchTurn,updateMyMove,setMove,setUndo, endGame, setDraw, drawGame, popHistory, reset } from '../reduxFiles/configs';
 import { moveACoin } from '../ChessBoard/ChessBoard';
 
 export function resign(ws:WebSocket,uname:string,opp:string,disp:any){
@@ -7,6 +7,7 @@ export function resign(ws:WebSocket,uname:string,opp:string,disp:any){
     ws.send(dataSend);
     alert("resigning from the match")
     disp(endGame(true));// true is optional 
+    disp(reset(true));
 
 }
 export function raiseDraw(ws:WebSocket, uname:string, opp:string,disp:any,draw:boolean){
@@ -16,7 +17,8 @@ export function raiseDraw(ws:WebSocket, uname:string, opp:string,disp:any,draw:b
     }
     let dataSend=JSON.stringify({action:"matchManager","type":"draw","dest":opp,"src":uname})
     ws.send(dataSend);
-    disp(setDraw(true));
+    // disp(setDraw(true));
+    
     // ws.addEventListener("message",(message)=>{
     //     let data=JSON.parse(message.data);
        
@@ -27,7 +29,7 @@ export function  undoHandler(event:any,mappedMoves:any[], turn:boolean,disp:any,
  
  let dataSend=JSON.stringify({action:"matchManager","type":"undo","dest":opp,"src":uname})
  console.log("undo ",dataSend);
- disp(setUndo(true));
+//  disp(setUndo(true));
  ws.send(dataSend)
 }
 
@@ -54,15 +56,16 @@ export function  oppUndoHandler(mappedMoves:any[], turn:boolean,disp:any,oppKill
     if(replayMove.kill.kill){
        console.log("restoring from",oppKilledCoins);
        let killedCoin =oppKilledCoins[oppKilledCoins.length-1];
-       let cBoard=document.querySelector("#chessBoard");
-       let divElement:HTMLDivElement=document.createElement("div");
-       divElement.dataset.mycoin=killedCoin.mycoin
-       divElement.dataset.coin=killedCoin.coin
-       divElement.dataset.pos=killedCoin.pos
-       divElement.id=killedCoin.id
-       divElement.className=(killedCoin.class)
-       divElement.style.transform=killedCoin.style.transform;
-       cBoard.appendChild(divElement);
+       (document.querySelector(`[data-pos="${killedCoin.id}"]`) as HTMLDivElement).style.display="block";
+    //    let cBoard=document.querySelector("#chessBoard");
+    //    let divElement:HTMLDivElement=document.createElement("div");
+    //    divElement.dataset.mycoin=killedCoin.mycoin
+    //    divElement.dataset.coin=killedCoin.coin
+    //    divElement.dataset.pos=killedCoin.pos
+    //    divElement.id=killedCoin.id
+    //    divElement.className=(killedCoin.class)
+    //    divElement.style.transform=killedCoin.style.transform;
+    //    cBoard.appendChild(divElement);
        console.log("restoring ",killedCoin);
     }
     // disp(updateMyMove(replayMove));
@@ -93,7 +96,9 @@ export function acceptDraw(ws:WebSocket,disp:any, uname:string,opp:string){
     disp(endGame(true));// true is optional 
     disp(drawGame());
     disp(setDraw(false));
+    disp(reset(true));
     alert(" will stop the game ");
+    console.log("terminate: draw",dataSend);
     ws.send(dataSend)
 }
 

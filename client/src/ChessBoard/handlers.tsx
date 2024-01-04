@@ -267,7 +267,8 @@ export function check(y: number, x: number, state: { [k: string]: any }, positio
                 alert(" Not permitted! try other Moves or coins");
                 return [false]
             }
-        document.querySelector("#chessBoard").removeChild(state.dest);
+            state.dest.style.display="none";
+            //document.querySelector("#chessBoard").removeChild(state.dest);
         
         // }
         

@@ -1,4 +1,4 @@
-import { setMove, setUndo, startGame, switchTurn,setDraw, endGame, drawGame} from "../reduxFiles/configs";
+import { setMove, setUndo, startGame, setResign, switchTurn,setDraw, endGame, drawGame, setWin, reset, setTurn} from "../reduxFiles/configs";
 
 export let boardMode={
     defaultMode:[
@@ -133,7 +133,7 @@ export let url={
 }
 
 //------------------- Handlers ----------------------------------
-export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
+export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any,setTimingOption:any,start:boolean)=>{
     return (msg:any)=>{
         console.log("incoming msg",msg);
         msg=JSON.parse(msg.data);
@@ -149,6 +149,9 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
 
 
             }
+            if(msg.timingOption){
+              setTimingOption(msg.timingOption)
+            }
             
             if(clearId.current!==0)window.clearInterval(clearId.current);
             clearId.current=window.setInterval(()=>{
@@ -160,8 +163,9 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
         else if(msg && msg.type && msg.type==="requestAck"){
           //  alert(" acknowledgement recieved "+JSON.stringify(msg)+" "+JSON.stringify({start:true,myCoin:"white",opp:msg.dest}))
            disp(startGame({start:true,myCoin:"white",opp:msg.dest}))
-           disp(switchTurn());
-
+          //  disp(switchTurn());
+          disp(setTurn(true));
+           if(start)disp(reset(true));
             
         }
         else if (msg && msg.type && msg.type==="play"){
@@ -172,15 +176,26 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
         else if (msg && msg.type && msg.type==="undo"){
             //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
             console.log("undo ",msg);
-              disp(setUndo(true));
-              // yield control to the opponent....
-              // disp(switchTurn());
+            disp(setUndo(true));
+            // yield control to the opponent....
+            // disp(switchTurn());
           }
           else if (msg && msg.type && msg.type==="draw"){
             //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
             console.log("draw ",msg);
-              disp(setDraw(true));
+            disp(setDraw(true));
+            
               
+              // yield control to the opponent....
+            //   disp(switchTurn());
+            // End match 
+          }
+          else if (msg && msg.type && msg.type==="timeout"){
+            //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
+            console.log("timeout ",msg);
+            disp(setWin(msg.winner));
+            disp(endGame(true));
+            disp(reset(true));
               // yield control to the opponent....
             //   disp(switchTurn());
             // End match 
@@ -189,7 +204,9 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any)=>{
           else if (msg && msg.type && msg.type==="resign"){
             //  alert(" reccoeved the move "+JSON.stringify(msg.coinMoved)+" "+JSON.stringify(msg))
             console.log("draw ",msg);
-              disp(endGame(true)); //true optional
+            disp(endGame(true)); //true optional
+            disp(setResign(true));
+            disp(reset(true));
             //   disp(resignedGame());
               alert(" ending game ....");
               

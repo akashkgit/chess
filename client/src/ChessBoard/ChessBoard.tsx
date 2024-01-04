@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import {boardMode,boxMap, mapping} from "../specs/data"
 import { useDispatch, useSelector } from "react-redux";
 import { check } from "./handlers";
-import { setMyKilledCoins } from "../reduxFiles/configs";
+import { setMyKilledCoins,reset as Reset, setGameProps, setGameSessionProps} from "../reduxFiles/configs";
 let el:HTMLDivElement;
 let drag={dragging:false,click:false,el};
 let state=drag;
@@ -73,7 +73,8 @@ else killedPiece='2';
 if(killed===true){
     //console.log(" removing ",document.querySelector(`[data-pos="${killedCoin}"]`))
     disp(setMyKilledCoins(extractProps(document.querySelector(`[data-pos="${killedCoin}"]`))));
-    document.querySelector("#chessBoard").removeChild(document.querySelector(`[data-pos="${killedCoin}"]`));
+    // document.querySelector("#chessBoard").removeChild(document.querySelector(`[data-pos="${killedCoin}"]`));
+    (document.querySelector(`[data-pos="${killedCoin}"]`) as HTMLDivElement).style.display = "none";
 }
 
 let target:HTMLDivElement=document.querySelector(`[data-pos="${tarPos}"]`) 
@@ -100,28 +101,56 @@ export function ChessBoard(){
     //console.log(boxMap)
     let myCoin=useSelector((state:any)=>state.game.myCoin )
     let start=useSelector((state:any)=>state.game.start )
+    let reset=useSelector((state:any)=>state.game.reset )
     let myTurn=useSelector((state:any)=>state.gameSession.myTurn )
     let gameDrawn=useSelector((state:any)=>state.gameSession.gameDrawn )
+    let resign=useSelector((state:any)=>state.gameSession.resign )
+    let gameWon=useSelector((state:any)=>state.gameSession.gameWon )
+    let wonBy=useSelector((state:any)=>state.gameSession.wonBy )
     let move=useSelector((state:any)=>state.gameSession.move )
     let disp=useDispatch()
     let wsock=useSelector((state:any)=>state.loginRed.ws)
     let opp=useSelector((state:any)=>state.game.opp)
     let uname=useSelector((state:any)=>state.loginRed.uname)
     let [closed,setclosed] = useState(false);
+
+   
 // alert(gameDrawn && !closed);
-    
+    useEffect(()=>{
+            if(start && reset){
+                let coins=document.querySelectorAll(".chessBoard div:not(.resultWrapper)");
+                coins.forEach((coin:HTMLDivElement,id)=>{
+                        coin.style.border="2px solid red";
+                        coin.style.transform="";
+                        coin.style.display="";
+                })
+                disp(setGameSessionProps({moveHistory:[], myKilledCoins:[],gameWon:false,wonBy:"",undo:false,gameDrawn:false,resign:false,draw:false}));
+                disp(Reset(false));
+            }
+            else{
+                let coins=document.querySelectorAll(".chessBoard div:not(.resultWrapper)");
+                coins.forEach((coin:HTMLDivElement,id)=>{
+                        coin.style.border="2px solid blue";
+                        
+                        
+                })
+                
+
+            }
+    },[start,start])
 
     useEffect(()=>{
    // alert(move);
     console.log(move);
         if(move)moveOppCoin(move,disp)
     },[move])
-
+    console.log("popup ",((gameDrawn || gameWon || resign) && !closed ), gameDrawn,gameWon,resign);
     return <div className="ChessBoard" id="chessBoard"  onClick={(event)=>putPiece(event,state,position,myCoin,disp,wsock,uname,opp)} >
-        <div className={"resultWrapper "+((gameDrawn && !closed )?"over":"hidden")}  >
+        <div className={"resultWrapper "+(((gameDrawn || gameWon || resign) && !closed )?"over":"hidden")}  >
         <div className={"resultPopup "}>
-            <div className="close" onClick={()=>{setclosed(true);alert("closing popip");}}></div>
-            <div className="result">Match Aborted</div>
+            
+            <div className="result">{gameDrawn?"Draw":(gameWon?`${wonBy} won !`:"")}{resign?"You Win by Resignation!":""}</div>
+            <div className="resultTxtWrapper"><div className="close" onClick={()=>{setclosed(true);alert("closing popip");}}></div></div>
         </div>
         </div>
    {

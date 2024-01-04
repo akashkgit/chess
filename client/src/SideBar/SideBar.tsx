@@ -2,7 +2,8 @@ import { Link, Outlet, useNavigate, useOutletContext } from "react-router-dom";
 import "./SideBar.css"
 import React, { useContext, useEffect, useState } from "react";
 import { PlayCntxt } from "../RightPane/RightPane";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setTimingOption } from "../reduxFiles/configs";
 export function SideBar() {
     let { playstate, setPlaystate } = useContext(PlayCntxt);
 
@@ -29,7 +30,7 @@ function start(login: boolean, event: any, setOption: any, setStarted: any, setP
 export function StartPlay() {
     const [started, setStarted] = useState(false);
     const [option, setOption] = useState("newGame");
-
+    
     let gameStarted = useSelector((state: any) => state.game.start);
     useEffect(() => {
         if (gameStarted) setOption("inGame");
@@ -39,8 +40,8 @@ export function StartPlay() {
     return <>
         <div className="topSideBar ">
 
-            <div className="play flexy" style={{ display: option === "inGame" ? "flex" : "none", backgroundColor: option === 'inGame' ? "rgba(65,64,62,1)" : "" }}><span className="label1"></span></div>
-            <div className="newGame flexy" style={{ backgroundColor: option === 'newGame' ? "rgba(65,64,62,1)" : "" }}><span className="label2"></span></div>
+            <div className="play flexy" onClick={()=>{setOption("inGame");nav("inplay");}} style={{ display: (option === "inGame" || gameStarted) ? "flex" : "none", backgroundColor: option === 'inGame' ? "rgba(65,64,62,1)" : "" }}><span className="label1"></span></div>
+            <div className="newGame flexy" onClick={()=>{nav("/online");setOption("newGame")}}style={{ backgroundColor: option === 'newGame' ? "rgba(65,64,62,1)" : "" }}><span className="label2"></span></div>
             <div className="games flexy"><span className="label3"></span></div>
             <div className="players flexy"><span className="label4"></span></div>
         </div>
@@ -121,9 +122,11 @@ export function Searching(props: any) {
     let ws = useSelector((state: any) => state.loginRed.ws);
     let uname = useSelector((state: any) => state.loginRed.uname);
     let dest = opponent;
-
+    let disp= useDispatch();
+    console.log("timingOption ",timingOption);  
     useEffect(() => {
-        ping(nav, ws, uname, dest, timingOption, myCoin, rated, setState);
+        
+        ping(nav, ws, uname, dest, timingOption, myCoin, rated, setState,disp);
     })
     return <div className="searchingforplayer">
         <div className="searchingheader">
@@ -153,7 +156,7 @@ export function Searching(props: any) {
     </div>
 }
 export function PlayOptionsStateMachine() {
-    let [state, setState] = useState(["Searching"]);
+    let [state, setState] = useState(["randomGame"]);
     let [opponent, setOpponent] = useState("");
     let curState = state[state.length - 1];
     let [timingOption, setTimingOption] = useState({ type: "Bullet", option: "1 min" });
@@ -165,7 +168,7 @@ export function PlayOptionsStateMachine() {
         timingOption, setTimingOption, optionDD, setOptionDD, rated, setRated, setMyCoin, myCoin
     }
 
-    let searchingProps = { SubmitPlayRequest, state, opponent, setState }
+    let searchingProps = { SubmitPlayRequest, state, opponent, setState ,timingOption}
     console.log(" cur state ", curState, state)
 
 
@@ -378,7 +381,7 @@ export function FriendSelector(props: any) {
     </>
 }
 
-function ping(nav: any, ws: WebSocket, uname: string, dest: string, timingOption: string, mycoin: string, rated: boolean, setState: any) {
+function ping(nav: any, ws: WebSocket, uname: string, dest: string, timingOption: string, mycoin: string, rated: boolean, setState: any,disp:any) {
     // alert("sending request to " + dest);
 
     let toBSent = JSON.stringify({
@@ -397,7 +400,7 @@ function ping(nav: any, ws: WebSocket, uname: string, dest: string, timingOption
         //   alert(message);
         //   console.log("message ",JSON.parse(message.data));
         if (JSON.parse(message.data)?.type === "requestAck") {
-
+        disp(setTimingOption(timingOption));
             setState((state: string[]) => [...state, "end"]);
         }
     })

@@ -45,6 +45,8 @@ export function moveACoin(move:any){
     console.log("undo pos B: ",getComputedStyle(target).transform)
     //console.log(target.style.transform+" <= "+"after"
     target.style.transform =getComputedStyle(target).transform + `translateY(${y * -100}%) translateX(${x * -100}%)`
+
+
     console.log("undo pos A: ",getComputedStyle(target).transform)
     //console.log(target.style.transform)
 
@@ -144,6 +146,14 @@ export function ChessBoard(){
     console.log(move);
         if(move)moveOppCoin(move,disp)
     },[move])
+
+    let lowScreen = window.matchMedia("(max-height:800px)");
+    let viewbox ="0 0 100 87"
+    if(lowScreen){
+         viewbox ="0 0 100 93"
+         
+    }
+    
     console.log("popup ",((gameDrawn || gameWon || resign) && !closed ), gameDrawn,gameWon,resign);
     return <div className="ChessBoard" id="chessBoard"  onClick={(event)=>putPiece(event,state,position,myCoin,disp,wsock,uname,opp)} >
         <div className={"resultWrapper "+(((gameDrawn || gameWon || resign) && !closed )?"over":"hidden")}  >
@@ -167,7 +177,46 @@ export function ChessBoard(){
 //  })
 //    }).flat()
 }
+{myCoin === "white" && <svg viewBox={viewbox} className="coordinates">
+<text x={"0.25"} y={ lowScreen?"3.5":"3.5" } font-size="2.8" className="coordinate-light">8</text>
+            <text x={"0.25"} y={lowScreen?"15.75":"13.75"} font-size="2.8" className="coordinate-dark">7</text>
+            <text x={"0.25"} y={lowScreen?"26.25":"25.25"} font-size="2.8" className="coordinate-light">5</text>
+            <text x={"0.25"} y={lowScreen?"37.75":"35.75"} font-size="2.8" className="coordinate-dark">5</text>
+            <text x={"0.25"} y={lowScreen?"49.25":"47.25"} font-size="2.8" className="coordinate-light">4</text>
+            <text x={"0.25"} y={lowScreen?"61.75":"58.75"} font-size="2.8" className="coordinate-dark">3</text>
+            <text x={"0.25"} y={lowScreen?"73.25":"68.25"} font-size="2.8" className="coordinate-light">2</text>
+            <text x={"0.25"} y={lowScreen?"84.25":"79.75"} font-size="2.8" className="coordinate-dark">1</text>
+            
+            <text x="10" y="86" font-size="2.8" className="coordinate-dark">a</text>
+            <text x="22.5" y="86" font-size="2.8" className="coordinate-light">b</text>
+            <text x="35" y="86" font-size="2.8" className="coordinate-dark">c</text>
+            <text x="47.5" y="86" font-size="2.8" className="coordinate-light">d</text>
+            <text x="60" y="86" font-size="2.8" className="coordinate-dark">e</text>
+            <text x="73" y="86" font-size="2.8" className="coordinate-light">f</text>
+            <text x="85" y="86" font-size="2.8" className="coordinate-dark">g</text>
+            <text x="97.5" y="86" font-size="2.8" className="coordinate-light">h</text>
+        </svg>
+}
 
+        {myCoin ==="black" && <svg viewBox={viewbox} className="coordinates">
+        <text x={"0.25"} y={ lowScreen?"3.5":"3.5" } font-size="2.8" className="coordinate-light">1</text>
+            <text x={"0.25"} y={lowScreen?"15.75":"13.75"} font-size="2.8" className="coordinate-dark">2</text>
+            <text x={"0.25"} y={lowScreen?"26.25":"25.25"} font-size="2.8" className="coordinate-light">3</text>
+            <text x={"0.25"} y={lowScreen?"37.75":"35.75"} font-size="2.8" className="coordinate-dark">4</text>
+            <text x={"0.25"} y={lowScreen?"49.25":"47.25"} font-size="2.8" className="coordinate-light">5</text>
+            <text x={"0.25"} y={lowScreen?"61.75":"58.75"} font-size="2.8" className="coordinate-dark">6</text>
+            <text x={"0.25"} y={lowScreen?"73.25":"68.25"} font-size="2.8" className="coordinate-light">7</text>
+            <text x={"0.25"} y={lowScreen?"84.25":"79.75"} font-size="2.8" className="coordinate-dark">8</text>
+            <text x="10" y="86" font-size="2.8" className="coordinate-dark">h</text>
+            <text x="22.5" y="86" font-size="2.8" className="coordinate-light">g</text>
+            <text x="35" y="86" font-size="2.8" className="coordinate-dark">f</text>
+            <text x="47.5" y="86" font-size="2.8" className="coordinate-light">e</text>
+            <text x="60" y="86" font-size="2.8" className="coordinate-dark">d</text>
+            <text x="73" y="86" font-size="2.8" className="coordinate-light">c</text>
+            <text x="85" y="86" font-size="2.8" className="coordinate-dark">b</text>
+            <text x="97.5" y="86" font-size="2.8" className="coordinate-light">a</text>
+        </svg>
+}
 {
     myCoin==="white" && Object.keys(mapping["white"]).map((key)=>{
         
@@ -178,7 +227,7 @@ export function ChessBoard(){
         // if(letters[0]==='b')pEvents=false
         console.log(letters[0]," => ",pEvents,pEvents && myTurn)
 
-        return <div   style={{pointerEvents:pEvents &&  start && myTurn ?"auto":"none"}}  draggable  onClick={(event)=>moveCoin(event,drag,position,myCoin)} onDragStart={(event:any)=>{mouseDown(event,drag,position);}} data-mycoin="white" data-pos={key} data-coin={mapping["white"][key]} className={`chessBox sq_${key}W box_${mapping["white"][key]}`}   id={key} key={key}></div>
+        return <div   style={{pointerEvents:pEvents &&  start && myTurn ?"auto":"none"}} data-curPos={key}   onClick={(event)=>moveCoin(event,drag,position,myCoin)} /*onDragStart={(event:any)=>{mouseDown(event,drag,position);}}*/ data-mycoin="white" data-pos={key} data-coin={mapping["white"][key]} className={`chessBox sq_${key}W box_${mapping["white"][key]}`}   id={key} key={key}></div>
         
     })
  
@@ -192,7 +241,7 @@ export function ChessBoard(){
         // if(letters[0]==='w')pEvents=false
         console.log(letters[0]," -> ",pEvents)
         
-        return <div  style={{pointerEvents:pEvents && myTurn}}     draggable  onClick={(event)=>moveCoin(event,drag,position,myCoin)} data-myCoin="black" onDragStart={(event:any)=>{mouseDown(event,drag,position);}}  data-pos={key} data-coin={mapping["black"][key]} className={`chessBox sq_${key}B box_${mapping["black"][key]}`}   id={key} key={key}></div>
+        return <div  style={{pointerEvents:pEvents && myTurn}}    data-curPos={key}  onClick={(event)=>moveCoin(event,drag,position,myCoin)} data-myCoin="black" /*onDragStart={(event:any)=>{mouseDown(event,drag,position);}}*/  data-pos={key} data-coin={mapping["black"][key]} className={`chessBox sq_${key}B box_${mapping["black"][key]}`}   id={key} key={key}></div>
         
     })
  

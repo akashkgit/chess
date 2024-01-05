@@ -195,6 +195,8 @@ export function Notification() {
     let [src, setSrc] = useState("");
     let [timingOption, setTimingOption] = useState("");
     let ws = useSelector((state: any) => state.loginRed.ws);
+    let opp = useSelector((state: any) => state.game.opp);
+    let uname = useSelector((state: any) => state.game.uname);
     let start = useSelector((state: any) => state.game.start);
     
     let disp = useDispatch();
@@ -203,7 +205,7 @@ export function Notification() {
 let nav=useNavigate();
     console.log("ws =>", ws);
     useEffect(() => {
-        let handler = wsHandler(activate, clearId, setSrc, disp,setTimingOption,start);
+        let handler = wsHandler(activate, clearId, setSrc, disp,setTimingOption,start,opp,uname,ws);
         if (ws)
             ws.addEventListener("message", handler)
     }, [ws])

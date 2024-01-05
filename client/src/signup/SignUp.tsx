@@ -3,7 +3,7 @@ import "./login.css"
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import { DirectSignUp, UserDetails } from "./DirectSignUp";
 export function authResp(token: any) {
-    alert(" inside auth serverr");
+    // alert(" inside auth serverr");
 }
 function tooltip(event: any) {
     console.log(event.target);
@@ -31,7 +31,7 @@ export function SignUp() {
             let resp = await succ.json();
             console.log("res ", resp)
             if (2 != succ.status / 100) {
-                alert(" Error while signing in using google !");
+                // alert(" Error while signing in using google !");
             }
             else {
                 localStorage.setItem("jwt", resp.jwt);
@@ -158,7 +158,7 @@ function StartState(props: { [idx: string]: any }) {
             let resp = await succ.json();
             console.log("res ", resp)
             if (2 != succ.status / 100) {
-                alert(" Error while signing in using google !");
+                // alert(" Error while signing in using google !");
             }
             else {
                 localStorage.setItem("jwt", resp.jwt);

@@ -12,7 +12,7 @@ export function resign(ws:WebSocket,uname:string,opp:string,disp:any){
 }
 export function raiseDraw(ws:WebSocket, uname:string, opp:string,disp:any,draw:boolean){
     if(draw){
-        alert(" pending draw request");
+        // alert(" pending draw request");
         return;
     }
     let dataSend=JSON.stringify({action:"matchManager","type":"draw","dest":opp,"src":uname})
@@ -97,7 +97,7 @@ export function acceptDraw(ws:WebSocket,disp:any, uname:string,opp:string){
     disp(drawGame());
     disp(setDraw(false));
     disp(reset(true));
-    alert(" will stop the game ");
+    // alert(" will stop the game ");
     console.log("terminate: draw",dataSend);
     ws.send(dataSend)
 }

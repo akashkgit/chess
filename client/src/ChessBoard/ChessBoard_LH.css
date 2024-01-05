@@ -68,7 +68,11 @@ width:100%;
 
 
 
-
+.coordinates{
+    border:2px solid yellow;
+    position:absolute;
+    top:0;
+}
 .resultWrapper{
     pointer-events: all !important;
     

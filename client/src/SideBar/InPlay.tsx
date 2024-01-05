@@ -42,6 +42,38 @@ export function InPlay() {
      console.log("replay move",replayMove);
      moveACoin(replayMove);
      console.log("killed? ",replayMove.kill.kill)
+
+        // --------- curpos estimation -------------------
+
+    let pos =revertPos;
+    let newPos="";
+    let target:HTMLElement=document.querySelector(`[data-pos="${replayMove.coin.boxId}"]`) 
+    let oppCoin = target.dataset.mycoin;
+    if("white" === oppCoin){
+            let curPos = target.dataset.curpos;
+            console.log("curPos ",curPos, origin);
+            newPos = (Number(curPos.split("")[0]) +  pos[1]) +""+ String.fromCharCode((curPos.split("")[1].charCodeAt(0) + (-1 * pos[0])));
+            // alert(pos+" "+newPos+" "+curPos);
+
+    }
+    else if("black" === oppCoin){
+        let curPos = target.dataset.curpos;
+        console.log("curPos ",curPos, origin);
+        newPos = (Number(curPos.split("")[0]) -  pos[1]) +""+ String.fromCharCode((curPos.split("")[1].charCodeAt(0) + (  pos[0])));
+        //alert(pos+" "+newPos+" "+curPos+" ");//+(Number(curPos.split("")[0]) -  switching[1])+" "+" "+curPos.split("")[0]+" 0: "+(Number(curPos.split("")[0])-switching[1])+" | "+switching[1]+" "+curPos.split("")[1].charCodeAt(0));
+
+}
+target.dataset.curpos = newPos;
+alert(target.dataset.curpos);
+
+
+
+
+
+
+
+
+        //-----------------------------------------------------
      if(replayMove.kill.kill){
         console.log("restoring from",oppKilledCoins);
         let killedCoin =oppKilledCoins[oppKilledCoins.length-1];
@@ -65,7 +97,7 @@ export function InPlay() {
         disp(setUndo(false));
     }
    else  if("drawACK"===data.type){
-        alert(" draw accepted..will end the match");
+        // alert(" draw accepted..will end the match");
         disp(endGame(true));// true is optional 
         disp(drawGame());
         disp(reset(true));
@@ -97,7 +129,7 @@ disp(setDraw(false));
                 <div className={'draw'+(draw?" disabled":"")} onClick={() => { raiseDraw(ws, uname, opp, disp,draw) }}><span className='halflogo'>Draw</span></div>
                 <div className={'resign'} onClick={() => resign(ws, uname, opp, disp)}><span className='resignlogo'>Resign</span></div>
                 <div className={'undo'+(undo?" disabled":"")} onClick={(event) => undoHandler(event, mappedMoves, turn, disp, oppKilledCoins, ws, opp, uname, undo)}><span className='undologo'></span></div>
-                <div className='pause'><span className='pauselogo'></span></div>
+                <div className='pause' ><span className='pauselogo'></span></div>
                 <div className='start'><span className='startlogo'></span></div>
                 <div className='back'><span className='backlogo'></span></div>
                 <div className='forward'><span className='forwardlogo'></span></div>
@@ -111,8 +143,8 @@ disp(setDraw(false));
 
                         <div className={'movePair ' + (0 === (id + 1) % 2 ? "even" : "")}>
                             <h4>{id + 1}.</h4>
-                            {arr[0] && <div className={'one ' + ((id === mappedMoves.length - 1 && !arr[1]) ? "lastMove" : "")}>{arr[0].coin.boxId}</div>}
-                            {arr[1] && <div className={'two ' + ((id === mappedMoves.length - 1) ? "lastMove" : "")}>{arr[1].coin.boxId}</div>}
+                            {arr[0] && <div className={'one ' + ((id === mappedMoves.length - 1 && !arr[1]) ? "lastMove" : "")}>{arr[0].coin.curPos}</div>}
+                            {arr[1] && <div className={'two ' + ((id === mappedMoves.length - 1) ? "lastMove" : "")}>{arr[1].coin.curPos}</div>}
                         </div>
                     </>
                 })}
@@ -132,7 +164,6 @@ disp(setDraw(false));
             <div className={draw ? "undoRequest" : 'hidden'}>
                 <div> Accept Draw?</div>
                 <div className='drawButtons'>
-
                     <button className='rejectDraw' onClick={() => rejectDraw(ws, disp, uname, opp)}><span></span></button>
                     <button className='acceptDraw' onClick={() => acceptDraw(ws, disp, uname, opp)}><span></span></button>
                 </div>

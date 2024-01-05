@@ -133,7 +133,7 @@ export let url={
 }
 
 //------------------- Handlers ----------------------------------
-export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any,setTimingOption:any,start:boolean)=>{
+export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any,setTimingOption:any,start:boolean,opp:string, uname:string, ws:WebSocket)=>{
     return (msg:any)=>{
         console.log("incoming msg",msg);
         msg=JSON.parse(msg.data);
@@ -165,7 +165,12 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any,setTimingOpti
            disp(startGame({start:true,myCoin:"white",opp:msg.dest}))
           //  disp(switchTurn());
           disp(setTurn(true));
-           if(start)disp(reset(true));
+           if(start){
+            disp(reset(true));
+            let dataSend=JSON.stringify({action:"matchManager","type":"resign","dest":opp,"src":uname});
+            ws.send(dataSend);
+
+           }
             
         }
         else if (msg && msg.type && msg.type==="play"){
@@ -208,7 +213,7 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any,setTimingOpti
             disp(setResign(true));
             disp(reset(true));
             //   disp(resignedGame());
-              alert(" ending game ....");
+              // alert(" ending game ....");
               
               // yield control to the opponent....
             //   disp(switchTurn());

@@ -45,7 +45,7 @@ export function Clock(props:any) {
             if(0 === Number(minute) && 0 === Number(second) && start && uname === actualUName){
                     disp(endGame(true));
                     disp(setWin(opp));
-                    alert(opp+" wins ");
+                    // alert(opp+" wins ");
 
                     ws.send(JSON.stringify({action:"matchManager","winner":opp,"type":"timeout","dest":opp,"src":actualUName}))
                     disp(Reset(true));

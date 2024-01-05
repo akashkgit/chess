@@ -238,8 +238,28 @@ if(state.click===true){
     }
 
     disp(switchTurn());
-    let dataSend=JSON.stringify({action:"matchManager","type":"play","coinMoved":{coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]},"check":check},"dest":opp,"src":uname})
-    let dataToStore=JSON.stringify({coin:{"type":details[1],"boxId":origin.dataset.pos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]},"check":check});
+    let pos =[switching[1],switching[2]];
+    let newPos="";
+    if("black" === myCoin){
+            let curPos = origin.dataset.curpos;
+            console.log("curPos ",curPos, origin);
+            newPos = (Number(curPos.split("")[0]) +  pos[1]) +""+ String.fromCharCode((curPos.split("")[1].charCodeAt(0) + (-1 * pos[0])));
+            // alert(pos+" "+newPos+" "+curPos);
+
+    }
+    else if("white" === myCoin){
+        let curPos = origin.dataset.curpos;
+        console.log("curPos ",curPos, origin);
+        newPos = (Number(curPos.split("")[0]) -  pos[1]) +""+ String.fromCharCode((curPos.split("")[1].charCodeAt(0) + (  pos[0])));
+        //alert(pos+" "+newPos+" "+curPos+" ");//+(Number(curPos.split("")[0]) -  switching[1])+" "+" "+curPos.split("")[0]+" 0: "+(Number(curPos.split("")[0])-switching[1])+" | "+switching[1]+" "+curPos.split("")[1].charCodeAt(0));
+
+}
+origin.dataset.curpos = newPos;
+if(switching[5]){
+    newPos="x"+newPos;
+}
+    let dataSend=JSON.stringify({action:"matchManager","type":"play","coinMoved":{coin:{"type":details[1],"boxId":origin.dataset.pos,"curPos":newPos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]},"check":check},"dest":opp,"src":uname})
+    let dataToStore=JSON.stringify({coin:{"type":details[1],"boxId":origin.dataset.pos,"curPos":newPos},"Pos":[switching[1],switching[2]],"kill":{"kill":switching[3],dataPos:switching[4]},"check":check});
     disp(updateMyMove(dataToStore));
     
     if(check)alert(" Check ");

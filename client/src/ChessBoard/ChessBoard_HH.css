@@ -61,11 +61,13 @@ width:100%;
     
     fill:#779954;
     background-color: white;
+    pointer-events: none;
 }
 
 
 .coordinate-dark{
     fill:white;
+    pointer-events: none;
     background-color: white;
 }
 

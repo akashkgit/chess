@@ -1,5 +1,5 @@
 import React, { createElement } from 'react';
-import { switchTurn,updateMyMove,setMove,setUndo, endGame, setDraw, drawGame, popHistory, reset } from '../reduxFiles/configs';
+import { switchTurn,updateMyMove,setMove,setUndo, endGame, setDraw, drawGame, popHistory, reset, setPaused, setPause, setResume } from '../reduxFiles/configs';
 import { moveACoin } from '../ChessBoard/ChessBoard';
 
 export function resign(ws:WebSocket,uname:string,opp:string,disp:any){
@@ -102,8 +102,43 @@ export function acceptDraw(ws:WebSocket,disp:any, uname:string,opp:string){
     ws.send(dataSend)
 }
 
+export function acceptPause(ws:WebSocket,disp:any, uname:string,opp:string){
+
+    let dataSend=JSON.stringify({action:"matchManager","type":"pauseACK","dest":opp,"src":uname})
+    disp(setPaused(true))
+    disp(setPause(false))
+    alert("terminate: pause"+dataSend);
+    ws.send(dataSend)
+}
+
+
+export function rejectPause(ws:WebSocket,disp:any, uname:string,opp:string){
+
+    let dataSend=JSON.stringify({action:"matchManager","type":"pauseNACK","dest":opp,"src":uname})
+    disp(setPause(false));
+    console.log("terminate: pause",dataSend);
+    ws.send(dataSend)
+}
 export function rejectDraw(ws:WebSocket,disp:any,uname:string,opp:string){
     let dataSend=JSON.stringify({action:"matchManager","type":"drawNACK","dest":opp,"src":uname})
     disp(setDraw(false));
+    ws.send(dataSend)
+}
+
+export function acceptResume(ws:WebSocket,disp:any, uname:string,opp:string){
+
+    let dataSend=JSON.stringify({action:"matchManager","type":"resumeACK","dest":opp,"src":uname})
+    disp(setPaused(false))
+    disp(setResume(false))
+    alert("resume: pause"+dataSend);
+    ws.send(dataSend)
+}
+
+
+export function rejectResume(ws:WebSocket,disp:any, uname:string,opp:string){
+
+    let dataSend=JSON.stringify({action:"matchManager","type":"resumeNACK","dest":opp,"src":uname})
+    disp(setResume(false));
+    console.log("terminate: resume",dataSend);
     ws.send(dataSend)
 }

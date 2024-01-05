@@ -20,6 +20,9 @@
     display: inline-block;
     margin:0 !important;
 }
+.hiddenVisibility{
+    visibility: hidden;
+}
 .lastMove {
     background-color: #ffffff33;
     border-bottom: 3px solid #ffffff1a;
@@ -99,7 +102,12 @@
     background: url("../assets/pause.png");
     background-size: contain;   
 }
-
+.pauselogo{
+    width:1rem;
+    height:1rem;
+    /* background: url("../assets/play.png"); */
+    background-size: contain;   
+}
 .undoRequest{
     border:2px solid red;
     width:80%;

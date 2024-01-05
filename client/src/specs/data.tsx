@@ -1,4 +1,4 @@
-import { setMove, setUndo, startGame, setResign, switchTurn,setDraw, endGame, drawGame, setWin, reset, setTurn} from "../reduxFiles/configs";
+import { setMove, setUndo, startGame, setResign, switchTurn,setDraw, endGame, drawGame, setWin, reset, setTurn, setPause, setResume} from "../reduxFiles/configs";
 
 export let boardMode={
     defaultMode:[
@@ -218,6 +218,12 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any,setTimingOpti
               // yield control to the opponent....
             //   disp(switchTurn());
             // End match 
+          }
+          else if (msg && msg.type && msg.type === "pause"){
+            disp(setPause(true));
+          }
+          else if (msg && msg.type && msg.type === "resume"){
+            disp(setResume(true));
           }
     }
 }

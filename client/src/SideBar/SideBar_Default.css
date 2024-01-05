@@ -638,8 +638,8 @@ align-items: center;
 .timeOption{
     position:relative;
 }
-.hidden{
-    display:none;
+.hidden.hidden{
+    display:none !important;
 }
 .dropDown{
     position:absolute;

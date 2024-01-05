@@ -11,6 +11,7 @@ export function Clock(props:any) {
     let actualUName = useSelector((state:any)=>state.loginRed.uname);
     let start = useSelector((state:any)=>state.game.start);
     let opp = useSelector((state:any)=>state.game.opp);
+    let paused = useSelector((state:any)=>state.gameSession.paused);
     let ws = useSelector((state:any)=>state.loginRed.ws);
     // console.log(" MY TURN ",props.tick)
     let [minute, setMinute] = useState("00")
@@ -61,7 +62,7 @@ export function Clock(props:any) {
 
         
         let id:NodeJS.Timeout;
-        
+        if(true === paused)  {  clearInterval(intervalId.current);  return;   }
         if(true === props.tick){
         id =setInterval(() => {
             
@@ -101,7 +102,7 @@ export function Clock(props:any) {
         
     }
 
-    }, [props.tick])
+    }, [props.tick,paused])
     return <>
         <div className="clockContainer" id={props.clockId}>
             <svg width="107" className={"clockSVG"}height="96" viewBox="0 0 107 96" fill="none" xmlns="http://www.w3.org/2000/svg">

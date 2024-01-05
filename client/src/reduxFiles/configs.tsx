@@ -82,6 +82,8 @@ const gameSession = createSlice({
     name: "gameSession",
     initialState: {
         myTurn: false,
+        paused:false,
+        pause:false,
         move: null,
         myMove: null,
         moveHistory: [],
@@ -93,13 +95,19 @@ const gameSession = createSlice({
         timingOption:"",
         gameDrawn: false,
         resign:false,
-        draw: false
+        draw: false,
+        resume:false
     },
     reducers: {
         setGameSessionProps(state,action){
                 return {...state, ...action.payload}
         },
-
+        setPause(state,action){
+            return {...state,pause:action.payload}
+        },
+        setPaused(state,action){
+            return {...state, paused:action.payload};
+        },
         setWin(state,action){
                 return {...state,gameWon:true, wonBy:action.payload};
         },
@@ -142,6 +150,9 @@ const gameSession = createSlice({
             console.log("oppkilledcoins", state.oppKilledCoins)
             return { ...state, oppKilledCoins: [...state.oppKilledCoins, action.payload] }
 
+        },
+        setResume(state,action){
+            return {...state,resume:action.payload}  
         },
 
         switchTurn: (state) => {
@@ -200,7 +211,7 @@ export let globalState = configureStore({
 })
 export const { login, wsChanger,setLoginProps} = loginSlice.actions
 export const { startGame, endGame , setGameProps,reset} = gameSlice.actions
-export const { switchTurn, drawGame, setGameSessionProps,setTurn,setResign, setWin,setTimingOption,setDraw, popHistory,setMove, setUndo, setMyKilledCoins, setOppKilledCoins, updateMyMove } = gameSession.actions
+export const { switchTurn, drawGame, setPause,setPaused,setResume,setGameSessionProps,setTurn,setResign, setWin,setTimingOption,setDraw, popHistory,setMove, setUndo, setMyKilledCoins, setOppKilledCoins, updateMyMove } = gameSession.actions
 
 export function authCheck() {
 

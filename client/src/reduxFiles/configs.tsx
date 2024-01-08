@@ -30,7 +30,7 @@ const loginSlice = createSlice({
 
 
 
-            return { ...state, login: action.payload.login, uname: action.payload.uname ? action.payload.uname : state.uname };
+            return { ...state, login: action.payload.login, uname: action.payload.uname || action.payload.uname === "" ? action.payload.uname : state.uname };
 
 
         },

@@ -118,11 +118,14 @@ export function ChessBoard(){
 
    
 // alert(gameDrawn && !closed);
+
     useEffect(()=>{
-            if(start && reset){
+        
+        if(reset){
+                // alert(" resetting coins ");
                 let coins=document.querySelectorAll(".chessBoard div:not(.resultWrapper)");
                 coins.forEach((coin:HTMLDivElement,id)=>{
-                        coin.style.border="2px solid red";
+                        // coin.style.border="2px solid red";
                         coin.style.transform="";
                         coin.style.display="";
                 })
@@ -132,14 +135,14 @@ export function ChessBoard(){
             else{
                 let coins=document.querySelectorAll(".chessBoard div:not(.resultWrapper)");
                 coins.forEach((coin:HTMLDivElement,id)=>{
-                        coin.style.border="2px solid blue";
+                        // coin.style.border="2px solid blue";
                         
                         
                 })
                 
 
             }
-    },[start,start])
+    },[start,reset])
 
     useEffect(()=>{
    // alert(move);

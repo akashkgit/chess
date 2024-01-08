@@ -129,7 +129,7 @@ export let mapping:{[key:string]:{[key:string]:string}}={
 
 
 export let url={
-    "logsign":"https://s38121vp76.execute-api.us-east-1.amazonaws.com"
+    "logsign":"https://chess.akasharchives.com:8081"
 }
 
 //------------------- Handlers ----------------------------------

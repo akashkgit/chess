@@ -1,5 +1,5 @@
 
-import { wsChanger,login} from "../reduxFiles/configs"
+import { wsChanger,login, reset, setGameProps} from "../reduxFiles/configs"
 export function logout(disp:any,ws:any,nav:any){
     localStorage.removeItem("jwt")
     localStorage.removeItem("username")
@@ -8,6 +8,9 @@ export function logout(disp:any,ws:any,nav:any){
     nav("/");
     disp(wsChanger({ws:null}));
     disp(login({login:false,uname:""}));
+    disp(setGameProps({opp:"",start:false}));
+    
+    disp(reset(true));
     
     
 

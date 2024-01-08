@@ -6,7 +6,7 @@ import { createHashRouter, RouterProvider, useNavigate } from 'react-router-dom'
 import { App } from "./App/app";
 import { SignUp } from './signup/SignUp';
 import { DirectSignUp } from "./signup/DirectSignUp"
-import { LogIn } from './login/login';
+import { LogIn } from "./login/Login";
 import {InPlay} from "./SideBar/InPlay";
 import { configureStore } from "@reduxjs/toolkit"
 import { Provider, useDispatch, useSelector } from "react-redux";

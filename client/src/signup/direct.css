@@ -18,7 +18,7 @@
 .chessLabel2 a{
     background:url('https://www.chess.com/bundles/web/images/logo/logo.37fd465e.svg') no-repeat 50%;
     text-indent: -990rem;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     width:13rem;
     height: 100%;
     background-size:contain ;

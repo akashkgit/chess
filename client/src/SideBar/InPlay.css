@@ -13,7 +13,7 @@
 .disabled{
     pointer-events: none;
     opacity:0.5;
-    border:2px solid red;
+    /* border:2px solid red; */
 }
 .movePair h4{
     width:auto !important;
@@ -109,7 +109,7 @@
     background-size: contain;   
 }
 .undoRequest{
-    border:2px solid red;
+    /* border:2px solid red; */
     width:80%;
     margin:auto auto;
     gap:1.5rem;
@@ -132,7 +132,7 @@
     display:flex;
     border:none !important;
     
-    border:2px solid red;
+    /* border:2px solid red; */
     width:100%;
     gap:1rem;
     box-sizing: border-box;

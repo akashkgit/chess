@@ -157,6 +157,7 @@ export function Searching(props: any) {
 }
 export function PlayOptionsStateMachine() {
     let [state, setState] = useState(["randomGame"]);
+    
     let [opponent, setOpponent] = useState("");
     let curState = state[state.length - 1];
     let [timingOption, setTimingOption] = useState({ type: "Bullet", option: "1 min" });
@@ -169,22 +170,38 @@ export function PlayOptionsStateMachine() {
     }
 
     let searchingProps = { SubmitPlayRequest, state, opponent, setState ,timingOption}
-    console.log(" cur state ", curState, state)
-
-
+    
+    function goBack(){
+        // alert(" going back/...");
+        setState((state)=>{
+            
+            state.pop();
+            // alert(state);
+            return [...state];
+        })
+    }
+    // let arrow=<span className="backArrow" onClick={goBack}></span>
+    
     if ("randomGame" === curState) {
 
-        let res = <RandomGame state={state} setState={setState} />
-        return res;
+        return <>
+
+        <span className={"backArrow "+(1 >= state.length?"hidden":"") } onClick={goBack}></span>
+        <RandomGame state={state} setState={setState} />
+        </>
+        
     }
     else if ("friend" === curState) {
-        return <FriendSelector setOpponent={setOpponent} state={state} setState={setState} />
+        
+        return <><span className={"backArrow "+(1 >= state.length?"hidden":"") } onClick={goBack}></span><FriendSelector setOpponent={setOpponent} state={state} setState={setState} /></>
     }
     else if ("SubmitPlayRequest" === curState) {
-        return <SubmitPlayRequest opp={opponent} {...SubmitPlayRequestProps} state={state} setState={setState} />
+        
+        return <><span className={"backArrow "+(1 >= state.length?"hidden":"") } onClick={goBack}></span><SubmitPlayRequest opp={opponent} {...SubmitPlayRequestProps} state={state} setState={setState} /></>
     }
     else if ("Searching" === curState) {
-        return <Searching  {...searchingProps} />
+        
+        return <><span className={"backArrow "+(1 >= state.length?"hidden":"") } onClick={goBack}></span><Searching  {...searchingProps} /></>
     }
     else if ("end" === curState) {
         // alert(" ending ")
@@ -212,7 +229,7 @@ export function RandomGame(props: any) {
     let login = useSelector((state: any) => state.loginRed.login);
     return <>
         <div className="newGameEx" style={{ display: option === "newGame" ? "flex" : "none" }}>
-            <button className="timeOption">
+            <button className="timeOption disabled">
                 <span></span>
                 <h5>{timingOption.option}</h5>
                 <span className="dropDown" onClick={() => setOptionDD((old) => !old)}></span>
@@ -236,19 +253,19 @@ export function RandomGame(props: any) {
                     })}
 
             </div>
-            <button className="playButton" id="randomPlay" onClick={(event: any) => start(login, event, setOption, setStarted, setPlayState)}>Play</button>
+            <button className="playButton disabled" id="randomPlay" onClick={(event: any) => start(login, event, setOption, setStarted, setPlayState)}>Play</button>
             <div className="custom">Custom</div>
             <div >
                 <div className="TOPlayAFriend" onClick={() => props.setState((state: string[]) => { return [...state, "friend"]; })}>
                     <div className="TOIcon"></div>
                     <div>
-                        <div className="TOTitle">Play a Friend</div>
+                        <div className="TOTitle" style={{color:"white"}}>Play a Friend</div>
 
                     </div>
                 </div>
             </div>
             <div  >
-                <div className="TOTournaments">
+                <div className="TOTournaments disabled">
                     <div className="TOIcon"></div>
                     <div>
                         <div className="TOTitle">Tournaments</div>

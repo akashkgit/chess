@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import "./login.css"
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import { DirectSignUp, UserDetails } from "./DirectSignUp";
+import { serverUrl } from "../specs/config";
 export function authResp(token: any) {
     // alert(" inside auth serverr");
 }
@@ -142,7 +143,7 @@ function StartState(props: { [idx: string]: any }) {
 
     function resp(cred: any) {
 
-        let url = "http://localhost:3000/token/signup"
+        let url = serverUrl+"token/signup"
 
         type optionSpec = RequestInit;
         let options: optionSpec = {

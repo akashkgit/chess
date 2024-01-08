@@ -24,23 +24,27 @@
   "googleapis": "^129.0.0",
   
     
-  "nodemon": "^3.0.2",
+  "https": "^1.0.0",
   
     
-  "tsc": "^2.0.4",
-  
-    
-  "typescript": "^5.3.3"
+  "nodemon": "^3.0.2"
   
   },
   
   "scripts": {
   
     
-  "start": "npx tsc --watch ",
+  "start": "tsc --watch ",
   
     
   "nodemon": " npx nodemon ./dist/server.js"
+  
+  },
+  
+  "devDependencies": {
+  
+    
+  "typescript": "^5.3.3"
   
   }
 }

@@ -2,7 +2,7 @@
     background-color:#262421;
     padding:0.5rem;
     border-radius:0.4rem;
-
+    
     box-sizing: border-box;
     color:white;
   
@@ -28,8 +28,9 @@
    
 }
 .clockSVG  line{
-    background-color:blue;
+    /* background-color:blue; */
     /* stroke: black; */
+
     transform-box:border-box;
     transform-origin: center left;
         
@@ -46,7 +47,10 @@
 }
 
 .clockContainer span{
-    width:5rem;
+    color:grey;
+    width:6rem;
     font-size:2rem;
+
+    /* border:2px solid red; */
 }
 

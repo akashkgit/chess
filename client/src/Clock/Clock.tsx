@@ -10,6 +10,7 @@ export function Clock(props: any) {
     let uname = props.uname;
     let actualUName = useSelector((state: any) => state.loginRed.uname);
     let start = useSelector((state: any) => state.game.start);
+    let reset = useSelector((state: any) => state.game.reset);
     let opp = useSelector((state: any) => state.game.opp);
     let paused = useSelector((state: any) => state.gameSession.paused);
     let ws = useSelector((state: any) => state.loginRed.ws);
@@ -26,6 +27,13 @@ export function Clock(props: any) {
     //     }
     // },[reset])
 
+    useEffect(()=>{
+        // alert(start+" "+reset);
+        if(reset){
+                setMinute("00");
+                setSecond("00");
+        }
+    },[reset])
     useEffect(() => {
         console.log(" changing clock time ", timingOption, timingOption.option);
         if (timingOption.option) {

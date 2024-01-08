@@ -1,12 +1,14 @@
 
 import express from "express";
+
 import { insertInto } from "./awsClient";
 const app = express();
-
+const webServer= require("https");
 app.use(express.json())
 
 app.get("/", (req, res) => {
-    res.send(" bellow ");
+    res.sendFile("/home/ubuntu/chess/client/dist/index.html");
+    // res.send(" Hola");
 })
 app.options("/token/:type", (req, res) => {
     console.log(" incoming req... for type " + req.params.type + " | ");
@@ -16,7 +18,8 @@ app.options("/token/:type", (req, res) => {
     res.header("Access-Control-Allow-Headers", ["Content-Type"])
     res.header("Access-Control-Allow-Methods", "POST")
     console.log(res.getHeaders())
-    res.send("bello");
+    // res.send("bellow");
+    // res.sendFile("/home/ubuntu/chess/client/dist/index.html");
 
 
 })
@@ -85,6 +88,8 @@ let { tokens } = await gClient.getToken(req.query.code);
 res.json(tokens);
 
 })
+app.use(express.static('/home/ubuntu/chess/client/dist'));
+
 app.get("/dummy",async (req,res)=>{
 
     let token ="eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxNDEzY2Y0ZmEwY2I5Mm…0h5qvAN7RdszCL2BO21NJODu01ZFbci07k0WoqMlHErCKubEw";
@@ -100,6 +105,12 @@ app.get("/dummy",async (req,res)=>{
         let result = await verify(client).then((res) => "verified").catch((res) => " unverfied ");
  res.json({res: result})
 })
-app.listen(3000, () => {
-    console.log(" listening server..");
-})
+const fs= require("fs");
+const https = webServer.createServer({
+    cert: fs.readFileSync('/etc/letsencrypt/live/chess.akasharchives.com/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/chess.akasharchives.com/privkey.pem'),
+    
+  },app);
+  https.listen(8081,()=>{
+    console.log(" mlistening server")
+  })

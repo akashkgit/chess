@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import "./oppComp.css";
+import "./OppComp.css";
 import {Clock } from "../Clock/Clock";
 import React from "react"
 export function OppComp(props:any){

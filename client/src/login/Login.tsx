@@ -5,7 +5,7 @@ import { useState } from "react";
 import { url } from "../specs/data";
 import {login as log, wsChanger} from "../reduxFiles/configs"
 import { useSelector, useDispatch } from 'react-redux';
-import { authUrl } from "../specs/config";
+import { authUrl, serverUrl } from "../specs/config";
 
 async function logIn(event:any,setErr:(fn: (l:boolean)=>boolean| boolean)=>void,nav:any,disp:any,login:boolean){
     
@@ -72,7 +72,7 @@ export function LogIn(){
     let global:any=window;
     let nav=useNavigate();
     function response(data:{[idx:string]:any}){
-        let url = "http://localhost:3000/token/login"
+        let url = serverUrl+"token/login"
         let cred = data;
         type optionSpec = RequestInit;
         let options: optionSpec = {

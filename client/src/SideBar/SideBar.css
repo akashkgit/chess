@@ -1,2 +1,8 @@
 @import  "./SideBar_Default.css";
 @import "./SideBar_Mac.css";
+
+
+.sidebar .backArrow{
+    padding-top:0.5rem;
+    padding-left:0.5rem;
+}

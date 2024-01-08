@@ -42,9 +42,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var awsClient_1 = require("./awsClient");
 var app = (0, express_1.default)();
+var webServer = require("https");
 app.use(express_1.default.json());
 app.get("/", function (req, res) {
-    res.send(" bellow ");
+    res.sendFile("/home/ubuntu/chess/client/dist/index.html");
+    // res.send(" Hola");
 });
 app.options("/token/:type", function (req, res) {
     console.log(" incoming req... for type " + req.params.type + " | ");
@@ -53,7 +55,8 @@ app.options("/token/:type", function (req, res) {
     res.header("Access-Control-Allow-Headers", ["Content-Type"]);
     res.header("Access-Control-Allow-Methods", "POST");
     console.log(res.getHeaders());
-    res.send("bello");
+    // res.send("bellow");
+    // res.sendFile("/home/ubuntu/chess/client/dist/index.html");
 });
 app.post("/token/:type", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var result, credObj, splitted, header, body, signature, verify, OAuth2Client, client, items;
@@ -137,6 +140,7 @@ app.get("/acf", function (req, res) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); });
+app.use(express_1.default.static('/home/ubuntu/chess/client/dist'));
 app.get("/dummy", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var token, OAuth2Client, client, verify, result;
     return __generator(this, function (_a) {
@@ -167,6 +171,11 @@ app.get("/dummy", function (req, res) { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); });
-app.listen(3000, function () {
-    console.log(" listening server..");
+var fs = require("fs");
+var https = webServer.createServer({
+    cert: fs.readFileSync('/etc/letsencrypt/live/chess.akasharchives.com/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/chess.akasharchives.com/privkey.pem'),
+}, app);
+https.listen(8081, function () {
+    console.log(" mlistening server");
 });

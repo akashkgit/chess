@@ -96,7 +96,7 @@ export function acceptDraw(ws:WebSocket,disp:any, uname:string,opp:string){
     disp(endGame(true));// true is optional 
     disp(drawGame());
     disp(setDraw(false));
-    disp(reset(true));
+    // disp(reset(true));
     // alert(" will stop the game ");
     console.log("terminate: draw",dataSend);
     ws.send(dataSend)
@@ -107,7 +107,7 @@ export function acceptPause(ws:WebSocket,disp:any, uname:string,opp:string){
     let dataSend=JSON.stringify({action:"matchManager","type":"pauseACK","dest":opp,"src":uname})
     disp(setPaused(true))
     disp(setPause(false))
-    alert("terminate: pause"+dataSend);
+    // alert("terminate: pause"+dataSend);
     ws.send(dataSend)
 }
 
@@ -130,7 +130,7 @@ export function acceptResume(ws:WebSocket,disp:any, uname:string,opp:string){
     let dataSend=JSON.stringify({action:"matchManager","type":"resumeACK","dest":opp,"src":uname})
     disp(setPaused(false))
     disp(setResume(false))
-    alert("resume: pause"+dataSend);
+    // alert("resume: pause"+dataSend);
     ws.send(dataSend)
 }
 

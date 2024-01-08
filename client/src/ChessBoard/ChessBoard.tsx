@@ -129,7 +129,7 @@ export function ChessBoard(){
                         coin.style.transform="";
                         coin.style.display="";
                 })
-                disp(setGameSessionProps({moveHistory:[], myKilledCoins:[],gameWon:false,wonBy:"",undo:false,gameDrawn:false,resign:false,draw:false}));
+                disp(setGameSessionProps({moveHistory:[], myKilledCoins:[],gameWon:false,wonBy:"",undo:false,gameDrawn:false,move:null,myMove:null,resign:false,draw:false}));
                 disp(Reset(false));
             }
             else{

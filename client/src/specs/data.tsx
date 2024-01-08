@@ -211,7 +211,7 @@ export let wsHandler=(activate:any,clearId:any,setSrc:any,disp:any,setTimingOpti
             console.log("draw ",msg);
             disp(endGame(true)); //true optional
             disp(setResign(true));
-            disp(reset(true));
+            // disp(reset(true));
             //   disp(resignedGame());
               // alert(" ending game ....");
               

@@ -12,7 +12,7 @@ export function InPlay() {
     let oppKilledCoins = useSelector((state: any) => state.gameSession.oppKilledCoins)
     let myKilledCoins = useSelector((state: any) => state.gameSession.myKilledCoins)
     let ws: WebSocket = useSelector((state: any) => state.loginRed.ws)
-    let start: boolean = useSelector((state: any) => state.loginRed.start)
+    let start: boolean = useSelector((state: any) => state.game.start)
     let uname: string = useSelector((state: any) => state.loginRed.uname)
     let opp: string = useSelector((state: any) => state.game.opp)
     let undo = useSelector((state: any) => state.gameSession.undo)
@@ -108,7 +108,7 @@ export function InPlay() {
             // alert(" draw accepted..will end the match");
             disp(endGame(true));// true is optional 
             disp(drawGame());
-            disp(reset(true));
+            // disp(reset(true));
 
             disp(setDraw(false));
             // should navigate to homepage ....
@@ -120,7 +120,7 @@ export function InPlay() {
             disp(setPaused(true));
         }
         else if ("resumeACK" === data.type){
-            alert("resumingACK rcvd");
+            // alert("resumingACK rcvd");
             disp(setPaused(false));
         }
 
@@ -140,9 +140,10 @@ export function InPlay() {
     function raisePause(ev: any) {
 
     }
+    console.log("matchcontrols ",start ===false);
     return <div className="InPlay">
         <div>
-            <div className={'inMatchControls '+ (start ===false?"disabled":"")}>
+            <div className={'inMatchControls '+ (start === false?"disabled":"")}>
                 <div className={'draw' + (draw ? " disabled" : "")} onClick={() => { raiseDraw(ws, uname, opp, disp, draw) }}><span className='halflogo'>Draw</span></div>
                 <div className={'resign'} onClick={() => resign(ws, uname, opp, disp)}><span className='resignlogo'>Resign</span></div>
                 <div className={'undo' + (undo ? " disabled" : "")} onClick={(event) => undoHandler(event, mappedMoves, turn, disp, oppKilledCoins, ws, opp, uname, undo)}><span className='undologo'></span></div>

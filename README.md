@@ -1,7 +1,7 @@
 Hey there!
 **Welcome to my chess repo**
 
-**to start the node server**
+**To start the node server**
 1. cd server
 2. npm run nodemon
 
